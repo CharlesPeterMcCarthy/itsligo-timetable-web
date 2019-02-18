@@ -5,10 +5,11 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.less']
 })
-export class HomeComponent implements OnInit {
-  heading: string = "Timetable"
 
+export class HomeComponent implements OnInit {
+  heading: string = ""
+  
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {}
 }

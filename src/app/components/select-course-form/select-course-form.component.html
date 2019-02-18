@@ -1,0 +1,13 @@
+<form>
+    <select (change)='SetDepartment($event.target.value)' class='form-control'>
+        <option selected disabled>Select department</option>
+        <option href="javascript:void(0)" value="{{dept.id}}" *ngFor="let dept of departments">{{ dept.name }}</option>
+    </select>
+
+    <select (change)='SetCourse($event.target.value)' class='form-control'>
+        <option selected disabled>Select course</option>
+        <option href="javascript:void(0)" value="{{course.id}}" *ngFor="let course of courses">{{ course.name }}</option>
+    </select>
+
+    <button type="submit" class="btn btn-primary" (click)="ViewTimetable()">View</button>
+</form>
