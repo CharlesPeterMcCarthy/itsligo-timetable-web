@@ -9,13 +9,15 @@ import { PageHeadingComponent } from './components/page-heading/page-heading.com
 
 import { BootstrapModule } from './modules/bootstrap/bootstrap.module';
 import { SelectCourseFormComponent } from './components/select-course-form/select-course-form.component';
+import { MyTimetableComponent } from './pages/my-timetable/my-timetable.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     PageHeadingComponent,
-    SelectCourseFormComponent
+    SelectCourseFormComponent,
+    MyTimetableComponent
   ],
   imports: [
     BrowserModule,
