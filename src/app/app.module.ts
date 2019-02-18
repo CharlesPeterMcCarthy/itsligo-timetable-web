@@ -19,6 +19,7 @@ import { MyTimetableComponent } from './pages/my-timetable/my-timetable.componen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { TimetableDayComponent } from './components/timetable-day/timetable-day.component';
+import { TimetableClassComponent } from './components/timetable-class/timetable-class.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { TimetableDayComponent } from './components/timetable-day/timetable-day.
     PageHeadingComponent,
     SelectCourseFormComponent,
     MyTimetableComponent,
-    TimetableDayComponent
+    TimetableDayComponent,
+    TimetableClassComponent
   ],
   imports: [
     BrowserModule,
