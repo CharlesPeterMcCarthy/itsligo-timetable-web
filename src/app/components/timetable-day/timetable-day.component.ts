@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Day } from '../../models/day.model';
+import { Class } from '../../models/class.model';
 
 @Component({
   selector: 'timetable-day',
@@ -8,11 +10,13 @@ import { Component, OnInit, Input } from '@angular/core';
 
 export class TimetableDayComponent implements OnInit {
 
-  @Input() day: object
+  @Input() day: Day
+  classes: Class[]
 
   constructor() { }
 
   ngOnInit() {
+    this.classes = this.day.classes;
   }
 
 }
