@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Day } from '../../models/day.model';
 import { Class } from '../../models/class.model';
+import { _ } from 'underscore';
 
 @Component({
   selector: 'timetable-day',
@@ -16,7 +17,7 @@ export class TimetableDayComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.classes = this.day.classes;
+    this.classes = _.map(this.day.classes, (cl) => new Class(cl))
   }
 
 }
