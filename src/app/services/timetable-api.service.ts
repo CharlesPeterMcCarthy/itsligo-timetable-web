@@ -11,7 +11,7 @@ export class TimetableAPIService {
   readonly baseURL: string = environment.apiURL;
 
   constructor(private httpClient: HttpClient) {}
-  // public login = (studentID: string, password: string) => this.httpClient.post(`${this.baseURL}/login`, {"studentID": studentID, "password": password})
+   public Login = (studentID: string, password: string) => this.httpClient.post(`${this.baseURL}/login`, {"studentID": studentID, "password": password})
 
   // public register = (studentID: string, name: string, password: string) => this.httpClient.post(`${this.baseURL}/register`, {"studentID": studentID, "name": name, "password": password})
 

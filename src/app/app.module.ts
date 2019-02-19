@@ -21,6 +21,7 @@ import { MyTimetableComponent } from './pages/my-timetable/my-timetable.componen
 
 // Extras
 import { ToastrModule } from 'ngx-toastr';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ToastrModule } from 'ngx-toastr';
     SelectCourseFormComponent,
     MyTimetableComponent,
     TimetableDayComponent,
-    TimetableClassComponent
+    TimetableClassComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
