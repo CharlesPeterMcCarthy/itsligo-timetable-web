@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 
 export class TimetableAPIService {
   
-  readonly baseURL: string = 'https://qtal13xg9c.execute-api.eu-west-1.amazonaws.com/dev'
+  readonly baseURL: string = environment.apiURL;
 
   constructor(private httpClient: HttpClient) {}
   // public login = (studentID: string, password: string) => this.httpClient.post(`${this.baseURL}/login`, {"studentID": studentID, "password": password})
