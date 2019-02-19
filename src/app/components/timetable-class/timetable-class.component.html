@@ -1,8 +1,8 @@
 <div class="class-block">
-  <div><strong>{{ class.module.name }}</strong><small> ({{ class.type }})</small></div>
+  <div class="module-title"><strong>{{ class.module.name }}</strong><small> ({{ class.type }})</small></div>
   <div>{{ class.times.start }} - {{ class.times.end }} ({{ GetClassDuration() }})</div>
   <div *ngFor="let room of class.rooms">{{ room.code }}</div>
-  <div class="text-right">
+  <div *ngIf="!showMoreInfo" class="text-right">
     <button (click)="ShowMoreInfo()" class="btn btn-primary btn-sm">More Info</button>
   </div>
   <div *ngIf="showMoreInfo" class="row">
