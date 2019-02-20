@@ -1,0 +1,16 @@
+<div class="class-block">
+  <div class="module-title"><strong>{{ class.module.name }}</strong><small> ({{ class.type }})</small></div>
+  <div>{{ class.times.start }} - {{ class.times.end }} ({{ GetClassDuration() }})</div>
+  <div *ngFor="let room of class.rooms">{{ room.code }}</div>
+  <div *ngIf="!showMoreInfo" class="text-right">
+    <button (click)="ShowMoreInfo()" class="btn btn-primary btn-sm">More Info</button>
+  </div>
+  <div *ngIf="showMoreInfo" class="row">
+    <div class="col-sm-12">
+      Lecturer<span *ngIf="class.lecturers.length > 1">s</span>: <span>{{ GetLecturers() }}</span>
+    </div>
+    <div class="col-sm-12">
+      Course Code: <span>{{ class.module.code }}</span>
+    </div>
+  </div>
+</div>

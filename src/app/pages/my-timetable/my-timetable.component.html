@@ -1,0 +1,7 @@
+<page-heading [heading]="heading"></page-heading>
+
+<div *ngIf="timetable" class="row justify-content-md-center">
+  <ul class="list-group" class="col-sm-12 col-md-10 col-lg-8">
+    <timetable-day *ngFor="let day of timetable" [day]="day"></timetable-day>
+  </ul>
+</div>
