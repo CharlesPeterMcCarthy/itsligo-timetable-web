@@ -12,21 +12,20 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   constructor(
-    private TimetableAPI: TimetableAPIService,
-    private router: Router,
-    private toastr: ToastrService
+    private _TimetableAPI: TimetableAPIService,
+    private _router: Router,
+    private _toastr: ToastrService
   ) { }
 
   ngOnInit() {
   }
 
   Login(StudentID: HTMLInputElement, Password: HTMLInputElement): void {
-    this.TimetableAPI.Login(StudentID.value, Password.value).subscribe((res) => {
+    this._TimetableAPI.Login(StudentID.value, Password.value).subscribe((res) => {
       console.log(res);
-      this.router.navigate(['/timetable']);
     }, (err) => {
-      console.log(err);
-      this.toastr.error("Error", "An Error occurred while attempting to login.");
+      console.log(err)
+      this._toastr.error(err.error.errorText);
     })
   }
 

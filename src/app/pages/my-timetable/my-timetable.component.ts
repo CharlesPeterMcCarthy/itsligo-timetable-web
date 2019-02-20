@@ -20,7 +20,7 @@ export class MyTimetableComponent implements OnInit {
   ngOnInit() {
   }
 
-  GetTimetable() {
+  GetTimetable = () =>
     this.TimetableAPI.GetTimetable(this.timetableURL).subscribe((res) => {
       console.log(res);
       this.timetable = res;    
@@ -28,6 +28,5 @@ export class MyTimetableComponent implements OnInit {
       console.log(err);
       this.toastr.error("Error", "An Error occurred while retrieving your timetable.");
     })
-  }
 
 }
