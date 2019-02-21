@@ -14,14 +14,15 @@ import { PageHeadingComponent } from './components/page-heading/page-heading.com
 import { SelectCourseFormComponent } from './components/select-course-form/select-course-form.component';
 import { TimetableDayComponent } from './components/timetable-day/timetable-day.component';
 import { TimetableClassComponent } from './components/timetable-class/timetable-class.component';
+import { NavComponent } from './components/nav/nav.component';
 
 // Pages
 import { HomeComponent } from './pages/home/home.component';
 import { MyTimetableComponent } from './pages/my-timetable/my-timetable.component';
+import { LoginComponent } from './pages/login/login.component';
 
 // Extras
 import { ToastrModule } from 'ngx-toastr';
-import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { LoginComponent } from './pages/login/login.component';
     MyTimetableComponent,
     TimetableDayComponent,
     TimetableClassComponent,
-    LoginComponent
+    LoginComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
