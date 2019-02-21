@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TimetableAPIService } from '../../services/timetable-api.service';
+import { AuthService } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
@@ -12,17 +12,25 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   constructor(
-    private _TimetableAPI: TimetableAPIService,
+    private _authService: AuthService,
     private _router: Router,
     private _toastr: ToastrService
   ) { }
+
+  test: string = localStorage.getItem('AuthToken')
 
   ngOnInit() {
   }
 
   Login(StudentID: HTMLInputElement, Password: HTMLInputElement): void {
-    this._TimetableAPI.Login(StudentID.value, Password.value).subscribe((res) => {
+    this._authService.Login(StudentID.value, Password.value).subscribe((res) => {
       console.log(res);
+
+      if (res['Access-Token']) {
+        localStorage.setItem('AuthToken', res['Access-Token'])
+        localStorage.setItem('StudentID', res['user']['StudentID'])
+        localStorage.setItem('TimetableURL', res['user']['TimetableURL'])
+      }
     }, (err) => {
       console.log(err)
       this._toastr.error(err.error.errorText);
