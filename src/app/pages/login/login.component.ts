@@ -17,12 +17,10 @@ export class LoginComponent implements OnInit {
     private _toastr: ToastrService
   ) { }
 
-  test: string = localStorage.getItem('AuthToken')
-
   ngOnInit() {
   }
 
-  Login(StudentID: HTMLInputElement, Password: HTMLInputElement): void {
+  Login = (StudentID: HTMLInputElement, Password: HTMLInputElement): void => {
     this._authService.Login(StudentID.value, Password.value).subscribe((res) => {
       console.log(res);
 

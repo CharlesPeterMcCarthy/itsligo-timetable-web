@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, HostListener } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 
 @Component({
   selector: 'nav-bar',
@@ -8,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 
 export class NavComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject(DOCUMENT) private document: Document) {}
 
-  ngOnInit() {
+  isBelowNav: boolean = false;
+  expandNav: boolean = false;
+
+  ngOnInit() {}
+
+  @HostListener("window:scroll", [])
+  OnScroll = (): void => {
+    const offset = this.document.documentElement.scrollTop || this.document.body.scrollTop;
+    this.isBelowNav = offset >= 20;
   }
+
+  BackgroundColor = (): string => this.isBelowNav || this.expandNav ? 'rgba(0, 0, 0, 0.95)' : 'rgba(0, 0, 0, 0.1)';
+  
+  ToggleNavbar = () => this.expandNav = !this.expandNav;
 
 }
