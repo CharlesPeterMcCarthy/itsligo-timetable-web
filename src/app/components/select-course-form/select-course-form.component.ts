@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TimetableApiService } from '../../services/timetable-api/timetable-api.service';
 import { ToastrService } from 'ngx-toastr';
 import { _ } from 'underscore';
@@ -18,6 +19,7 @@ export class SelectCourseFormComponent implements OnInit {
 
   constructor(
     private _timetableAPI: TimetableApiService,
+    private _router: Router,
     private _toastr: ToastrService
   ) {
     this.GetDepartments();
@@ -26,40 +28,33 @@ export class SelectCourseFormComponent implements OnInit {
   ngOnInit() {}
 
   GetDepartments = (): void => {
-    this._timetableAPI.GetDepartments().subscribe((res) => {
-      console.log(res);
-      this.departments = res['departments'];
-    }, (err) => {
-      console.log(err);
-    });
+    this._timetableAPI.GetDepartments().subscribe(
+      (res) => this.departments = res['departments'],
+      (err) => this._toastr.error(err.error.errorText)
+    );
   }
 
   GetCourses = (): void => {
-    this._timetableAPI.GetDepartmentCourses(this.selectedDept).subscribe((res) => {
-      console.log(res);
-      this.courses = res['courses'];
-    }, (err) => {
-      console.log(err);
-    });
+    this._timetableAPI.GetDepartmentCourses(this.selectedDept).subscribe(
+      (res) => this.courses = res['courses'], 
+      (err) => this._toastr.error(err.error.errorText)
+    );
   }
 
-  SetDepartment = (dept): boolean => {
+  SetDepartment = (dept): void => {
     this.selectedDept = dept;
-    console.log(this.selectedDept);
 
     this.GetCourses();
-
-    return false;
   }
 
-  SetCourse = (course: Object): boolean => {
+  SetCourse = (course: Object): void => {
     this.selectedCourse = course;
-    console.log(this.selectedCourse);
-
-    return false;
   }
 
   ViewTimetable = (): boolean => {
+    localStorage.setItem('TimetableURL', this.selectedCourse['url']['semester2']);
+    this._router.navigate(['timetable']);
+
     return false;
   }
 
