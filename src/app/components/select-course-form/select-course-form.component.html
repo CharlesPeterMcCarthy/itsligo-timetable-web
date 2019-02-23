@@ -1,14 +1,26 @@
 <form>
-    <select (ngModelChange)='SetDepartment($event)' name="department" (ngModel)="departments" class='form-control'>
-        <option selected disabled [ngValue]="null">Select department</option>
-        <option [ngValue]="dept" *ngFor="let dept of departments">{{ dept }}</option>
-    </select>
+    <div class="form-group">
+        <select (ngModelChange)='SetDepartment($event)' name="department" (ngModel)="departments" class='form-control'>
+            <option selected disabled [ngValue]="null">Select department</option>
+            <option [ngValue]="dept" *ngFor="let dept of departments">{{ dept }}</option>
+        </select>
+    </div>
 
-    <select (ngModelChange)='SetCourse($event)' name="course" (ngModel)="courses" class='form-control'>
-        <option selected disabled [ngValue]="null">Select course</option>
-        <option [ngValue]="course" *ngFor="let course of courses">{{ course.name }}</option>
-    </select>
+    <div class="form-group">
+        <select (ngModelChange)='SetCourse($event)' name="course" (ngModel)="courses" [disabled]="!selectedDept" class='form-control'>
+            <option selected disabled [ngValue]="null">Select course</option>
+            <option [ngValue]="course" *ngFor="let course of courses">{{ course.name }}</option>
+        </select>
+    </div>
 
-    <button type="submit" class="btn btn-primary" (click)="ViewTimetable(1)" [disabled]="!selectedCourse">Semester 1</button>
-    <button type="submit" class="btn btn-primary" (click)="ViewTimetable(2)" [disabled]="!selectedCourse">Semester 2</button>
+    <div class="text-right">
+        <button type="submit" class="btn btn-left" [ngClass]="{
+            'btn-success': selectedCourse,
+            'btn-outline-success': !selectedCourse
+        }" (click)="ViewTimetable(1)" [disabled]="!selectedCourse">Semester 1</button>
+        <button type="submit" class="btn" [ngClass]="{
+            'btn-success': selectedCourse,
+            'btn-outline-success': !selectedCourse
+        }" (click)="ViewTimetable(2)" [disabled]="!selectedCourse">Semester 2</button>
+    </div>
 </form>

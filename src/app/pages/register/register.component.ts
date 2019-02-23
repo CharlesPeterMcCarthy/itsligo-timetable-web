@@ -10,6 +10,8 @@ import { ToastrService } from 'ngx-toastr';
 
 export class RegisterComponent implements OnInit {
 
+  private heading: string = "Register"
+
   constructor(
     private _authService: AuthService, 
     private _toastr: ToastrService
