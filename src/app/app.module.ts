@@ -19,11 +19,11 @@ import { NavComponent } from './components/nav/nav.component';
 // Pages
 import { HomeComponent } from './pages/home/home.component';
 import { MyTimetableComponent } from './pages/my-timetable/my-timetable.component';
+import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
 
 // Extras
 import { ToastrModule } from 'ngx-toastr';
-import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -50,4 +50,5 @@ import { RegisterComponent } from './pages/register/register.component';
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
