@@ -12,12 +12,11 @@ export class TimetableApiService {
 
   constructor(private _http: HttpClient) {}
 
-  // public register = (studentID: string, name: string, password: string) => this.httpClient.post(`${this.baseURL}/register`, {"studentID": studentID, "name": name, "password": password})
+  public GetTimetable = (timetableURL: string) => this._http.post(`${this.baseURL}/timetable`, {"TimetableURL": timetableURL});
 
-  public GetTimetable = (timetableURL: string) => this._http.post(`${this.baseURL}/timetable`, {"TimetableURL": timetableURL})
+  public GetDepartments = () => this._http.get(`${this.baseURL}/departments`);
 
-  // public AuthenticateUser = (AuthToken: string, StudentID: string) => this.httpClient.post(`${this.baseURL}/auth`, {"AuthToken": AuthToken, "StudentID": StudentID})
+  public GetDepartmentCourses = (department: string) => this._http.get(this.CleanURL(`${this.baseURL}/courses?department=${department}`));
 
-  // public ChangeTimetable = (AuthToken: string, StudentID: string, TimetableURL: string) => this.httpClient.post(`${this.baseURL}/change-timetable`,{"AuthToken": AuthToken, "StudentID": StudentID, "TimetableURL": TimetableURL});
-
+  private CleanURL = (url) => url.replace('&', '%26')
 }

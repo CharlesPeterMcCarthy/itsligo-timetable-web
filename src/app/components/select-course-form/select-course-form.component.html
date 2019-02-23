@@ -1,12 +1,12 @@
 <form>
-    <select (change)='SetDepartment($event.target.value)' class='form-control'>
-        <option selected disabled>Select department</option>
-        <option href="javascript:void(0)" value="{{dept.id}}" *ngFor="let dept of departments">{{ dept.name }}</option>
+    <select (ngModelChange)='SetDepartment($event)' name="department" (ngModel)="departments" class='form-control'>
+        <option selected disabled [ngValue]="null">Select department</option>
+        <option [ngValue]="dept" *ngFor="let dept of departments">{{ dept }}</option>
     </select>
 
-    <select (change)='SetCourse($event.target.value)' class='form-control'>
-        <option selected disabled>Select course</option>
-        <option href="javascript:void(0)" value="{{course.id}}" *ngFor="let course of courses">{{ course.name }}</option>
+    <select (ngModelChange)='SetCourse($event)' name="course" (ngModel)="courses" class='form-control'>
+        <option selected disabled [ngValue]="null">Select course</option>
+        <option [ngValue]="course" *ngFor="let course of courses">{{ course.name }}</option>
     </select>
 
     <button type="submit" class="btn btn-primary" (click)="ViewTimetable()">View</button>
