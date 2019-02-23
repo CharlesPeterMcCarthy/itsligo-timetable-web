@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
@@ -17,8 +17,7 @@ export class LoginComponent implements OnInit {
     private _toastr: ToastrService
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   Login = (StudentID: HTMLInputElement, Password: HTMLInputElement): void => {
     this._authService.Login(StudentID.value, Password.value).subscribe((res) => {

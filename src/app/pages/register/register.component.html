@@ -1,0 +1,21 @@
+<div class="row justify-content-md-center">
+  <div class="main col-sm-12 col-md-10 col-lg-8">
+    <form>
+      <div class="text-center">
+        <h3>Register</h3>
+        <div class="sect">
+          <input type="text" id="studentID" class="form-control" placeholder="Student ID" #studentID />
+        </div>
+        <div class="sect">
+          <input type="text" id="name" class="form-control" placeholder="Your Name" #name />
+        </div>
+        <div class="sect">
+          <input type="password" id="password" class="form-control" placeholder="Password" #password />
+        </div>
+      </div>
+      <div class="text-right">
+        <button (click)="Register(studentID, name, password)" class="btn btn-lg btn-primary">Register</button>
+      </div>
+    </form>
+  </div>
+</div>

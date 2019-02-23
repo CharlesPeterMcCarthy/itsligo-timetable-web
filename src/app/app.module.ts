@@ -19,6 +19,7 @@ import { NavComponent } from './components/nav/nav.component';
 // Pages
 import { HomeComponent } from './pages/home/home.component';
 import { MyTimetableComponent } from './pages/my-timetable/my-timetable.component';
+import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
 
 // Extras
@@ -34,7 +35,8 @@ import { ToastrModule } from 'ngx-toastr';
     TimetableDayComponent,
     TimetableClassComponent,
     LoginComponent,
-    NavComponent
+    NavComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -48,4 +50,5 @@ import { ToastrModule } from 'ngx-toastr';
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

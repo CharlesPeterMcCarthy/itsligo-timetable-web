@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'nav-bar',
@@ -10,7 +10,10 @@ import { AuthService } from '../../services/auth.service';
 
 export class NavComponent implements OnInit {
 
-  constructor(@Inject(DOCUMENT) private document: Document, private _authService: AuthService) {}
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private _authService: AuthService
+  ) {}
 
   isBelowNav: boolean = false;
   expandNav: boolean = false;
@@ -25,10 +28,10 @@ export class NavComponent implements OnInit {
 
   BackgroundColor = (): string => this.isBelowNav || this.expandNav ? 'rgba(0, 0, 0, 0.95)' : 'rgba(0, 0, 0, 0.1)';
   
-  ToggleNavbar = () => this.expandNav = !this.expandNav;
+  ToggleNavbar = (): boolean => this.expandNav = !this.expandNav;
 
-  Logout = () => this._authService.Logout();
+  Logout = (): void => this._authService.Logout();
 
-  IsLoggedIn = () => this._authService.IsLoggedIn();
+  IsLoggedIn = (): boolean => !!this._authService.IsLoggedIn();
 
 }
