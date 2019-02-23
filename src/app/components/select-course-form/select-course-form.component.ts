@@ -51,8 +51,8 @@ export class SelectCourseFormComponent implements OnInit {
     this.selectedCourse = course;
   }
 
-  ViewTimetable = (): boolean => {
-    localStorage.setItem('TimetableURL', this.selectedCourse['url']['semester2']);
+  ViewTimetable = (semesterNum: number): boolean => {
+    localStorage.setItem('TimetableURL', this.selectedCourse['url'][`semester${semesterNum}`]);
     this._router.navigate(['timetable']);
 
     return false;
