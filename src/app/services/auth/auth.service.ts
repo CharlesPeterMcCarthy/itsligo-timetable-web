@@ -16,7 +16,7 @@ export class AuthService {
 
   public Login = (studentID: string, password: string) => this._http.post(`${this.baseURL}/login`, { studentID, password });
 
-  public IsLoggedIn = () => localStorage.getItem('AuthToken');
+  public IsLoggedIn = () => localStorage.getItem('AuthToken') && localStorage.getItem('StudentID');
 
   public Logout = () => localStorage.clear();
 
