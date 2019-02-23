@@ -25,10 +25,10 @@ export class NavComponent implements OnInit {
 
   BackgroundColor = (): string => this.isBelowNav || this.expandNav ? 'rgba(0, 0, 0, 0.95)' : 'rgba(0, 0, 0, 0.1)';
   
-  ToggleNavbar = () => this.expandNav = !this.expandNav;
+  ToggleNavbar = (): boolean => this.expandNav = !this.expandNav;
 
-  Logout = () => this._authService.Logout();
+  Logout = (): void => this._authService.Logout();
 
-  IsLoggedIn = () => this._authService.IsLoggedIn();
+  IsLoggedIn = (): boolean => !!this._authService.IsLoggedIn();
 
 }

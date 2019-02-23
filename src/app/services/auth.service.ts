@@ -12,7 +12,9 @@ export class AuthService {
 
   constructor(private _http: HttpClient) { }
 
-  public Login = (studentID: string, password: string) => this._http.post(`${this.baseURL}/login`, {"studentID": studentID, "password": password});
+  public Register = (studentID: string, name: string, passwor: string) => this._http.post(`${this.baseURL}/register`, { studentID, name, passwor });
+
+  public Login = (studentID: string, password: string) => this._http.post(`${this.baseURL}/login`, { studentID, password });
 
   public IsLoggedIn = () => localStorage.getItem('AuthToken');
 

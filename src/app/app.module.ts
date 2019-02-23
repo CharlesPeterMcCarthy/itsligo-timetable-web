@@ -23,6 +23,7 @@ import { LoginComponent } from './pages/login/login.component';
 
 // Extras
 import { ToastrModule } from 'ngx-toastr';
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ToastrModule } from 'ngx-toastr';
     TimetableDayComponent,
     TimetableClassComponent,
     LoginComponent,
-    NavComponent
+    NavComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
