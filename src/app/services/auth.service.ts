@@ -12,6 +12,10 @@ export class AuthService {
 
   constructor(private _http: HttpClient) { }
 
-  public Login = (studentID: string, password: string) => this._http.post(`${this.baseURL}/login`, {"studentID": studentID, "password": password})
+  public Login = (studentID: string, password: string) => this._http.post(`${this.baseURL}/login`, {"studentID": studentID, "password": password});
+
+  public IsLoggedIn = () => localStorage.getItem('AuthToken');
+
+  public Logout = () => localStorage.clear();
 
 }
