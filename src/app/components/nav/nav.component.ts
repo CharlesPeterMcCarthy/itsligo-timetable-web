@@ -10,7 +10,10 @@ import { AuthService } from '../../services/auth.service';
 
 export class NavComponent implements OnInit {
 
-  constructor(@Inject(DOCUMENT) private document: Document, private _authService: AuthService) {}
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private _authService: AuthService
+  ) {}
 
   isBelowNav: boolean = false;
   expandNav: boolean = false;
