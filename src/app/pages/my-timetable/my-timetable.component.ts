@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 export class MyTimetableComponent implements OnInit {
-  @Input() timetableURL: string = this.timetableURL || localStorage.getItem('TimetableURL');
+  timetableURL: string = localStorage.getItem('TimetableURL');
   heading: string = "My Timetable";
   timetable: Object;
 

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 
 export class LoginComponent implements OnInit {
   
-  private heading: string = "Login"
+  private heading: string = "Login";
 
   constructor(
     private _authService: AuthService,
@@ -26,12 +26,12 @@ export class LoginComponent implements OnInit {
       console.log(res);
 
       if (res['Access-Token']) {
-        localStorage.setItem('AuthToken', res['Access-Token'])
-        localStorage.setItem('StudentID', res['user']['StudentID'])
-        localStorage.setItem('TimetableURL', res['user']['TimetableURL'])
+        localStorage.setItem('AuthToken', res['Access-Token']);
+        localStorage.setItem('StudentID', res['user']['StudentID']);
+        localStorage.setItem('TimetableURL', res['user']['TimetableURL']);
+        this._router.navigate(['timetable']);
       }
     }, (err) => {
-      console.log(err)
       this._toastr.error(err.error.errorText);
     })
   }

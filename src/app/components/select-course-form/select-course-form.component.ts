@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TimetableApiService } from '../../services/timetable-api/timetable-api.service';
 import { ToastrService } from 'ngx-toastr';
 import { _ } from 'underscore';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'select-course-form',
@@ -19,6 +20,7 @@ export class SelectCourseFormComponent implements OnInit {
 
   constructor(
     private _timetableAPI: TimetableApiService,
+    private _authService: AuthService,
     private _router: Router,
     private _toastr: ToastrService
   ) {
@@ -52,8 +54,20 @@ export class SelectCourseFormComponent implements OnInit {
   }
 
   ViewTimetable = (semesterNum: number): boolean => {
-    localStorage.setItem('TimetableURL', this.selectedCourse['url'][`semester${semesterNum}`]);
-    this._router.navigate(['timetable']);
+    const url = this.selectedCourse['url'][`semester${semesterNum}`];
+
+    if (this._authService.IsLoggedIn()) {
+      this._timetableAPI.ChangeTimetable(localStorage.getItem('StudentID'), url).subscribe(
+        (res) => {
+          localStorage.setItem('TimetableURL', url);
+          this._router.navigate(['timetable']);
+        }, 
+        (err) => this._toastr.error(err.error.errorText)
+      );
+    } else {
+      localStorage.setItem('TimetableURL', url);
+      this._router.navigate(['timetable']);
+    }
 
     return false;
   }

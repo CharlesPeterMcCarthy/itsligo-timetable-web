@@ -12,11 +12,13 @@ export class TimetableApiService {
 
   constructor(private _http: HttpClient) {}
 
-  public GetTimetable = (timetableURL: string) => this._http.post(`${this.baseURL}/timetable`, {"TimetableURL": timetableURL});
+  public GetTimetable = (timetableURL: string) => this._http.post(`${this.baseURL}/timetable`, { "TimetableURL": timetableURL });
 
   public GetDepartments = () => this._http.get(`${this.baseURL}/departments`);
 
   public GetDepartmentCourses = (department: string) => this._http.get(this.CleanURL(`${this.baseURL}/courses?department=${department}`));
+
+  public ChangeTimetable = (studentID: string, timetableURL: string) => this._http.post(`${this.baseURL}/change-timetable`, { "StudentID": studentID, "TimetableURL": timetableURL });
 
   private CleanURL = (url) => url.replace('&', '%26')
 }
