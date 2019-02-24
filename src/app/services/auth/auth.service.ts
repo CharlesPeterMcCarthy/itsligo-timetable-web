@@ -12,7 +12,7 @@ export class AuthService {
 
   constructor(private _http: HttpClient) { }
 
-  public Register = (studentID: string, name: string, passwor: string) => this._http.post(`${this.baseURL}/register`, { studentID, name, passwor });
+  public Register = (studentEmail: string, name: string, password: string) => this._http.post(`${this.baseURL}/register`, { studentEmail, name, password });
 
   public Login = (studentID: string, password: string) => this._http.post(`${this.baseURL}/login`, { studentID, password });
 
