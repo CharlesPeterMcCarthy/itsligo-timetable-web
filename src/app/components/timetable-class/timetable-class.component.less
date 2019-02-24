@@ -5,6 +5,17 @@ div {
         border-radius: 4px;
         background-color: rgba(0, 0, 0, 0.4);
         color: white;
+        transition: background-color 0.4s;
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        &:active {
+            transition: background-color 0.1s;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
     }
 
     &.module-title {
