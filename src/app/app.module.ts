@@ -24,6 +24,7 @@ import { LoginComponent } from './pages/login/login.component';
 
 // Extras
 import { ToastrModule } from 'ngx-toastr';
+import { ConfirmEmailComponent } from './pages/confirm-email/confirm-email.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ToastrModule } from 'ngx-toastr';
     TimetableClassComponent,
     LoginComponent,
     NavComponent,
-    RegisterComponent
+    RegisterComponent,
+    ConfirmEmailComponent
   ],
   imports: [
     BrowserModule,

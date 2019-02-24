@@ -14,6 +14,8 @@ export class AuthService {
 
   public Register = (studentEmail: string, name: string, password: string) => this._http.post(`${this.baseURL}/register`, { studentEmail, name, password });
 
+  public CheckConfirmationCode = (code: string) => this._http.post(`${this.baseURL}/confirm`, { code });
+
   public Login = (studentID: string, password: string) => this._http.post(`${this.baseURL}/login`, { studentID, password });
 
   public IsLoggedIn = () => localStorage.getItem('AuthToken') && localStorage.getItem('StudentID');
