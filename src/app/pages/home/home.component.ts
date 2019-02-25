@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class HomeComponent implements OnInit {
-  heading: string = "Timetable"
+  heading: string = "Choose Your Timetable"
   
   constructor() { }
 

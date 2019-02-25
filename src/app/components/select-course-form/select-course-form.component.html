@@ -2,14 +2,14 @@
     <div class="form-group">
         <select (ngModelChange)='SetDepartment($event)' name="department" (ngModel)="departments" class='form-control'>
             <option selected disabled [ngValue]="null">Select department</option>
-            <option [ngValue]="dept" *ngFor="let dept of departments">{{ dept }}</option>
+            <option [ngValue]="dept" *ngFor="let dept of departments | sortList">{{ dept }}</option>
         </select>
     </div>
 
     <div class="form-group">
         <select (ngModelChange)='SetCourse($event)' name="course" (ngModel)="courses" [disabled]="!selectedDept" class='form-control'>
             <option selected disabled [ngValue]="null">Select course</option>
-            <option [ngValue]="course" *ngFor="let course of courses">{{ course.name }}</option>
+            <option [ngValue]="course" *ngFor="let course of courses | sortList: 'name'">{{ course.name }}</option>
         </select>
     </div>
 

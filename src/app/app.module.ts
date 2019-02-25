@@ -21,10 +21,13 @@ import { HomeComponent } from './pages/home/home.component';
 import { MyTimetableComponent } from './pages/my-timetable/my-timetable.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
+import { ConfirmEmailComponent } from './pages/confirm-email/confirm-email.component';
+
+// Pipes
+import { SortListPipe } from './pipes/sort-list.pipe';
 
 // Extras
 import { ToastrModule } from 'ngx-toastr';
-import { ConfirmEmailComponent } from './pages/confirm-email/confirm-email.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,8 @@ import { ConfirmEmailComponent } from './pages/confirm-email/confirm-email.compo
     LoginComponent,
     NavComponent,
     RegisterComponent,
-    ConfirmEmailComponent
+    ConfirmEmailComponent,
+    SortListPipe
   ],
   imports: [
     BrowserModule,

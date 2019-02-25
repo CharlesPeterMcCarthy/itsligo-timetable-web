@@ -6,29 +6,17 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export class SortListPipe implements PipeTransform {
 
-  transform(array: any[], field?: string): any {
+  transform(array: any[], key?: string): any {
     array = array || [];
+
+    array.sort((a: any, b: any) => {
+      const aVal = key ? a[key] : a;
+      const bVal = key ? b[key] : b;
+      if (aVal < bVal) return -1;
+      else if (aVal > bVal) return 1;
+      return 0;
+    });
     
-    if (field)
-      array.sort((a: any, b: any) => {
-        if (a[field] < b[field]) {
-          return -1;
-        } else if (a[field] > b[field]) {
-          return 1;
-        } else {
-          return 0;
-        }
-      });
-    else
-      array.sort((a: any, b: any) => {
-        if (a < b) {
-          return -1;
-        } else if (a > b) {
-          return 1;
-        } else {
-          return 0;
-        }
-      });
     return array;
   }
 
