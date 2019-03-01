@@ -22,13 +22,15 @@ export class LoginComponent implements OnInit {
   ngOnInit() { }
 
   Login = (StudentID: HTMLInputElement, Password: HTMLInputElement): void => {
+    localStorage.clear();
+    
     this._authService.Login(StudentID.value, Password.value).subscribe((res) => {
       console.log(res);
 
       if (res['Access-Token']) {
         localStorage.setItem('AuthToken', res['Access-Token']);
         localStorage.setItem('StudentID', res['user']['StudentID']);
-        localStorage.setItem('TimetableURL', res['user']['TimetableURL']);
+        if (res['user']['TimetableURL']) localStorage.setItem('TimetableURL', res['user']['TimetableURL']);
         this._router.navigate(['timetable']);
       }
     }, (err) => {

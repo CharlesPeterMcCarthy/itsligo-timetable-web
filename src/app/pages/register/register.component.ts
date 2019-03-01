@@ -10,7 +10,8 @@ import { ToastrService } from 'ngx-toastr';
 
 export class RegisterComponent implements OnInit {
 
-  heading: string = "Register"
+  heading: string = "Register";
+  isRegistered: boolean = false;
 
   constructor(
     private _authService: AuthService, 
@@ -22,8 +23,10 @@ export class RegisterComponent implements OnInit {
   Register = (StudentEmail: HTMLInputElement, Name: HTMLInputElement, Password: HTMLInputElement): void => {
     this._authService.Register(StudentEmail.value, Name.value, Password.value).subscribe((res) => {
       console.log(res);
+      this.isRegistered = true;
+      this.heading = "Registered";
     }, (err) => {
-      console.log(err)
+      console.log(err);
       this._toastr.error(err.error.errorText);
     })
   }

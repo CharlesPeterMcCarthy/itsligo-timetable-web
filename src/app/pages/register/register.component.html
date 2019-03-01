@@ -1,6 +1,7 @@
-<form>
+<page-heading [heading]="heading"></page-heading>
+
+<form *ngIf="!isRegistered">
   <div class="text-center">
-    <page-heading [heading]="heading"></page-heading>
     <div class="form-group">
       <input type="email" id="studentEmail" class="form-control" placeholder="Student Email" #studentEmail />
     </div>
@@ -15,3 +16,7 @@
     <button (click)="Register(studentEmail, name, password)" class="btn btn-lg btn-primary">Register</button>
   </div>
 </form>
+
+<div *ngIf="isRegistered">
+  <p>You have successfully registered. Please check your email to confirm your email address.</p>
+</div>

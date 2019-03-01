@@ -18,7 +18,9 @@ export class TimetableApiService {
 
   public GetDepartmentCourses = (department: string) => this._http.get(this.CleanURL(`${this.baseURL}/courses?department=${department}`));
 
-  public ChangeTimetable = (studentID: string, timetableURL: string) => this._http.post(`${this.baseURL}/change-timetable`, { "StudentID": studentID, "TimetableURL": timetableURL });
+  public ChangeTimetable = (studentID: string, timetableURL: string) => this._http.post(`${this.baseURL}/change-timetable`, this.AttachAuthToken({ "StudentID": studentID, "TimetableURL": timetableURL }));
 
-  private CleanURL = (url) => url.replace('&', '%26')
+  private CleanURL = (url) => url.replace('&', '%26');
+
+  private AttachAuthToken = (data: Object): Object => { return { ...data, 'AuthToken': localStorage.getItem('AuthToken')} };
 }
