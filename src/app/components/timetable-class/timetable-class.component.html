@@ -1,4 +1,4 @@
-<div class="class-block" (click)="ShowMoreInfo()">
+<div class="class-block" [ngClass]="IsCurrentClass() ? 'current': ''" (click)="ShowMoreInfo()">
   <div class="module-title"><strong>{{ class.module.name }}</strong><small> ({{ class.type }})</small></div>
   <div>{{ class.times.start }} - {{ class.times.end }} ({{ GetClassDuration() }})</div>
   <div *ngFor="let room of class.rooms">{{ room.code }}</div>

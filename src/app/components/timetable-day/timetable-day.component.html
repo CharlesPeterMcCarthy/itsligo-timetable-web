@@ -1,4 +1,4 @@
 <li class="list-group-item">
   <span class="day-name">{{ day.day }} ({{ day.classes && day.classes.length || 0 }})</span>
-  <timetable-class *ngFor="let class of classes" [class]="class"></timetable-class>
+  <timetable-class *ngFor="let class of classes" [class]="class" [day]="day.day"></timetable-class>
 </li>
