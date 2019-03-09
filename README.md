@@ -1,3 +1,3 @@
 # Timetables
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.3.
+![Architecture Diagram](_images/architecture.png?raw=true "Architecture Diagram")
