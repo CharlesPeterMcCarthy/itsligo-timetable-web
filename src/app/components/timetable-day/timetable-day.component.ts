@@ -11,13 +11,14 @@ import { _ } from 'underscore';
 
 export class TimetableDayComponent implements OnInit {
 
-  @Input() day: Day
-  classes: Class[]
+  @Input() day: Day;
+  classes: Class[];
+  public isCollapsed = false;
 
   constructor() { }
 
   ngOnInit() {
-    this.classes = _.map(this.day.classes, (cl) => new Class(cl))
+    this.classes = _.map(this.day.classes, (cl) => new Class(cl));
   }
 
 }
