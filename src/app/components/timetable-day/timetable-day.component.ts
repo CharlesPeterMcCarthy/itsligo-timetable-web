@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Day } from '../../models/day.model';
 import { Class } from '../../models/class.model';
+import { DatetimeService } from '../../services/datetime/datetime.service';
 import { _ } from 'underscore';
 
 @Component({
@@ -15,10 +16,14 @@ export class TimetableDayComponent implements OnInit {
   classes: Class[];
   public isCollapsed = false;
 
-  constructor() { }
+  constructor(private _datetimeService: DatetimeService) { }
 
   ngOnInit() {
     this.classes = _.map(this.day.classes, (cl) => new Class(cl));
+    this.isCollapsed = this.IsToday();
   }
+
+  private IsToday = (): boolean => this._datetimeService.GetDayOfWeek() === this.day.day;
+  
 
 }

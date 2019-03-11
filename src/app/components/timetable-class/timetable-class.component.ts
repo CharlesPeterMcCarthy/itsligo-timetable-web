@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Class } from '../../models/class.model';
+import { DatetimeService } from '../../services/datetime/datetime.service';
 import * as moment from 'moment';
 
 @Component({
@@ -14,7 +15,7 @@ export class TimetableClassComponent implements OnInit {
   @Input() day: string;
   showMoreInfo: boolean = false;
 
-  constructor() { }
+  constructor(private _datetimeService: DatetimeService) { }
 
   ngOnInit() { }
 
@@ -32,10 +33,7 @@ export class TimetableClassComponent implements OnInit {
   IsCurrentClass = (): boolean => {
     const start = moment(this.class.times.start, "HH:mm");
     const end = moment(this.class.times.end, "HH:mm");
-    return this.day === this.GetDayOfWeek() && moment(new Date()).isBetween(start, end);
-  }
-
-  GetDayOfWeek = (): string => ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][new Date().getDay()];
-  
+    return this.day === this._datetimeService.GetDayOfWeek() && moment(new Date()).isBetween(start, end);
+  }  
 
 }
