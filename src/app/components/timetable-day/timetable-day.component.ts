@@ -24,6 +24,5 @@ export class TimetableDayComponent implements OnInit {
   }
 
   private IsToday = (): boolean => this._datetimeService.GetDayOfWeek() === this.day.day;
-  
 
 }

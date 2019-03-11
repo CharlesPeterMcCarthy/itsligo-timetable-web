@@ -15,6 +15,7 @@ import { SelectCourseFormComponent } from './components/select-course-form/selec
 import { TimetableDayComponent } from './components/timetable-day/timetable-day.component';
 import { TimetableClassComponent } from './components/timetable-class/timetable-class.component';
 import { NavComponent } from './components/nav/nav.component';
+import { NavLinkComponent } from './components/nav/nav-link/nav-link.component';
 
 // Pages
 import { HomeComponent } from './pages/home/home.component';
@@ -42,7 +43,8 @@ import { ToastrModule } from 'ngx-toastr';
     NavComponent,
     RegisterComponent,
     ConfirmEmailComponent,
-    SortListPipe
+    SortListPipe,
+    NavLinkComponent
   ],
   imports: [
     BrowserModule,
