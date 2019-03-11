@@ -2,6 +2,7 @@ import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
+import { NavLink } from '../../interfaces/nav-link';
 
 @Component({
   selector: 'nav-bar',
@@ -20,7 +21,31 @@ export class NavComponent implements OnInit {
   isBelowNav: boolean = false;
   expandNav: boolean = false;
 
-  ngOnInit() {}
+  navLinksLeft = Array<NavLink>(
+    {
+      text: 'Home',
+      url: '/'
+    },
+    {
+      text: 'My Timetable',
+      url: '/timetable'
+    }
+  );
+
+  navLinksRight = Array<NavLink>(
+    {
+      text: 'Login',
+      url: '/login'
+    },
+    {
+      text: 'Register',
+      url: '/register'
+    }
+  );
+
+  logoutLink: NavLink = ({ text: 'Logout' });
+
+  ngOnInit() { }
 
   @HostListener("window:scroll", [])
   OnScroll = (): void => {

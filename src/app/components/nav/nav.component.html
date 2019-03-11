@@ -5,13 +5,15 @@
   </button>
   <div class="collapse navbar-collapse" [ngClass]="{ 'show': expandNav }" id="nav-links">
     <ul class="navbar-nav mr-auto" (click)="CloseNavBar()">
-      <nav-link [text]="'Home'" [url]="'/'"></nav-link>
-      <nav-link [text]="'My Timetable'" [url]="'/timetable'"></nav-link>
+      <nav-link *ngFor="let navLink of navLinksLeft" [navLink]="navLink"></nav-link>
     </ul>
-    <ul class="navbar-nav" (click)="CloseNavBar()">
-      <nav-link [text]="'Logout'" *ngIf="IsLoggedIn()" (click)="Logout()"></nav-link>
-      <nav-link [text]="'Login'" [url]="'/login'" *ngIf="!IsLoggedIn()"></nav-link>
-      <nav-link [text]="'Register'" [url]="'/register'" *ngIf="!IsLoggedIn()"></nav-link>
+
+    <ul class="navbar-nav" (click)="CloseNavBar()" *ngIf="!IsLoggedIn()">
+      <nav-link *ngFor="let navLink of navLinksRight" [navLink]="navLink"></nav-link>
+    </ul>
+
+    <ul class="navbar-nav" (click)="CloseNavBar()" *ngIf="IsLoggedIn()">
+      <nav-link [navLink]="logoutLink" (click)="Logout()"></nav-link>
     </ul>
   </div>
 </nav>
