@@ -9,6 +9,6 @@
     </div>
   </div>
   <div class="text-right">
-    <button (click)="Login(studentID, pass)" class="btn btn-lg btn-primary">Login</button>
+    <app-button [text]="'Login'" [size]="'large'" [style]="'primary'" (click)="Login(studentID, pass)"></app-button>
   </div>
 </form>

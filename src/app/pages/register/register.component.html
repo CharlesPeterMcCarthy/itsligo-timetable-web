@@ -13,7 +13,7 @@
     </div>
   </div>
   <div class="text-right">
-    <button (click)="Register(studentEmail, name, password)" class="btn btn-lg btn-primary">Register</button>
+      <app-button [text]="'Register'" [size]="'large'" [style]="'primary'" (click)="Register(studentEmail, name, password)"></app-button>
   </div>
 </form>
 

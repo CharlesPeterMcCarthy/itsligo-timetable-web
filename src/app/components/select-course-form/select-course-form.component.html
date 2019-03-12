@@ -14,13 +14,7 @@
     </div>
 
     <div class="text-right">
-        <button type="submit" class="btn btn-left" [ngClass]="{
-            'btn-success': selectedCourse,
-            'btn-outline-success': !selectedCourse
-        }" (click)="ViewTimetable(1)" [disabled]="!selectedCourse">Semester 1</button>
-        <button type="submit" class="btn" [ngClass]="{
-            'btn-success': selectedCourse,
-            'btn-outline-success': !selectedCourse
-        }" (click)="ViewTimetable(2)" [disabled]="!selectedCourse">Semester 2</button>
+        <app-button [text]="'Semester 1'" [style]="selectedCourse ? 'success' : 'warning'" (click)="ViewTimetable(1)" [disabled]="!selectedCourse" class="btn-left"></app-button>
+        <app-button [text]="'Semester 2'" [style]="selectedCourse ? 'success' : 'warning'" (click)="ViewTimetable(2)" [disabled]="!selectedCourse"></app-button>
     </div>
 </form>
