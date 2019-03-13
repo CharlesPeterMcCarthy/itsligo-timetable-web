@@ -1,0 +1,4 @@
+<select (ngModelChange)='Change($event)' name="name" (ngModel)="items" class='form-control' [disabled]="disabled">
+  <option *ngIf="emptyOption" [ngValue]="null" selected disabled>{{ emptyOptionText }}</option>
+  <option [ngValue]="item" *ngFor="let item of items | sortList: key">{{ ItemValue(item) }}</option>
+</select>

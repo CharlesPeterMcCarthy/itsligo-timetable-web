@@ -18,6 +18,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { NavLinkComponent } from './components/nav/nav-link/nav-link.component';
 import { ButtonComponent } from './components/basic-components/button/button.component';
 import { InputFieldComponent } from './components/basic-components/input-field/input-field.component';
+import { DropdownComponent } from './components/basic-components/dropdown/dropdown.component';
 
 // Pages
 import { HomeComponent } from './pages/home/home.component';
@@ -48,7 +49,8 @@ import { ToastrModule } from 'ngx-toastr';
     SortListPipe,
     NavLinkComponent,
     ButtonComponent,
-    InputFieldComponent
+    InputFieldComponent,
+    DropdownComponent
   ],
   imports: [
     BrowserModule,
