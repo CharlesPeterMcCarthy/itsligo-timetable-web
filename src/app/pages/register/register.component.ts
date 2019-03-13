@@ -20,8 +20,8 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() { }
 
-  Register = (StudentEmail: HTMLInputElement, Name: HTMLInputElement, Password: HTMLInputElement): void => {
-    this._authService.Register(StudentEmail.value, Name.value, Password.value).subscribe((res) => {
+  Register = (StudentEmail: string, Name: string, Password: string): void => {
+    this._authService.Register(StudentEmail, Name, Password).subscribe((res) => {
       console.log(res);
       this.isRegistered = true;
       this.heading = "Registered";

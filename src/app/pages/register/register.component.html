@@ -3,17 +3,17 @@
 <form *ngIf="!isRegistered">
   <div class="text-center">
     <div class="form-group">
-      <input type="email" id="studentEmail" class="form-control" placeholder="Student Email" #studentEmail />
+      <input-field [type]="'email'" [placeholder]="'Student Email'" #studentEmail></input-field>
     </div>
     <div class="form-group">
-      <input type="text" id="name" class="form-control" placeholder="Your Name" #name />
+      <input-field [type]="'text'" [placeholder]="'Your Name'" #name></input-field>
     </div>
     <div class="form-group">
-      <input type="password" id="password" class="form-control" placeholder="Password" #password />
+      <input-field [type]="'password'" [placeholder]="'Password'" #password></input-field>
     </div>
   </div>
   <div class="text-right">
-      <app-button [text]="'Register'" [size]="'large'" [style]="'primary'" (click)="Register(studentEmail, name, password)"></app-button>
+    <app-button [text]="'Register'" [size]="'large'" [style]="'primary'" (click)="Register(studentEmail.value, name.value, password.value)"></app-button>
   </div>
 </form>
 

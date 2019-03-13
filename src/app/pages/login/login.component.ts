@@ -21,10 +21,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() { }
 
-  Login = (StudentID: HTMLInputElement, Password: HTMLInputElement): void => {
+  Login = (StudentID: string, Password: string): void => {
     localStorage.clear();
     
-    this._authService.Login(StudentID.value, Password.value).subscribe((res) => {
+    this._authService.Login(StudentID, Password).subscribe((res) => {
       console.log(res);
 
       if (res['Access-Token']) {
