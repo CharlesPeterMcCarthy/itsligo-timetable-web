@@ -23,6 +23,7 @@ import { DropdownComponent } from './components/basic-components/dropdown/dropdo
 
 // Form Components
 import { SelectCourseFormComponent } from './components/select-course-form/select-course-form.component';
+import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 
 // Pages
@@ -56,7 +57,8 @@ import { ToastrModule } from 'ngx-toastr';
     ButtonComponent,
     InputFieldComponent,
     DropdownComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    RegisterFormComponent
   ],
   imports: [
     BrowserModule,

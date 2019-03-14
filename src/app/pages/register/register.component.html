@@ -1,21 +1,6 @@
-<page-heading [heading]="heading"></page-heading>
+<page-heading [heading]="PageHeading()"></page-heading>
 
-<form *ngIf="!isRegistered">
-  <div class="text-center">
-    <div class="form-group">
-      <input-field [type]="'email'" [placeholder]="'Student Email'" #studentEmail></input-field>
-    </div>
-    <div class="form-group">
-      <input-field [type]="'text'" [placeholder]="'Your Name'" #name></input-field>
-    </div>
-    <div class="form-group">
-      <input-field [type]="'password'" [placeholder]="'Password'" #password></input-field>
-    </div>
-  </div>
-  <div class="text-right">
-    <app-button [text]="'Register'" [size]="'large'" [style]="'primary'" (click)="Register(studentEmail.value, name.value, password.value)"></app-button>
-  </div>
-</form>
+<register-form (registered)="Registered($event)" *ngIf="!isRegistered"></register-form>
 
 <div *ngIf="isRegistered">
   <p>You have successfully registered. Please check your email to confirm your email address.</p>

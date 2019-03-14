@@ -1,0 +1,16 @@
+<form>
+  <div class="text-center">
+    <div class="form-group">
+      <input-field [type]="'email'" [placeholder]="'Student Email'" #studentEmail></input-field>
+    </div>
+    <div class="form-group">
+      <input-field [type]="'text'" [placeholder]="'Your Name'" #name></input-field>
+    </div>
+    <div class="form-group">
+      <input-field [type]="'password'" [placeholder]="'Password'" #password></input-field>
+    </div>
+  </div>
+  <div class="text-right">
+    <app-button [text]="'Register'" [size]="'large'" [style]="'primary'" (click)="Register(studentEmail.value, name.value, password.value)"></app-button>
+  </div>
+</form>
