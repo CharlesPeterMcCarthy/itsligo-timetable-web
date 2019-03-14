@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TimetableApiService } from '../../services/timetable-api/timetable-api.service';
+import { TimetableApiService } from '../../../services/timetable-api/timetable-api.service';
 import { ToastrService } from 'ngx-toastr';
 import { _ } from 'underscore';
-import { AuthService } from '../../services/auth/auth.service';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'select-course-form',

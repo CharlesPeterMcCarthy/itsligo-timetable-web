@@ -22,9 +22,9 @@ import { InputFieldComponent } from './components/basic-components/input-field/i
 import { DropdownComponent } from './components/basic-components/dropdown/dropdown.component';
 
 // Form Components
-import { SelectCourseFormComponent } from './components/select-course-form/select-course-form.component';
-import { RegisterFormComponent } from './components/register-form/register-form.component';
-import { LoginFormComponent } from './components/login-form/login-form.component';
+import { SelectCourseFormComponent } from './components/forms/select-course-form/select-course-form.component';
+import { RegisterFormComponent } from './components/forms/register-form/register-form.component';
+import { LoginFormComponent } from './components/forms/login-form/login-form.component';
 
 // Pages
 import { HomeComponent } from './pages/home/home.component';
