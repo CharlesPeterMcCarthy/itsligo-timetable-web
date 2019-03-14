@@ -16,8 +16,6 @@ export class DropdownComponent {
   @Input() disabled: boolean;
   @Output() valueSelected: EventEmitter<any> = new EventEmitter();
 
-  constructor() { }
-
   Change = (val): void => this.valueSelected.emit(val);
 
   ItemValue = (item): string => this.key ? item[this.key] : item;

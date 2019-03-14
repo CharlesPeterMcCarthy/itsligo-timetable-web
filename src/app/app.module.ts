@@ -11,14 +11,19 @@ import { BootstrapModule } from './modules/bootstrap/bootstrap.module';
 // Components
 import { AppComponent } from './app.component';
 import { PageHeadingComponent } from './components/page-heading/page-heading.component';
-import { SelectCourseFormComponent } from './components/select-course-form/select-course-form.component';
 import { TimetableDayComponent } from './components/timetable-day/timetable-day.component';
 import { TimetableClassComponent } from './components/timetable-class/timetable-class.component';
 import { NavComponent } from './components/nav/nav.component';
 import { NavLinkComponent } from './components/nav/nav-link/nav-link.component';
+
+// Input / Field Components
 import { ButtonComponent } from './components/basic-components/button/button.component';
 import { InputFieldComponent } from './components/basic-components/input-field/input-field.component';
 import { DropdownComponent } from './components/basic-components/dropdown/dropdown.component';
+
+// Form Components
+import { SelectCourseFormComponent } from './components/select-course-form/select-course-form.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 // Pages
 import { HomeComponent } from './pages/home/home.component';
@@ -50,7 +55,8 @@ import { ToastrModule } from 'ngx-toastr';
     NavLinkComponent,
     ButtonComponent,
     InputFieldComponent,
-    DropdownComponent
+    DropdownComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,

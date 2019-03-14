@@ -1,0 +1,13 @@
+<form>
+  <div class="text-center">
+    <div class="form-group">
+      <input-field [type]="'text'" [placeholder]="'Student ID'" #studentID></input-field>
+    </div>
+    <div class="form-group">
+      <input-field [type]="'password'" [placeholder]="'Password'" #pass></input-field>
+    </div>
+  </div>
+  <div class="text-right">
+    <app-button [text]="'Login'" [size]="'large'" [style]="'primary'" (click)="Login(studentID.value, pass.value)"></app-button>
+  </div>
+</form>
