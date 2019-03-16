@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Class } from '../../models/class.model';
-import { DatetimeService } from '../../services/datetime/datetime.service';
+import Class from '../../../models/class.model';
+import { DatetimeService } from '../../../services/datetime/datetime.service';
 import * as moment from 'moment';
 
 @Component({

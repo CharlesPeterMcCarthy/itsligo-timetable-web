@@ -12,7 +12,7 @@ export class TimetableApiService {
 
   constructor(private _http: HttpClient) {}
 
-  public GetTimetable = (timetableURL: string) => this._http.post(`${this.baseURL}/timetable`, { "TimetableURL": timetableURL });
+  public GetTimetable = (timetableURL: string) => this._http.post(`${this.baseURL}/timetable`, { timetableURL, includeClasses: true, includeBreaks: true });
 
   public GetDepartments = () => this._http.get(`${this.baseURL}/departments`);
 
@@ -23,4 +23,5 @@ export class TimetableApiService {
   private CleanURL = (url) => url.replace('&', '%26');
 
   private AttachAuthToken = (data: Object): Object => { return { ...data, 'AuthToken': localStorage.getItem('AuthToken')} };
+
 }

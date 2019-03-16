@@ -1,0 +1,9 @@
+<li class="list-group-item">
+  <div class="day-name" (click)="isCollapsed = !isCollapsed" data-toggle="collapse">{{ day.day }} ({{ day.classes && day.classes.length || 0 }})</div>
+  <div class="collapse navbar-collapse" [ngClass]="{ 'show': isCollapsed }">
+    <div *ngFor="let class of classes">
+      <timetable-class *ngIf="ModelName(class) == 'Class'" [class]="class" [day]="day.day"></timetable-class>
+      <timetable-break *ngIf="FindBreak(class.times.end)" [break]="FindBreak(class.times.end)"></timetable-break>
+    </div>
+  </div>
+</li>

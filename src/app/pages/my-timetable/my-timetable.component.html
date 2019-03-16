@@ -2,6 +2,6 @@
 
 <div *ngIf="timetable">
   <ul class="list-group">
-    <timetable-day *ngFor="let day of timetable" [day]="day"></timetable-day>
+    <timetable-day *ngFor="let day of timetable" [day]="GetDay(day)"></timetable-day>
   </ul>
 </div>
