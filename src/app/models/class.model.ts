@@ -1,4 +1,4 @@
-export class Class {
+export default class Class {
     public activity: string;
     public duration: string;
     public groups: {
