@@ -6,7 +6,7 @@
 
     <div class="form-group">
         <dropdown [items]="courses" [key]="'name'" [emptyOption]="true" [emptyOptionText]="'Select course'" 
-            [name]="'course'" [disabled]="!selectedDept" (valueSelected)="SetCourse($event)"></dropdown>
+            [name]="'course'" [disabled]="!HasCourses()" (valueSelected)="SetCourse($event)"></dropdown>
     </div>
 
     <div class="text-right">

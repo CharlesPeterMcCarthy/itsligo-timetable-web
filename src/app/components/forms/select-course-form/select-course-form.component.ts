@@ -38,13 +38,18 @@ export class SelectCourseFormComponent implements OnInit {
 
   GetCourses = (): void => {
     this._timetableAPI.GetDepartmentCourses(this.selectedDept).subscribe(
-      (res) => this.courses = res['courses'], 
+      (res) => {
+        this.courses = res['courses'];
+      }, 
       (err) => this._toastr.error(err.error.errorText)
     );
   }
 
+  HasCourses = (): boolean => this.courses && !!this.courses.length;
+
   SetDepartment = (dept): void => {
     this.selectedDept = dept;
+    this.courses = null;
 
     this.GetCourses();
   }
