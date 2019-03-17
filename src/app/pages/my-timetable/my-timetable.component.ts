@@ -38,9 +38,6 @@ export class MyTimetableComponent implements OnInit {
       this._timetableAPI.GetTimetable(this.timetableURL).subscribe((timetable: Timetable) => {     
         console.log(timetable)
         this.timetable = timetable; 
-        // this.timetable.Days[6].classes = this.timetable.Days[1].classes;
-        // this.timetable.Days[6].classes[4].times.end = "16:59";
-        // this.timetable.Days[6].classes.pop();
       }, (err) => {
         this._toastr.error(err.error.errorText);
       });
@@ -53,18 +50,12 @@ export class MyTimetableComponent implements OnInit {
 
   public Today = (): Day => this._timetableService.Today(this.timetable);
 
-  public HasClassNow = (): boolean => !_.isEmpty(this.CurrentClass())
+  public HasClassNow = (): boolean => !_.isEmpty(this.CurrentClass());
 
-  public HasBreakNow = (): boolean => !!this.CurrentBreak()
+  public HasBreakNow = (): boolean => !!this.CurrentBreak();
 
-  public CurrentClass = (): Class[] => {
-    const today: Day = this.Today()
-    return _.filter(today.classes, (cl: Class) => this._timetableService.IsNow(cl));
-  }
+  public CurrentClass = (): Class[] => this._timetableService.CurrentClass(this.timetable);
 
-  public CurrentBreak = (): Break => {
-    const today: Day = this.Today();
-    return _.find(today.breaks, (br: Break) => this._timetableService.IsNow(br));
-  }
+  public CurrentBreak = (): Break => this._timetableService.CurrentBreak(this.timetable);
 
 }

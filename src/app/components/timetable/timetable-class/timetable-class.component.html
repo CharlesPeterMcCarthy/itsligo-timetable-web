@@ -1,7 +1,7 @@
 <div class="class-block" [ngClass]="IsCurrentClass() ? 'current': ''" (click)="ShowMoreInfo()">
   <div *ngIf="conflicting" class="conflicting text-right">!</div>
   <div class="module-title"><strong>{{ class.module.name }}</strong><small> ({{ class.type }})</small></div>
-  <div>{{ class.times.start }} - {{ class.times.end }} ({{ GetClassDuration() }})</div>
+  <div>{{ class.times.start | datetime: 'HH:mm' }} - {{ class.times.end | datetime: 'HH:mm' }} ({{ GetClassDuration() }})</div>
   <div *ngFor="let room of class.rooms">{{ room.code }}</div>
   <div *ngIf="showMoreInfo" class="row">
     <div class="col-sm-12">

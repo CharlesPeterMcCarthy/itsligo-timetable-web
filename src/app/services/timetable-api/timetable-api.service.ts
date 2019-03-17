@@ -38,6 +38,6 @@ export class TimetableApiService {
 
   private CleanURL = (url) => url.replace('&', '%26');
 
-  private AttachAuthToken = (data: Object): Object => { return { ...data, 'AuthToken': localStorage.getItem('AuthToken')} };
+  private AttachAuthToken = (data: Object): Object => { return { ...data, 'AuthToken': localStorage.getItem('AuthToken') } };
 
 }

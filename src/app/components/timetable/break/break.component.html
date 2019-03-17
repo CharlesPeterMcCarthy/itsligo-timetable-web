@@ -1,4 +1,4 @@
 <div class="break-block">
   <div class="break-title"><strong>Break for {{ BreakLength() }}</strong></div>
-  <div>{{ break.times.start }} - {{ break.times.end }}</div>
+  <div>{{ break.times.start | datetime: 'HH:mm' }} - {{ break.times.end | datetime: 'HH:mm' }}</div>
 </div>

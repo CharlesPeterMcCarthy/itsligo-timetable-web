@@ -4,6 +4,7 @@ import Class from '../../../models/class.model';
 import Break from '../../../models/break.model';
 import { DatetimeService } from '../../../services/datetime/datetime.service';
 import { _ } from 'underscore';
+import * as moment from 'moment';
 
 @Component({
   selector: 'timetable-day',
@@ -26,7 +27,7 @@ export class TimetableDayComponent implements OnInit {
 
   public ModelName = (obj: Object): string => obj.constructor.name;
 
-  public FindBreak = (endTime): boolean => _.find(this.day.breaks, (b: Break) => b.times.start === endTime);
+  public FindBreak = (endTime: moment.Moment): boolean => _.find(this.day.breaks, (b: Break) => b.times.start.isSame(endTime));
 
   private IsToday = (): boolean => this._datetimeService.GetDayOfWeek() === this.day.day;
 

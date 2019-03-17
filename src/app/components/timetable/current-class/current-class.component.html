@@ -15,7 +15,7 @@
           <p [innerHTML]="Rooms(class)"></p>
         </div>
         <div class="col-sm-4 text-right">
-          <p>{{ class.times.start }} - {{ class.times.end }}</p>
+          <p>{{ class.times.start | datetime: 'HH:mm' }} - {{ class.times.end | datetime: 'HH:mm' }}</p>
           <p>{{ ClassLength(class) }}</p>
         </div>
       </div>

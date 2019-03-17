@@ -17,40 +17,18 @@ export class TimetableService {
 
   public Today = (timetable: Timetable): Day => _.findWhere(timetable.Days, { day: this._datetimeService.GetDayOfWeek() });
 
-  public HaveClassesLeft = (timetable: Timetable): boolean => {
-    const classes = this.Today(timetable).classes;
-    const now: moment.Moment = moment(new Date());
+  public HaveClassesLeft = (timetable: Timetable): boolean => !!this.ClassesLeft(timetable);
 
-    return !!_.find(classes, (cl: Class) => moment(cl.times.end, 'HH:mm') > now);
-  }
+  public ClassesLeft = (timetable: Timetable): boolean => _.find(this.Today(timetable).classes, (cl: Class) => moment(cl.times.end, 'HH:mm') > this._datetimeService.Now());
 
   public HaveClassToday = (timetable: Timetable): boolean => !_.isEmpty(this.Today(timetable).classes);
 
-  public IsNow = (obj: Class | Break): boolean => {
-    const start: moment.Moment =  moment(obj.times.start, "HH:mm");
-    const end: moment.Moment = moment(obj.times.end, "HH:mm");
-    const now: moment.Moment = moment(new Date());
+  public CurrentClass = (timetable: Timetable): Class[] => _.filter(this.Today(timetable).classes, (cl: Class) => this.IsNow(cl));
 
-    return now.isBetween(start, end);
-  }
-
-  public BlockLengthReadable = (obj: Class | Break): string => {
-    const blockLength = this.BlockLength(obj);
-    const hours: number = Math.floor(blockLength.asMinutes() / 60);
-    const minutes: number = blockLength.asMinutes() - (hours * 60);
-
-    let length: string = '';
-    if (hours) length += `${hours} hour${hours > 1 ? 's' : ''}`;
-    if (hours && minutes) length += ' and ';
-    if (minutes) length += `${minutes} minutes`;
-
-    return length;
-  }
-
-  private BlockLength = (obj: Class | Break): moment.Duration => {
-    const start: moment.Moment =  moment(obj.times.start, "HH:mm");
-    const end: moment.Moment = moment(obj.times.end, "HH:mm");
-    return moment.duration(end.diff(start));
-  }
+  public CurrentBreak = (timetable: Timetable): Break => _.find(this.Today(timetable).breaks, (br: Break) => this.IsNow(br));
   
+  public BlockLengthReadable = (obj: Class | Break): string => this._datetimeService.ReadableDuration(this._datetimeService.TimeDuration(obj.times.start, obj.times.end));
+
+  private IsNow = (obj: Class | Break): boolean => this._datetimeService.IsNow(obj.times.start, obj.times.end);
+
 }

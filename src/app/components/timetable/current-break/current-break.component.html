@@ -3,6 +3,6 @@
     You currently have a break
   </div>
   <div class="break-desc">
-    This break started at {{ break.times.start }} and ends at {{ break.times.end }}.
+    This break started at {{ break.times.start | datetime: 'HH:mm' }} and ends at {{ break.times.end | datetime: 'HH:mm' }}.
   </div>
 </div>

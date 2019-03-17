@@ -7,8 +7,6 @@ import * as momemnt from 'moment';
 
 export class DatetimePipe implements PipeTransform {
 
-  transform(time: momemnt.Moment, format?: string): any {
-    return time.format(format || 'HH:mm:ss');
-  }
+  transform = (time: momemnt.Moment, format?: string): any => time.format(format || 'HH:mm:ss');
 
 }

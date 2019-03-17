@@ -20,21 +20,12 @@ export class TimetableClassComponent implements OnInit {
 
   ngOnInit() { }
 
-  ShowMoreInfo = (): void => {
-    this.showMoreInfo = !this.showMoreInfo;
-  }
+  ShowMoreInfo = (): boolean => this.showMoreInfo = !this.showMoreInfo;
 
   GetLecturers = (): string => this.class.lecturers.join(' & ');
 
-  GetClassDuration = (): string => {
-    const classDuration = parseInt(this.class.duration);
-    return `${classDuration} hour` + (classDuration > 1 ? 's' : '');
-  }
+  GetClassDuration = (): string => this._datetimeService.ReadableDuration(this._datetimeService.TimeDuration(this.class.times.start, this.class.times.end));
 
-  IsCurrentClass = (): boolean => {
-    const start = moment(this.class.times.start, "HH:mm");
-    const end = moment(this.class.times.end, "HH:mm");
-    return this.day === this._datetimeService.GetDayOfWeek() && moment(new Date()).isBetween(start, end);
-  }  
-
+  IsCurrentClass = (): boolean => this.day === this._datetimeService.GetDayOfWeek() && moment(new Date()).isBetween(this.class.times.start, this.class.times.end);
+  
 }

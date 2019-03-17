@@ -40,6 +40,7 @@ import { ConfirmEmailComponent } from './pages/confirm-email/confirm-email.compo
 
 // Pipes
 import { SortListPipe } from './pipes/sort-list.pipe';
+import { DatetimePipe } from './pipes/datetime.pipe';
 
 // Extras
 import { ToastrModule } from 'ngx-toastr';
@@ -57,7 +58,6 @@ import { ToastrModule } from 'ngx-toastr';
     NavComponent,
     RegisterComponent,
     ConfirmEmailComponent,
-    SortListPipe,
     NavLinkComponent,
     ButtonComponent,
     InputFieldComponent,
@@ -66,7 +66,9 @@ import { ToastrModule } from 'ngx-toastr';
     RegisterFormComponent,
     BreakComponent,
     CurrentClassComponent,
-    CurrentBreakComponent
+    CurrentBreakComponent,
+    SortListPipe,
+    DatetimePipe
   ],
   imports: [
     BrowserModule,
