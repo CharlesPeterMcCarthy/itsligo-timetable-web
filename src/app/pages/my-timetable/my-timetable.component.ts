@@ -36,13 +36,18 @@ export class MyTimetableComponent implements OnInit {
       this._router.navigate(['/']);
     } else {
       this._timetableAPI.GetTimetable(this.timetableURL).subscribe((timetable: Timetable) => {     
-        console.log(timetable)   
+        console.log(timetable)
         this.timetable = timetable; 
+        // this.timetable.Days[6].classes = this.timetable.Days[1].classes;
+        // this.timetable.Days[6].classes[4].times.end = "16:59";
+        // this.timetable.Days[6].classes.pop();
       }, (err) => {
         this._toastr.error(err.error.errorText);
       });
     }
   }
+
+  public FinishedForTheDay = (): boolean => !this._timetableService.HaveClassesLeft(this.timetable);
 
   public HaveClassToday = (): boolean => this._timetableService.HaveClassToday(this.timetable);
 

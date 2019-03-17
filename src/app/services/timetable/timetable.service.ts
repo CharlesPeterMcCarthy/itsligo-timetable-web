@@ -17,6 +17,13 @@ export class TimetableService {
 
   public Today = (timetable: Timetable): Day => _.findWhere(timetable.Days, { day: this._datetimeService.GetDayOfWeek() });
 
+  public HaveClassesLeft = (timetable: Timetable): boolean => {
+    const classes = this.Today(timetable).classes;
+    const now: moment.Moment = moment(new Date());
+
+    return !!_.find(classes, (cl: Class) => moment(cl.times.end, 'HH:mm') > now);
+  }
+
   public HaveClassToday = (timetable: Timetable): boolean => !_.isEmpty(this.Today(timetable).classes);
 
   public IsNow = (obj: Class | Break): boolean => {
