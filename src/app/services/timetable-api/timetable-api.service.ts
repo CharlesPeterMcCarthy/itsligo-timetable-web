@@ -1,6 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { _ } from 'underscore';
 import { environment } from '../../../environments/environment';
+import Timetable from '../../models/timetable';
+import Day from '../../models/day.model';
+import Class from '../../models/class.model';
+import Break from '../../models/break.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +19,16 @@ export class TimetableApiService {
 
   constructor(private _http: HttpClient) {}
 
-  public GetTimetable = (timetableURL: string) => this._http.post(`${this.baseURL}/timetable`, { timetableURL, includeClasses: true, includeBreaks: true, checkConflicts: true });
+  public GetTimetable = (timetableURL: string): Observable<Timetable> => this._http.post(`${this.baseURL}/timetable`, { timetableURL, includeClasses: true, includeBreaks: true, checkConflicts: true })
+    .pipe(
+      map(data => {
+        return new Timetable(_.map(data['timetable']['days'], (day) => {
+          day['classes'] = _.map(day.classes, (cl) => new Class(cl));
+          day['breaks'] = _.map(day.breaks, (br) => new Break(br));
+          return new Day(day);
+        }));
+      })
+    );
 
   public GetDepartments = () => this._http.get(`${this.baseURL}/departments`);
 
