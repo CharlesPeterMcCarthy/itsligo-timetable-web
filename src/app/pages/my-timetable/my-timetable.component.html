@@ -1,7 +1,8 @@
 <page-heading [heading]="heading"></page-heading>
 
 <div *ngIf="timetable">
+  <current-class *ngIf="HasClassNow()" [classes]="CurrentClass()"></current-class>
   <ul class="list-group">
-    <timetable-day *ngFor="let day of timetable" [day]="GetDay(day)"></timetable-day>
+    <timetable-day *ngFor="let day of timetable.Days" [day]="day"></timetable-day>
   </ul>
 </div>

@@ -17,14 +17,33 @@ export class TimetableService {
 
   public Today = (timetable: Timetable): Day => _.findWhere(timetable.Days, { day: this._datetimeService.GetDayOfWeek() });
 
-  public HaveClassToday = (timetable: Timetable): boolean => !!this.Today(timetable).classes;
+  public HaveClassToday = (timetable: Timetable): boolean => !_.isEmpty(this.Today(timetable).classes);
 
   public IsNow = (obj: Class | Break): boolean => {
     const start: moment.Moment =  moment(obj.times.start, "HH:mm");
     const end: moment.Moment = moment(obj.times.end, "HH:mm");
-    const now: moment.Moment = moment("15:05", "HH:mm");
+    const now: moment.Moment = moment(new Date());
 
     return now.isBetween(start, end);
+  }
+
+  public BlockLengthReadable = (obj: Class | Break): string => {
+    const blockLength = this.BlockLength(obj);
+    const hours: number = Math.floor(blockLength.asMinutes() / 60);
+    const minutes: number = blockLength.asMinutes() - (hours * 60);
+
+    let length: string = '';
+    if (hours) length += `${hours} hour${hours > 1 ? 's' : ''}`;
+    if (hours && minutes) length += ' and ';
+    if (minutes) length += `${minutes} minutes`;
+
+    return length;
+  }
+
+  private BlockLength = (obj: Class | Break): moment.Duration => {
+    const start: moment.Moment =  moment(obj.times.start, "HH:mm");
+    const end: moment.Moment = moment(obj.times.end, "HH:mm");
+    return moment.duration(end.diff(start));
   }
   
 }

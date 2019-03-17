@@ -1,9 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TimetableApiService } from '../../services/timetable-api/timetable-api.service';
+import { TimetableService } from '../../services/timetable/timetable.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import Day from '../../models/day.model';
 import { _ } from 'underscore';
+import Class from '../../models/class.model';
+import Timetable from '../../models/timetable';
 
 @Component({
   selector: 'app-my-timetable',
@@ -14,10 +17,11 @@ import { _ } from 'underscore';
 export class MyTimetableComponent implements OnInit {
   timetableURL: string = localStorage.getItem('TimetableURL');
   heading: string = "My Timetable";
-  timetable: Object;
+  timetable: Timetable;
 
   constructor(
     private _timetableAPI: TimetableApiService,
+    private _timetableService: TimetableService,
     private _router: Router,
     private _toastr: ToastrService
   ) {
@@ -30,16 +34,24 @@ export class MyTimetableComponent implements OnInit {
     if (!this.timetableURL) {
       this._router.navigate(['/']);
     } else {
-      this._timetableAPI.GetTimetable(this.timetableURL).subscribe((res) => {     
-        console.log(res)   
-        this.timetable = res['timetable']['days'];    
+      this._timetableAPI.GetTimetable(this.timetableURL).subscribe((timetable: Timetable) => {     
+        console.log(timetable)   
+        this.timetable = timetable; 
       }, (err) => {
-        console.log(err);
         this._toastr.error(err.error.errorText);
       });
     }
   }
 
-  public GetDay = (day): Day => new Day(day);
+  public HaveClassToday = (): boolean => this._timetableService.HaveClassToday(this.timetable);
+
+  public Today = (): Day => this._timetableService.Today(this.timetable);
+
+  public HasClassNow = (): boolean => !_.isEmpty(this.CurrentClass())
+
+  public CurrentClass = (): Class[] => {
+    const today: Day = this.Today()
+    return _.filter(today.classes, (cl: Class) => this._timetableService.IsNow(cl));
+  }
 
 }
