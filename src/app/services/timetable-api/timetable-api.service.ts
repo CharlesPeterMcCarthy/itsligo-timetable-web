@@ -12,7 +12,7 @@ export class TimetableApiService {
 
   constructor(private _http: HttpClient) {}
 
-  public GetTimetable = (timetableURL: string) => this._http.post(`${this.baseURL}/timetable`, { timetableURL, includeClasses: true, includeBreaks: true });
+  public GetTimetable = (timetableURL: string) => this._http.post(`${this.baseURL}/timetable`, { timetableURL, includeClasses: true, includeBreaks: true, checkConflicts: true });
 
   public GetDepartments = () => this._http.get(`${this.baseURL}/departments`);
 

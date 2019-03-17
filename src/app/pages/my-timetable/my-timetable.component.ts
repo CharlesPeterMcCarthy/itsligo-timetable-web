@@ -30,7 +30,8 @@ export class MyTimetableComponent implements OnInit {
     if (!this.timetableURL) {
       this._router.navigate(['/']);
     } else {
-      this._timetableAPI.GetTimetable(this.timetableURL).subscribe((res) => {        
+      this._timetableAPI.GetTimetable(this.timetableURL).subscribe((res) => {     
+        console.log(res)   
         this.timetable = res['timetable']['days'];    
       }, (err) => {
         console.log(err);

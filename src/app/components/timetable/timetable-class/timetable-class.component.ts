@@ -13,6 +13,7 @@ export class TimetableClassComponent implements OnInit {
 
   @Input() class: Class;
   @Input() day: string;
+  @Input() conflicting: boolean;
   showMoreInfo: boolean = false;
 
   constructor(private _datetimeService: DatetimeService) { }

@@ -21,6 +21,7 @@ export default class Class {
     };
     public type: string;
     public weeks: Object[];
+    public conflicting?: boolean;
 
     constructor(json) {
         Object.assign(this, json);

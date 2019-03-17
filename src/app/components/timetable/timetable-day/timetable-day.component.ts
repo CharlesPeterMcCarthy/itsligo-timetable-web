@@ -26,7 +26,7 @@ export class TimetableDayComponent implements OnInit {
 
   public ModelName = (obj: Object): string => obj.constructor.name;
 
-  public FindBreak = (endTime): boolean => _.find(this.day.breaks, (b: Break) => b.times.start === endTime)
+  public FindBreak = (endTime): boolean => _.find(this.day.breaks, (b: Break) => b.times.start === endTime);
 
   private IsToday = (): boolean => this._datetimeService.GetDayOfWeek() === this.day.day;
 
