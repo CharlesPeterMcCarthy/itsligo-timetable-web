@@ -44,6 +44,8 @@ export class MyTimetableComponent implements OnInit {
     }
   }
 
+  public HaveClassToday = (): boolean => this._timetableService.HaveClassToday(this.timetable);
+
   public Today = (): Day => this._timetableService.Today(this.timetable);
 
   public HasClassNow = (): boolean => !_.isEmpty(this.CurrentClass())
