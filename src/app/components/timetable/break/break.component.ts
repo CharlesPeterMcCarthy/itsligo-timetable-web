@@ -17,7 +17,7 @@ export class BreakComponent implements OnInit {
   ngOnInit() { }
 
   public BreakLength = (): string => {
-    const start: moment.Moment =  moment(this.break.times.start, "HH:mm");
+    const start: moment.Moment = moment(this.break.times.start, "HH:mm");
     const end: moment.Moment = moment(this.break.times.end, "HH:mm");
     const diff: moment.Duration = moment.duration(end.diff(start));
     const hours: number = diff.asHours();

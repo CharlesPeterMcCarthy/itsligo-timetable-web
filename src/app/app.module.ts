@@ -19,6 +19,7 @@ import { TimetableDayComponent } from './components/timetable/timetable-day/time
 import { TimetableClassComponent } from './components/timetable/timetable-class/timetable-class.component';
 import { BreakComponent } from './components/timetable/break/break.component';
 import { CurrentClassComponent } from './components/timetable/current-class/current-class.component';
+import { CurrentBreakComponent } from './components/timetable/current-break/current-break.component';
 
 // Input / Field Components
 import { ButtonComponent } from './components/basic-components/button/button.component';
@@ -64,7 +65,8 @@ import { ToastrModule } from 'ngx-toastr';
     LoginFormComponent,
     RegisterFormComponent,
     BreakComponent,
-    CurrentClassComponent
+    CurrentClassComponent,
+    CurrentBreakComponent
   ],
   imports: [
     BrowserModule,

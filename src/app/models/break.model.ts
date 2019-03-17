@@ -3,4 +3,8 @@ export default class Break {
         start: string,
         end: string  
     }
+
+    constructor(json) {
+        Object.assign(this, json);
+    }
 }

@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import Day from '../../models/day.model';
 import { _ } from 'underscore';
 import Class from '../../models/class.model';
+import Break from '../../models/break.model';
 import Timetable from '../../models/timetable';
 
 @Component({
@@ -43,15 +44,20 @@ export class MyTimetableComponent implements OnInit {
     }
   }
 
-  public HaveClassToday = (): boolean => this._timetableService.HaveClassToday(this.timetable);
-
   public Today = (): Day => this._timetableService.Today(this.timetable);
 
   public HasClassNow = (): boolean => !_.isEmpty(this.CurrentClass())
 
+  public HasBreakNow = (): boolean => !!this.CurrentBreak()
+
   public CurrentClass = (): Class[] => {
     const today: Day = this.Today()
     return _.filter(today.classes, (cl: Class) => this._timetableService.IsNow(cl));
+  }
+
+  public CurrentBreak = (): Break => {
+    const today: Day = this.Today();
+    return _.find(today.breaks, (br: Break) => this._timetableService.IsNow(br));
   }
 
 }

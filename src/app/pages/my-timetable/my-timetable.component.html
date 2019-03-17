@@ -2,6 +2,7 @@
 
 <div *ngIf="timetable">
   <current-class *ngIf="HasClassNow()" [classes]="CurrentClass()"></current-class>
+  <current-break *ngIf="HasBreakNow()" [break]="CurrentBreak()"></current-break>
   <ul class="list-group">
     <timetable-day *ngFor="let day of timetable.Days" [day]="day"></timetable-day>
   </ul>
