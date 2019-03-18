@@ -11,7 +11,6 @@ import { ToastrService } from 'ngx-toastr';
 export class RegisterFormComponent implements OnInit {
 
   @Output() registered: EventEmitter<boolean> = new EventEmitter();
-  //private isRegistered: boolean = false;
 
   constructor(
     private _authService: AuthService, 
@@ -23,9 +22,7 @@ export class RegisterFormComponent implements OnInit {
   Register = (StudentEmail: string, Name: string, Password: string): void => {
     this._authService.Register(StudentEmail, Name, Password).subscribe((res) => {
       console.log(res);
-     // this.isRegistered = true;
       this.registered.emit(true);
-      //this.heading = "Registered";
     }, (err) => {
       console.log(err);
       this._toastr.error(err.error.errorText);

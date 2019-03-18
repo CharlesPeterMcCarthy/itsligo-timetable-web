@@ -60,17 +60,16 @@ export class SelectCourseFormComponent implements OnInit {
 
   ViewTimetable = (semesterNum: number): boolean => {
     const url = this.selectedCourse['url'][`semester${semesterNum}`];
-
     if (this._authService.IsLoggedIn()) {
-      this._timetableAPI.ChangeTimetable(localStorage.getItem('StudentID'), url).subscribe(
+      this._timetableAPI.ChangeTimetable(localStorage.getItem('studentID'), url).subscribe(
         (res) => {
-          localStorage.setItem('TimetableURL', url);
+          localStorage.setItem('timetableURL', url);
           this._router.navigate(['timetable']);
         }, 
         (err) => this._toastr.error(err.error.errorText)
       );
     } else {
-      localStorage.setItem('TimetableURL', url);
+      localStorage.setItem('timetableURL', url);
       this._router.navigate(['timetable']);
     }
 

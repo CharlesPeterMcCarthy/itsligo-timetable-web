@@ -16,7 +16,7 @@ import Timetable from '../../models/timetable';
 })
 
 export class MyTimetableComponent implements OnInit {
-  timetableURL: string = localStorage.getItem('TimetableURL');
+  timetableURL: string = localStorage.getItem('timetableURL');
   heading: string = "My Timetable";
   timetable: Timetable;
 

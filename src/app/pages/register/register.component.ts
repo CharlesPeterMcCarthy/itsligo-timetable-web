@@ -9,7 +9,6 @@ import { Component, OnInit } from '@angular/core';
 export class RegisterComponent implements OnInit {
 
   public isRegistered: boolean = false;
-  //public heading: string = "Register";
 
   constructor() { }
 

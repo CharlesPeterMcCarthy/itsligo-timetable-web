@@ -13,7 +13,7 @@ export class TimetableGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      if (!localStorage.getItem('TimetableURL')) {
+      if (!localStorage.getItem('timetableURL')) {
         this._router.navigate(['/']);
         return false;
       }

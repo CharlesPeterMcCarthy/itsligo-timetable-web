@@ -25,10 +25,10 @@ export class LoginFormComponent implements OnInit {
     this._authService.Login(StudentID, Password).subscribe((res) => {
       console.log(res);
 
-      if (res['Access-Token']) {
-        localStorage.setItem('AuthToken', res['Access-Token']);
-        localStorage.setItem('StudentID', res['user']['StudentID']);
-        if (res['user']['TimetableURL']) localStorage.setItem('TimetableURL', res['user']['TimetableURL']);
+      if (res['authToken']) {
+        localStorage.setItem('authToken', res['authToken']);
+        localStorage.setItem('studentID', res['user']['studentID']);
+        if (res['user']['timetableURL']) localStorage.setItem('timetableURL', res['user']['timetableURL']);
         this._router.navigate(['timetable']);
       }
     }, (err) => {

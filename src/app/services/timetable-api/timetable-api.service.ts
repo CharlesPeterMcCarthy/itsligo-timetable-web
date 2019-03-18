@@ -22,7 +22,7 @@ export class TimetableApiService {
   public GetTimetable = (timetableURL: string): Observable<Timetable> => this._http.post(`${this.baseURL}/timetable`, { timetableURL, includeClasses: true, includeBreaks: true, checkConflicts: true })
     .pipe(
       map(data => {
-        return new Timetable(_.map(data['timetable']['days'], (day) => {
+        return new Timetable(timetableURL, _.map(data['timetable']['days'], (day) => {
           day['classes'] = _.map(day.classes, (cl) => new Class(cl));
           day['breaks'] = _.map(day.breaks, (br) => new Break(br));
           return new Day(day);
@@ -34,10 +34,10 @@ export class TimetableApiService {
 
   public GetDepartmentCourses = (department: string) => this._http.get(this.CleanURL(`${this.baseURL}/courses?department=${department}`));
 
-  public ChangeTimetable = (studentID: string, timetableURL: string) => this._http.post(`${this.baseURL}/change-timetable`, this.AttachAuthToken({ "StudentID": studentID, "TimetableURL": timetableURL }));
+  public ChangeTimetable = (studentID: string, timetableURL: string) => this._http.post(`${this.baseURL}/change-timetable`, this.AttachAuthToken({ studentID, timetableURL }));
 
   private CleanURL = (url) => url.replace('&', '%26');
 
-  private AttachAuthToken = (data: Object): Object => { return { ...data, 'AuthToken': localStorage.getItem('AuthToken') } };
+  private AttachAuthToken = (data: Object): Object => { return { ...data, 'authToken': localStorage.getItem('authToken') } };
 
 }
