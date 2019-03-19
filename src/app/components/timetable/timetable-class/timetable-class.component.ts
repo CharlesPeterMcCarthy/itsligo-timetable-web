@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import Class from '../../../models/class.model';
 import { DatetimeService } from '../../../services/datetime/datetime.service';
 import * as moment from 'moment';
@@ -14,7 +14,10 @@ export class TimetableClassComponent implements OnInit {
   @Input() class: Class;
   @Input() day: string;
   @Input() conflicting: boolean;
-  showMoreInfo: boolean = false;
+  @Output() hideModule: EventEmitter<Object> = new EventEmitter();
+  @Output() unhideModule: EventEmitter<Class> = new EventEmitter();
+  public showMoreInfo: boolean = false;
+  public hidden: boolean = false;
 
   constructor(private _datetimeService: DatetimeService) { }
 
@@ -28,4 +31,14 @@ export class TimetableClassComponent implements OnInit {
 
   IsCurrentClass = (): boolean => this.day === this._datetimeService.GetDayOfWeek() && moment(new Date()).isBetween(this.class.times.start, this.class.times.end);
   
+  HideModule = (): void => {
+    this.hidden = true;
+    this.hideModule.emit({ class: this.class, day: this.day });
+  }
+
+  UnhideModule = (): void => {
+    this.hidden = false;
+    this.unhideModule.emit(this.class);
+  }
+
 }

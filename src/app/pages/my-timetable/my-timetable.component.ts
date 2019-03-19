@@ -19,6 +19,7 @@ export class MyTimetableComponent implements OnInit {
   timetableURL: string = localStorage.getItem('timetableURL');
   heading: string = "My Timetable";
   timetable: Timetable;
+  private hiddenModules: Object[] = [];
 
   constructor(
     private _timetableAPI: TimetableApiService,
@@ -57,5 +58,18 @@ export class MyTimetableComponent implements OnInit {
   public CurrentClass = (): Class[] => this._timetableService.CurrentClass(this.timetable);
 
   public CurrentBreak = (): Break => this._timetableService.CurrentBreak(this.timetable);
+
+  public HideModule = (cl: Object): number => this.hiddenModules.push(cl);
+
+  public UnhideModule = (cl: Class): void => { this.hiddenModules.splice(this.hiddenModules.indexOf(cl), 1); }
+
+  public HideModules = (): void => {
+    _.each(this.hiddenModules, (m) => {
+      const d: Day = _.find(this.timetable.Days, (d: Day) => d.day == m.day);
+      d.classes.splice(d.classes.indexOf(m.class), 1);
+    });
+
+    this.hiddenModules = [];
+  }
 
 }

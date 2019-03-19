@@ -1,6 +1,7 @@
 <page-heading [heading]="heading"></page-heading>
 
 <div *ngIf="timetable">
+  <app-button [text]="'Hide Modules'" [size]="'large'" [style]="'primary'" (click)="HideModules()" *ngIf="hiddenModules.length"></app-button>
   <div *ngIf="HaveClassToday() && FinishedForTheDay()" class="no-class-today">You have no more classes today.</div>
   <div *ngIf="!HaveClassToday()" class="no-class-today">You have no classes today.</div>
   <div *ngIf="HaveClassToday()">
@@ -9,6 +10,6 @@
   </div>
   
   <ul class="list-group">
-    <timetable-day *ngFor="let day of timetable.Days" [day]="day"></timetable-day>
+    <timetable-day *ngFor="let day of timetable.Days" [day]="day" (hideModule)="HideModule($event)" (unhideModule)="UnhideModule($event)"></timetable-day>
   </ul>
 </div>

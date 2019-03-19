@@ -36,6 +36,8 @@ export class TimetableApiService {
 
   public ChangeTimetable = (studentID: string, timetableURL: string) => this._http.post(`${this.baseURL}/change-timetable`, this.AttachAuthToken({ studentID, timetableURL }));
 
+  public HideModules = (studentID: string, timetableURL: string, modules: Object[]) => this._http.post(`${this.baseURL}/hide-modules`, this.AttachAuthToken({ studentID, timetableURL, modules }));
+
   private CleanURL = (url) => url.replace('&', '%26');
 
   private AttachAuthToken = (data: Object): Object => { return { ...data, 'authToken': localStorage.getItem('authToken') } };
