@@ -1,5 +1,6 @@
 div {
     &.class-block {
+        position: relative;
         padding: 20px 10px 10px 20px;
         margin-bottom: 10px;
         border-radius: 4px;
@@ -21,10 +22,21 @@ div {
             background-color: rgba(65, 168, 28, 0.8);
         }
 
-        div.conflicting {
-            color: rgb(245, 171, 0);
-            font-weight: bold;
-            margin-top: -15px;
+        div {
+            &.conflicting {
+                position: absolute;
+                bottom: 2px;
+                right: 6px;
+                color: rgb(245, 171, 0);
+                font-weight: bold;    
+            }
+
+            &.hide-module {
+                position: absolute;
+                top: 2px;
+                right: 6px;
+                font-weight: bold;
+            }
         }
     }
 

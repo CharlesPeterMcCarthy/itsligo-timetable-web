@@ -43,4 +43,5 @@ export class TimetableApiService {
       day['breaks'] = _.map(day.breaks, (br) => new Break(br));
       return new Day(day);
     }));
+    
 }

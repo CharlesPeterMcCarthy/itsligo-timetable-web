@@ -1,7 +1,6 @@
 <page-heading [heading]="heading"></page-heading>
 
 <div *ngIf="timetable">
-  <app-button [text]="'Hide Modules'" [size]="'large'" [style]="'primary'" (click)="HideModules()" *ngIf="hiddenModules.length"></app-button>
   <div *ngIf="HaveClassToday() && FinishedForTheDay()" class="no-class-today">You have no more classes today.</div>
   <div *ngIf="!HaveClassToday()" class="no-class-today">You have no classes today.</div>
   <div *ngIf="HaveClassToday()">
