@@ -7,6 +7,6 @@
     </div>
 </div>
 
-<div *ngIf="ShowHideButton()" (click)="HideModules()">
+<div *ngIf="ShowHideButton()" (click)="HideModules()" [@FadeInOut]>
     <div id="hide-btn">COMMIT TO HIDING MODULES ({{hiddenModules.length}})</div>
 </div>

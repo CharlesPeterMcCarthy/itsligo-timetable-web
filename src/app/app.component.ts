@@ -5,11 +5,20 @@ import { Subscription } from 'rxjs';
 import { TimetableApiService } from './services/timetable-api/timetable-api.service';
 import { ToastrService } from 'ngx-toastr';
 import { _ } from 'underscore';
+import { AuthService } from './services/auth/auth.service';
+import { trigger, transition, style, animate, state } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.less']
+  styleUrls: ['./app.component.less'],
+  animations: [
+    trigger('FadeInOut', [
+      state('in', style({ opacity: 1 })),
+      transition(':enter', [ style({ opacity: 0 }), animate('400ms ease-in-out') ]),
+      transition(':leave', animate('200ms ease-in-out', style({ opacity: 0 })))
+    ])
+  ]
 })
 
 export class AppComponent implements OnDestroy {
@@ -21,7 +30,8 @@ export class AppComponent implements OnDestroy {
     private _router: Router,
     private _moduleHiderService: ModuleHiderService,
     private _timetableAPI: TimetableApiService,
-    private _toastr: ToastrService
+    private _toastr: ToastrService,
+    private _authService: AuthService,
   ) {
     this.moduleSub = this._moduleHiderService.GetModule().subscribe(cl => { 
       if (cl.hide) this.hiddenModules.push(cl);
@@ -40,6 +50,8 @@ export class AppComponent implements OnDestroy {
   public ShowHideButton = (): boolean => this._router.url == "/timetable" && !_.isEmpty(this.hiddenModules);
 
   public HideModules = (): void => {
+    if (!this._authService.IsLoggedIn) return
+
     this._timetableAPI.HideModules(localStorage.getItem('studentID'), localStorage.getItem('timetableURL'), this.StripModules()).subscribe(() => {     
       this.hiddenModules = [];
       this._moduleHiderService.NotifyListeners();
