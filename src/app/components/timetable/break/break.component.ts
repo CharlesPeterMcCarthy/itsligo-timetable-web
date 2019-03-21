@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import Break from '../../../models/break.model';
-import * as moment from 'moment';
 import { TimetableService } from '../../../services/timetable/timetable.service';
 
 @Component({

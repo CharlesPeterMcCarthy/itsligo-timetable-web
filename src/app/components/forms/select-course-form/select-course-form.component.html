@@ -1,6 +1,6 @@
 <form>
     <div class="form-group">
-        <dropdown [items]="departments" [emptyOption]="true" [emptyOptionText]="'Select department'" 
+        <dropdown [items]="departments" [key]="'name'" [emptyOption]="true" [emptyOptionText]="'Select department'" 
             [name]="'department'" [disabled]="!HasDepartments()" (valueSelected)="SetDepartment($event)"></dropdown>
     </div>
 

@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { _ } from 'underscore';
 import { AuthService } from '../../../services/auth/auth.service';
 import { UserService } from '../../../services/user/user.service';
+import Department from '../../../models/department.model';
+import Course from '../../../models/course.model';
 
 @Component({
   selector: 'select-course-form',
@@ -14,10 +16,10 @@ import { UserService } from '../../../services/user/user.service';
 
 export class SelectCourseFormComponent implements OnInit {
   
-  public departments: string[];
-  public courses: Object[];
-  public selectedCourse: Object;
-  private selectedDept: string;
+  public departments: Department[];
+  public courses: Course[];
+  public selectedCourse: Course;
+  private selectedDept: Department;
 
   constructor(
     private _timetableAPI: TimetableApiService,
@@ -33,16 +35,14 @@ export class SelectCourseFormComponent implements OnInit {
 
   private GetDepartments = (): void => {
     this._timetableAPI.GetDepartments().subscribe(
-      (res) => this.departments = res['departments'],
+      (data) => this.departments = data,
       (err) => this._toastr.error(err.error.errorText)
     );
   }
 
   private GetCourses = (): void => {
-    this._timetableAPI.GetDepartmentCourses(this.selectedDept).subscribe(
-      (res) => {
-        this.courses = res['courses'];
-      }, 
+    this._timetableAPI.GetDepartmentCourses(this.selectedDept.name).subscribe(
+      (data) => this.courses = data, 
       (err) => this._toastr.error(err.error.errorText)
     );
   }
@@ -51,13 +51,13 @@ export class SelectCourseFormComponent implements OnInit {
 
   public HasDepartments = (): boolean => this.departments && !!this.departments.length;
 
-  public SetDepartment = (dept): void => {
+  public SetDepartment = (dept: Department): void => {
     this.selectedDept = dept;
     this.courses = null;
     this.GetCourses();
   }
 
-  public SetCourse = (course: Object) => this.selectedCourse = course;
+  public SetCourse = (course: Course) => this.selectedCourse = course;
 
   public ViewTimetable = (semesterNum: number): boolean => {
     const url = this.selectedCourse['url'][`semester${semesterNum}`];
