@@ -1,11 +1,15 @@
 <div class="class-block" [ngClass]="IsCurrentClass() ? 'current': ''" (click)="ShowMoreInfo()">
-  <div *ngIf="hidden">
-    Temporarily Hidden.
-    <app-button [text]="'Undo'" [size]="'small'" [style]="'primary'" (click)="UnhideModule()"></app-button>
+  <div *ngIf="hidden" class="row">
+    <div class="col-sm-6">
+        Temporarily Hidden.
+    </div>
+    <div class="col-sm-6 text-right">
+      <app-button [text]="'Undo'" [size]="'small'" [style]="'primary'" (click)="UnhideModule()"></app-button>
+    </div>
   </div>
   <div *ngIf="!hidden">
-    <app-button [text]="'Hide'" [size]="'small'" [style]="'primary'" (click)="HideModule()"></app-button>
-    <div *ngIf="conflicting" class="conflicting text-right">!</div>
+    <div (click)="HideModule()" class="hide-module">X</div>
+    <div *ngIf="conflicting" class="conflicting">!</div>
     <div class="module-title"><strong>{{ class.module.name }}</strong><small> ({{ class.type }})</small></div>
     <div>{{ class.times.start | datetime: 'HH:mm' }} - {{ class.times.end | datetime: 'HH:mm' }} ({{ GetClassDuration() }})</div>
     <div *ngFor="let room of class.rooms">{{ room.code }}</div>
