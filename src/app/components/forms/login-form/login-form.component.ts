@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { UserService } from '../../../services/user/user.service';
 
 @Component({
   selector: 'login-form',
@@ -14,21 +15,20 @@ export class LoginFormComponent implements OnInit {
   constructor(
     private _authService: AuthService,
     private _router: Router,
-    private _toastr: ToastrService
+    private _toastr: ToastrService,
+    private _userService: UserService
   ) { }
 
   ngOnInit() { }
 
   Login = (StudentID: string, Password: string): void => {
-    localStorage.clear();
+    this._userService.ClearUserData();
     
     this._authService.Login(StudentID, Password).subscribe((res) => {
       console.log(res);
 
       if (res['authToken']) {
-        localStorage.setItem('authToken', res['authToken']);
-        localStorage.setItem('studentID', res['user']['studentID']);
-        if (res['user']['timetableURL']) localStorage.setItem('timetableURL', res['user']['timetableURL']);
+        this._userService.SetUserData(res);
         this._router.navigate(['timetable']);
       }
     }, (err) => {

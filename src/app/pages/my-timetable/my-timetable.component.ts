@@ -11,6 +11,7 @@ import Timetable from '../../models/timetable';
 import { AuthService } from '../../services/auth/auth.service';
 import { ModuleHiderService } from '../../services/module-hider/module-hider.service';
 import { Subscription } from 'rxjs';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-my-timetable',
@@ -21,7 +22,6 @@ import { Subscription } from 'rxjs';
 export class MyTimetableComponent implements OnInit, OnDestroy {
 
   public heading: string = "My Timetable";
-  private timetableURL: string = localStorage.getItem('timetableURL');
   private timetable: Timetable;
   private modHiddenSub: Subscription;
 
@@ -31,7 +31,8 @@ export class MyTimetableComponent implements OnInit, OnDestroy {
     private _moduleHiderService: ModuleHiderService,
     private _authService: AuthService,
     private _router: Router,
-    private _toastr: ToastrService
+    private _toastr: ToastrService,
+    private _userService: UserService
   ) { 
     this.GetTimetable();
 
@@ -45,18 +46,18 @@ export class MyTimetableComponent implements OnInit, OnDestroy {
   ngOnDestroy = () => this.modHiddenSub.unsubscribe();
 
   private GetTimetable = (): void | object => {
-    if (!this.timetableURL) {
+    if (!this._userService.TimetableURL()) {
       this._router.navigate(['/']);
     } else {
       if (this._authService.IsLoggedIn())
-        this._timetableAPI.MyTimetable(localStorage.getItem('studentID'), this.timetableURL).subscribe((timetable: Timetable) => {     
+        this._timetableAPI.MyTimetable(this._userService.StudentID(), this._userService.TimetableURL()).subscribe((timetable: Timetable) => {     
           console.log(timetable)
           this.timetable = timetable; 
         }, (err) => {
           this._toastr.error(err.error.errorText);
         });
       else
-        this._timetableAPI.GetTimetable(this.timetableURL).subscribe((timetable: Timetable) => {     
+        this._timetableAPI.GetTimetable(this._userService.TimetableURL()).subscribe((timetable: Timetable) => {     
           console.log(timetable)
           this.timetable = timetable; 
         }, (err) => {

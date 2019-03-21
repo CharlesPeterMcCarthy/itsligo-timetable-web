@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { _ } from 'underscore';
 import { AuthService } from './services/auth/auth.service';
 import { trigger, transition, style, animate, state } from '@angular/animations';
+import { UserService } from './services/user/user.service';
 
 @Component({
   selector: 'app-root',
@@ -32,6 +33,7 @@ export class AppComponent implements OnDestroy {
     private _timetableAPI: TimetableApiService,
     private _toastr: ToastrService,
     private _authService: AuthService,
+    private _userService: UserService
   ) {
     this.moduleSub = this._moduleHiderService.GetModule().subscribe(cl => { 
       if (cl.hide) this.hiddenModules.push(cl);
@@ -52,7 +54,7 @@ export class AppComponent implements OnDestroy {
   public HideModules = (): void => {
     if (!this._authService.IsLoggedIn) return
 
-    this._timetableAPI.HideModules(localStorage.getItem('studentID'), localStorage.getItem('timetableURL'), this.StripModules()).subscribe(() => {     
+    this._timetableAPI.HideModules(this._userService.StudentID(), this._userService.TimetableURL(), this.StripModules()).subscribe(() => {     
       this.hiddenModules = [];
       this._moduleHiderService.NotifyListeners();
     }, (err) => {

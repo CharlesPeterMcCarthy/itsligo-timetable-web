@@ -8,6 +8,7 @@ import Timetable from '../../models/timetable';
 import Day from '../../models/day.model';
 import Class from '../../models/class.model';
 import Break from '../../models/break.model';
+import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,10 @@ export class TimetableApiService {
   
   readonly baseURL: string = environment.apiURL;
 
-  constructor(private _http: HttpClient) {}
+  constructor(
+    private _http: HttpClient,
+    private _userService: UserService
+  ) {}
 
   public GetTimetable = (timetableURL: string): Observable<Timetable> => this._http.post(`${this.baseURL}/timetable`, { timetableURL, includeClasses: true, includeBreaks: true, checkConflicts: true })
     .pipe(map(data => this.MapTimetable(timetableURL, data)));
@@ -35,7 +39,7 @@ export class TimetableApiService {
 
   private CleanURL = (url) => url.replace('&', '%26');
 
-  private AttachAuthToken = (data: Object): Object => { return { ...data, 'authToken': localStorage.getItem('authToken') } };
+  private AttachAuthToken = (data: Object): Object => { return { ...data, 'authToken': this._userService.AuthToken() } };
 
   private MapTimetable = (timetableURL, data) => 
     new Timetable(timetableURL, _.map(data['timetable']['days'], (day) => {

@@ -4,6 +4,7 @@ import { TimetableApiService } from '../../../services/timetable-api/timetable-a
 import { ToastrService } from 'ngx-toastr';
 import { _ } from 'underscore';
 import { AuthService } from '../../../services/auth/auth.service';
+import { UserService } from '../../../services/user/user.service';
 
 @Component({
   selector: 'select-course-form',
@@ -22,7 +23,8 @@ export class SelectCourseFormComponent implements OnInit {
     private _timetableAPI: TimetableApiService,
     private _authService: AuthService,
     private _router: Router,
-    private _toastr: ToastrService
+    private _toastr: ToastrService,
+    private _userService: UserService
   ) {
     this.GetDepartments();
   }
@@ -60,15 +62,15 @@ export class SelectCourseFormComponent implements OnInit {
   public ViewTimetable = (semesterNum: number): boolean => {
     const url = this.selectedCourse['url'][`semester${semesterNum}`];
     if (this._authService.IsLoggedIn()) {
-      this._timetableAPI.ChangeTimetable(localStorage.getItem('studentID'), url).subscribe(
+      this._timetableAPI.ChangeTimetable(this._userService.StudentID(), url).subscribe(
         () => {
-          localStorage.setItem('timetableURL', url);
+          this._userService.SetTimetableURL(url);
           this._router.navigate(['timetable']);
         }, 
         (err) => this._toastr.error(err.error.errorText)
       );
     } else {
-      localStorage.setItem('timetableURL', url);
+      this._userService.SetTimetableURL(url);
       this._router.navigate(['timetable']);
     }
 

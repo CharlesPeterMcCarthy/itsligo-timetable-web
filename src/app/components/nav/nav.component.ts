@@ -66,6 +66,6 @@ export class NavComponent implements OnInit {
     this._router.navigate(['/']);
   }
 
-  IsLoggedIn = (): boolean => !!this._authService.IsLoggedIn();
+  IsLoggedIn = (): boolean => this._authService.IsLoggedIn();
 
 }
