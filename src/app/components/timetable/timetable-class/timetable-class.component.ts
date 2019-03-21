@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import Class from '../../../models/class.model';
 import { DatetimeService } from '../../../services/datetime/datetime.service';
 import * as moment from 'moment';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'timetable-class',
@@ -19,9 +20,14 @@ export class TimetableClassComponent implements OnInit {
   public showMoreInfo: boolean = false;
   public hidden: boolean = false;
 
-  constructor(private _datetimeService: DatetimeService) { }
+  constructor(
+    private _datetimeService: DatetimeService,
+    private _authService: AuthService
+  ) { }
 
   ngOnInit() { }
+
+  public IsLoggedIn = (): boolean => this._authService.IsLoggedIn();
 
   ShowMoreInfo = (): boolean => this.showMoreInfo = !this.showMoreInfo;
 

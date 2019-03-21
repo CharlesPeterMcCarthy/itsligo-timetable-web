@@ -22,20 +22,21 @@ div {
             background-color: rgba(65, 168, 28, 0.8);
         }
 
-        div.conflicting {
-            position: absolute;
-            top: 2px;
-            right: 20px;
-            color: rgb(245, 171, 0);
-            font-weight: bold;
-        }
+        div {
+            &.conflicting {
+                position: absolute;
+                bottom: 2px;
+                right: 6px;
+                color: rgb(245, 171, 0);
+                font-weight: bold;    
+            }
 
-        div.hide-module {
-            position: absolute;
-            top: 2px;
-            right: 6px;
-            color: red;
-            font-weight: bold;
+            &.hide-module {
+                position: absolute;
+                top: 2px;
+                right: 6px;
+                font-weight: bold;
+            }
         }
     }
 

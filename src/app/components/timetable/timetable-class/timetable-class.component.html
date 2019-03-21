@@ -8,7 +8,7 @@
     </div>
   </div>
   <div *ngIf="!hidden">
-    <div (click)="HideModule()" class="hide-module">X</div>
+    <div (click)="HideModule()" *ngIf="IsLoggedIn()" class="hide-module">X</div>
     <div *ngIf="conflicting" class="conflicting">!</div>
     <div class="module-title"><strong>{{ class.module.name }}</strong><small> ({{ class.type }})</small></div>
     <div>{{ class.times.start | datetime: 'HH:mm' }} - {{ class.times.end | datetime: 'HH:mm' }} ({{ GetClassDuration() }})</div>
