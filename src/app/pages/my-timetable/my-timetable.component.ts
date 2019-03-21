@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TimetableApiService } from '../../services/timetable-api/timetable-api.service';
 import { TimetableService } from '../../services/timetable/timetable.service';
 import { ToastrService } from 'ngx-toastr';
@@ -9,6 +9,8 @@ import Class from '../../models/class.model';
 import Break from '../../models/break.model';
 import Timetable from '../../models/timetable';
 import { AuthService } from '../../services/auth/auth.service';
+import { ModuleHiderService } from '../../services/module-hider/module-hider.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-my-timetable',
@@ -16,23 +18,31 @@ import { AuthService } from '../../services/auth/auth.service';
   styleUrls: ['./my-timetable.component.less']
 })
 
-export class MyTimetableComponent implements OnInit {
-  timetableURL: string = localStorage.getItem('timetableURL');
-  heading: string = "My Timetable";
-  timetable: Timetable;
-  private hiddenModules: Object[] = [];
+export class MyTimetableComponent implements OnInit, OnDestroy {
+
+  public heading: string = "My Timetable";
+  private timetableURL: string = localStorage.getItem('timetableURL');
+  private timetable: Timetable;
+  private modHiddenSub: Subscription;
 
   constructor(
     private _timetableAPI: TimetableApiService,
     private _timetableService: TimetableService,
+    private _moduleHiderService: ModuleHiderService,
     private _authService: AuthService,
     private _router: Router,
     private _toastr: ToastrService
-  ) {
+  ) { 
     this.GetTimetable();
-  }
+
+    this.modHiddenSub = this._moduleHiderService.ModulesHaveBeenHidden().subscribe(hidden => {
+      if (hidden) this.UpdateTimetable();
+    })
+   }
 
   ngOnInit() { }
+
+  ngOnDestroy = () => this.modHiddenSub.unsubscribe();
 
   private GetTimetable = (): void | object => {
     if (!this.timetableURL) {
@@ -55,6 +65,8 @@ export class MyTimetableComponent implements OnInit {
     }
   }
 
+  private UpdateTimetable = (): void => this.GetTimetable() && this._moduleHiderService.ResetNotification();
+
   public FinishedForTheDay = (): boolean => !this._timetableService.HaveClassesLeft(this.timetable);
 
   public HaveClassToday = (): boolean => this._timetableService.HaveClassToday(this.timetable);
@@ -69,32 +81,8 @@ export class MyTimetableComponent implements OnInit {
 
   public CurrentBreak = (): Break => this._timetableService.CurrentBreak(this.timetable);
 
-  public HideModule = (cl: Object): number => this.hiddenModules.push(cl);
+  public HideModule = (cl: Object): void => this._moduleHiderService.HideModule(cl);
 
-  public UnhideModule = (cl: Class): void => { this.hiddenModules.splice(this.hiddenModules.indexOf(cl), 1); }
-
-  public HideModules = (): void => {
-    this._timetableAPI.HideModules(localStorage.getItem('studentID'), this.timetableURL, this.StripModules()).subscribe((res) => {     
-      console.log(res)
-      _.each(this.hiddenModules, (m) => {
-        const d: Day = _.find(this.timetable.Days, (d: Day) => d.day == m.day);
-        d.classes.splice(d.classes.indexOf(m.class), 1);
-      });
-
-      this.hiddenModules = [];
-    }, (err) => {
-      this._toastr.error(err.error.errorText);
-    });
-  }
-
-  private StripModules = (): Object[] => 
-    _.map(this.hiddenModules, (m) => { return { 
-      name: m.class.module.name,
-      day: m.day,
-      times: {
-        start : m.class.times.start.format('HH:mm:ss'),
-        end : m.class.times.end.format('HH:mm:ss')
-      }
-    } });
+  public UnhideModule = (cl: Class): void => this._moduleHiderService.UnhideModule(cl);
 
 }
