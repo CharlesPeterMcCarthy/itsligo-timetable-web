@@ -1,7 +1,7 @@
 <form>
     <div class="form-group">
         <dropdown [items]="departments" [emptyOption]="true" [emptyOptionText]="'Select department'" 
-            [name]="'department'" (valueSelected)="SetDepartment($event)"></dropdown>
+            [name]="'department'" [disabled]="!HasDepartments()" (valueSelected)="SetDepartment($event)"></dropdown>
     </div>
 
     <div class="form-group">

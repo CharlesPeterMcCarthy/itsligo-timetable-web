@@ -13,10 +13,10 @@ import { AuthService } from '../../../services/auth/auth.service';
 
 export class SelectCourseFormComponent implements OnInit {
   
-  departments: string[];
-  courses: Object[];
-  selectedDept: string;
-  selectedCourse: Object;
+  public departments: string[];
+  public courses: Object[];
+  public selectedCourse: Object;
+  private selectedDept: string;
 
   constructor(
     private _timetableAPI: TimetableApiService,
@@ -29,14 +29,14 @@ export class SelectCourseFormComponent implements OnInit {
 
   ngOnInit() {}
 
-  GetDepartments = (): void => {
+  private GetDepartments = (): void => {
     this._timetableAPI.GetDepartments().subscribe(
       (res) => this.departments = res['departments'],
       (err) => this._toastr.error(err.error.errorText)
     );
   }
 
-  GetCourses = (): void => {
+  private GetCourses = (): void => {
     this._timetableAPI.GetDepartmentCourses(this.selectedDept).subscribe(
       (res) => {
         this.courses = res['courses'];
@@ -45,24 +45,23 @@ export class SelectCourseFormComponent implements OnInit {
     );
   }
 
-  HasCourses = (): boolean => this.courses && !!this.courses.length;
+  public HasCourses = (): boolean => this.courses && !!this.courses.length;
 
-  SetDepartment = (dept): void => {
+  public HasDepartments = (): boolean => this.departments && !!this.departments.length;
+
+  public SetDepartment = (dept): void => {
     this.selectedDept = dept;
     this.courses = null;
-
     this.GetCourses();
   }
 
-  SetCourse = (course: Object): void => {
-    this.selectedCourse = course;
-  }
+  public SetCourse = (course: Object) => this.selectedCourse = course;
 
-  ViewTimetable = (semesterNum: number): boolean => {
+  public ViewTimetable = (semesterNum: number): boolean => {
     const url = this.selectedCourse['url'][`semester${semesterNum}`];
     if (this._authService.IsLoggedIn()) {
       this._timetableAPI.ChangeTimetable(localStorage.getItem('studentID'), url).subscribe(
-        (res) => {
+        () => {
           localStorage.setItem('timetableURL', url);
           this._router.navigate(['timetable']);
         }, 
