@@ -16,9 +16,9 @@ import { NavLinkComponent } from './components/nav/nav-link/nav-link.component';
 
 // Timetable Components
 import { TimetableDayComponent } from './components/timetable/timetable-day/timetable-day.component';
-import { TimetableClassComponent } from './components/timetable/timetable-class/timetable-class.component';
+import { TimetableModuleComponent } from './components/timetable/timetable-module/timetable-module.component';
 import { BreakComponent } from './components/timetable/break/break.component';
-import { CurrentClassComponent } from './components/timetable/current-class/current-class.component';
+import { CurrentModuleComponent } from './components/timetable/current-module/current-module.component';
 import { CurrentBreakComponent } from './components/timetable/current-break/current-break.component';
 
 // Input / Field Components
@@ -53,7 +53,7 @@ import { ToastrModule } from 'ngx-toastr';
     SelectCourseFormComponent,
     MyTimetableComponent,
     TimetableDayComponent,
-    TimetableClassComponent,
+    TimetableModuleComponent,
     LoginComponent,
     NavComponent,
     RegisterComponent,
@@ -65,7 +65,7 @@ import { ToastrModule } from 'ngx-toastr';
     LoginFormComponent,
     RegisterFormComponent,
     BreakComponent,
-    CurrentClassComponent,
+    CurrentModuleComponent,
     CurrentBreakComponent,
     SortListPipe,
     DatetimePipe

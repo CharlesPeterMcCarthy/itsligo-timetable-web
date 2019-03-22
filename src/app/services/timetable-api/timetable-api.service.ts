@@ -6,7 +6,7 @@ import { _ } from 'underscore';
 import { environment } from '../../../environments/environment';
 import Timetable from '../../models/timetable';
 import Day from '../../models/day.model';
-import Class from '../../models/class.model';
+import TimetableModule from '../../models/timetable-module.model';
 import Break from '../../models/break.model';
 import { UserService } from '../user/user.service';
 import Department from '../../models/department.model';
@@ -25,7 +25,7 @@ export class TimetableApiService {
     private _userService: UserService
   ) {}
 
-  public GetTimetable = (timetableURL: string): Observable<Timetable> => this._http.post(`${this.baseURL}/timetable`, { timetableURL, includeClasses: true, includeBreaks: true, checkConflicts: true })
+  public GetTimetable = (timetableURL: string): Observable<Timetable> => this._http.post(`${this.baseURL}/timetable`, { timetableURL, includeModules: true, includeBreaks: true, checkConflicts: true })
     .pipe(map(data => this.MapTimetable(timetableURL, data)));
 
   public GetDepartments = (): Observable<Department[]> => this._http.get(`${this.baseURL}/departments`)
@@ -47,7 +47,7 @@ export class TimetableApiService {
 
   private MapTimetable = (timetableURL, data): Timetable => 
     new Timetable(timetableURL, _.map(data['timetable']['days'], (day) => {
-      day['classes'] = _.map(day.classes, (cl) => new Class(cl));
+      day['modules'] = _.map(day.modules, (mod) => new TimetableModule(mod));
       day['breaks'] = _.map(day.breaks, (br) => new Break(br));
       return new Day(day);
     }));

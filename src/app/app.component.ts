@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { ModuleHiderService } from './services/module-hider/module-hider.service';
 import { Subscription } from 'rxjs';
 import { TimetableApiService } from './services/timetable-api/timetable-api.service';
@@ -35,9 +35,9 @@ export class AppComponent implements OnDestroy {
     private _authService: AuthService,
     private _userService: UserService
   ) {
-    this.moduleSub = this._moduleHiderService.GetModule().subscribe(cl => { 
-      if (cl.hide) this.hiddenModules.push(cl);
-      if (!cl.hide) this.hiddenModules.splice(this.hiddenModules.indexOf(cl), 1);
+    this.moduleSub = this._moduleHiderService.GetModule().subscribe(mod => { 
+      if (mod.hide) this.hiddenModules.push(mod);
+      if (!mod.hide) this.hiddenModules.splice(this.hiddenModules.indexOf(mod), 1);
     });
 
     this._router.events.subscribe(evt => {
@@ -65,11 +65,11 @@ export class AppComponent implements OnDestroy {
   private StripModules = (): Object[] => 
     _.map(this.hiddenModules, (m) => { 
       return {
-        name: m.class.module.name,
+        name: m.module.module.name,
         day: m.day,
         times: {
-          start : m.class.times.start.format('HH:mm:ss'),
-          end : m.class.times.end.format('HH:mm:ss')
+          start : m.module.times.start.format('HH:mm:ss'),
+          end : m.module.times.end.format('HH:mm:ss')
         }
       } 
     });

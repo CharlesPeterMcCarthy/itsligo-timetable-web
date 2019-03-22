@@ -1,0 +1,23 @@
+<div class="module">
+    <div class="module-title">
+      You currently have class
+    </div>
+
+    <div *ngIf="modules.length > 1" class="multiple-modules">
+      <p>There are {{ modules.length }} modules on right now.</p>
+      <p>Consider removing modules from your timetable.</p>
+    </div>
+
+    <div *ngFor="let module of modules" class="module-desc">
+      <div class="row">
+        <div class="col-sm-8">
+          <p class="module-name">{{ module.module.name }}</p>
+          <p [innerHTML]="Rooms(module)"></p>
+        </div>
+        <div class="col-sm-4 text-right">
+          <p>{{ module.times.start | datetime: 'HH:mm' }} - {{ module.times.end | datetime: 'HH:mm' }}</p>
+          <p>{{ ModuleLength(module) }}</p>
+        </div>
+      </div>
+    </div>
+  </div>

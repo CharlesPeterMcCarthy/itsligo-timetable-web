@@ -1,4 +1,4 @@
-<div class="class-block" [ngClass]="IsCurrentClass() ? 'current': ''" (click)="ShowMoreInfo()">
+<div class="module-block" [ngClass]="IsCurrentModule() ? 'current': ''" (click)="ShowMoreInfo()">
   <div *ngIf="hidden" class="row">
     <div class="col-sm-6">
         Temporarily Hidden.
@@ -10,15 +10,15 @@
   <div *ngIf="!hidden">
     <div (click)="HideModule()" *ngIf="IsLoggedIn()" class="hide-module">X</div>
     <div *ngIf="conflicting" class="conflicting">!</div>
-    <div class="module-title"><strong>{{ class.module.name }}</strong><small> ({{ class.type }})</small></div>
-    <div>{{ class.times.start | datetime: 'HH:mm' }} - {{ class.times.end | datetime: 'HH:mm' }} ({{ GetClassDuration() }})</div>
-    <div *ngFor="let room of class.rooms">{{ room.code }}</div>
+    <div class="module-title"><strong>{{ module.module.name }}</strong><small> ({{ module.type }})</small></div>
+    <div>{{ module.times.start | datetime: 'HH:mm' }} - {{ module.times.end | datetime: 'HH:mm' }} ({{ GetModuleDuration() }})</div>
+    <div *ngFor="let room of module.rooms">{{ room.code }}</div>
     <div *ngIf="showMoreInfo" class="row">
       <div class="col-sm-12">
-        Lecturer<span *ngIf="class.lecturers.length > 1">s</span>: <span>{{ GetLecturers() }}</span>
+        Lecturer<span *ngIf="module.lecturers.length > 1">s</span>: <span>{{ GetLecturers() }}</span>
       </div>
       <div class="col-sm-12">
-        Course Code: <span>{{ class.module.code }}</span>
+        Course Code: <span>{{ module.module.code }}</span>
       </div>
     </div>
   </div>

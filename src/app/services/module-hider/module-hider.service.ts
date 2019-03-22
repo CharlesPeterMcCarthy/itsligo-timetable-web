@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import Class from '../../models/class.model';
+import TimetableModule from '../../models/timetable-module.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { _ } from 'underscore';
 
@@ -22,8 +22,8 @@ export class ModuleHiderService {
 
   ResetNotification = (): void => this.modulesHaveBeenHidden.next(false);  
 
-  HideModule = (cl: Object): void => this.subject.next(_.extend(cl, { hide: true }));
+  HideModule = (mod: Object): void => this.subject.next(_.extend(mod, { hide: true }));
 
-  UnhideModule = (cl: Class): void => this.subject.next(_.extend(cl, { hide: false }));
+  UnhideModule = (mod: TimetableModule): void => this.subject.next(_.extend(mod, { hide: false }));
 
 }

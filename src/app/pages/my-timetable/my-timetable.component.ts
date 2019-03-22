@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import Day from '../../models/day.model';
 import { _ } from 'underscore';
-import Class from '../../models/class.model';
+import TimetableModule from '../../models/timetable-module.model';
 import Break from '../../models/break.model';
 import Timetable from '../../models/timetable';
 import { AuthService } from '../../services/auth/auth.service';
@@ -68,22 +68,22 @@ export class MyTimetableComponent implements OnInit, OnDestroy {
 
   private UpdateTimetable = (): void => this.GetTimetable() && this._moduleHiderService.ResetNotification();
 
-  public FinishedForTheDay = (): boolean => !this._timetableService.HaveClassesLeft(this.timetable);
+  public FinishedForTheDay = (): boolean => !this._timetableService.HaveModulesLeft(this.timetable);
 
-  public HaveClassToday = (): boolean => this._timetableService.HaveClassToday(this.timetable);
+  public HaveModulesToday = (): boolean => this._timetableService.HaveModulesToday(this.timetable);
 
   public Today = (): Day => this._timetableService.Today(this.timetable);
 
-  public HasClassNow = (): boolean => !_.isEmpty(this.CurrentClass());
+  public HaveModuleNow = (): boolean => !_.isEmpty(this.CurrentModule());
 
   public HasBreakNow = (): boolean => !!this.CurrentBreak();
 
-  public CurrentClass = (): Class[] => this._timetableService.CurrentClass(this.timetable);
+  public CurrentModule = (): TimetableModule[] => this._timetableService.CurrentModule(this.timetable);
 
   public CurrentBreak = (): Break => this._timetableService.CurrentBreak(this.timetable);
 
-  public HideModule = (cl: Object): void => this._moduleHiderService.HideModule(cl);
+  public HideModule = (mod: Object): void => this._moduleHiderService.HideModule(mod);
 
-  public UnhideModule = (cl: Class): void => this._moduleHiderService.UnhideModule(cl);
+  public UnhideModule = (mod: TimetableModule): void => this._moduleHiderService.UnhideModule(mod);
 
 }

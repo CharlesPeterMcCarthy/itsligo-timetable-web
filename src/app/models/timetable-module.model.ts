@@ -1,7 +1,7 @@
 import * as moment from 'moment';
 import { ITime } from '../interfaces/itime';
 
-export default class Class implements ITime {
+export default class TimetableModule implements ITime {
     
     public activity: string;
     public duration: string;
