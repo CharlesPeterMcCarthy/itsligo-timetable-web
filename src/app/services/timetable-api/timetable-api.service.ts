@@ -11,6 +11,7 @@ import Break from '../../models/break.model';
 import { UserService } from '../user/user.service';
 import Department from '../../models/department.model';
 import Course from '../../models/course.model';
+import HiddenModule from '../../models/hidden-module';
 
 @Injectable({
   providedIn: 'root'
@@ -39,17 +40,19 @@ export class TimetableApiService {
   public HideModules = (studentID: string, timetableURL: string, modules: Object[]): Observable<object> => this._http.post(`${this.baseURL}/hide-modules`, this.AttachAuthToken({ studentID, timetableURL, modules }));
 
   public MyTimetable = (studentID: string, timetableURL: string): Observable<Timetable> => this._http.post(`${this.baseURL}/my-timetable`, this.AttachAuthToken({ studentID, timetableURL }))
-    .pipe(map(data => this.MapTimetable(timetableURL, data)));
+    .pipe(map(data => _.extend(this.MapTimetable(timetableURL, data), { hiddenModules: this.CreateHiddenModules(data) } )));
  
   private CleanURL = (url): string => url.replace('&', '%26');
 
   private AttachAuthToken = (data: Object): object => { return { ...data, 'authToken': this._userService.AuthToken() } };
 
-  private MapTimetable = (timetableURL, data): Timetable => 
+  private MapTimetable = (timetableURL: string, data: object): Timetable => 
     new Timetable(timetableURL, _.map(data['timetable']['days'], (day) => {
       day['modules'] = _.map(day.modules, (mod) => new TimetableModule(mod));
       day['breaks'] = _.map(day.breaks, (br) => new Break(br));
       return new Day(day);
     }));
+  
+  private CreateHiddenModules = (data: object) => _.map(data['hiddenModules'], mod => new HiddenModule(mod));
     
 }
