@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { DatetimeService } from '../datetime/datetime.service';
 import { _ } from 'underscore';
 import * as moment from 'moment';
-import Timetable from '../../models/timetable';
+import Timetable from '../../models/timetable.model';
 import Day from '../../models/day.model';
 import TimetableModule from '../../models/timetable-module.model';
 import Break from '../../models/break.model';
@@ -15,7 +15,7 @@ export class TimetableService {
 
   constructor(private _datetimeService: DatetimeService) { }
 
-  public Today = (timetable: Timetable): Day => _.findWhere(timetable.Days, { day: this._datetimeService.GetDayOfWeek() });
+  public Today = (timetable: Timetable): Day => _.findWhere(timetable.days, { day: this._datetimeService.GetDayOfWeek() });
 
   public HaveModulesLeft = (timetable: Timetable): boolean => !!this.ModulesLeft(timetable);
 

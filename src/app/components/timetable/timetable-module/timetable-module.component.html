@@ -8,8 +8,14 @@
     </div>
   </div>
   <div *ngIf="!hidden">
-    <div (click)="HideModule()" *ngIf="IsLoggedIn()" class="hide-module">X</div>
-    <div *ngIf="conflicting" class="conflicting">!</div>
+    <div *ngIf="IsLoggedIn()">
+      <ng-template #hideModule>Hide Module</ng-template>
+      <div (click)="HideModule()" class="hide-module" [ngbTooltip]="hideModule" placement="top">X</div>
+    </div>
+    <div *ngIf="conflicting">
+      <ng-template #clashingModule>Clashing Module</ng-template>
+      <div class="conflicting" [ngbTooltip]="clashingModule" placement="top">!</div>
+    </div>
     <div class="module-title"><strong>{{ module.module.name }}</strong><small> ({{ module.type }})</small></div>
     <div>{{ module.times.start | datetime: 'HH:mm' }} - {{ module.times.end | datetime: 'HH:mm' }} ({{ GetModuleDuration() }})</div>
     <div *ngFor="let room of module.rooms">{{ room.code }}</div>

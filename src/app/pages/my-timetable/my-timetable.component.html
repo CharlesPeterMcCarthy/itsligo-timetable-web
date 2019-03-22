@@ -9,6 +9,6 @@
   </div>
   
   <ul class="list-group">
-    <timetable-day *ngFor="let day of timetable.Days" [day]="day" (hideModule)="HideModule($event)" (unhideModule)="UnhideModule($event)"></timetable-day>
+    <timetable-day *ngFor="let day of timetable.days" [day]="day" (hideModule)="HideModule($event)" (unhideModule)="UnhideModule($event)"></timetable-day>
   </ul>
 </div>

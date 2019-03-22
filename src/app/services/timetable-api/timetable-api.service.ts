@@ -4,14 +4,14 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { _ } from 'underscore';
 import { environment } from '../../../environments/environment';
-import Timetable from '../../models/timetable';
+import Timetable from '../../models/timetable.model';
 import Day from '../../models/day.model';
 import TimetableModule from '../../models/timetable-module.model';
 import Break from '../../models/break.model';
 import { UserService } from '../user/user.service';
 import Department from '../../models/department.model';
 import Course from '../../models/course.model';
-import HiddenModule from '../../models/hidden-module';
+import HiddenModule from '../../models/hidden-module.model';
 
 @Injectable({
   providedIn: 'root'

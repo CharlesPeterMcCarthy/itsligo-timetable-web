@@ -44,6 +44,7 @@ import { DatetimePipe } from './pipes/datetime.pipe';
 
 // Extras
 import { ToastrModule } from 'ngx-toastr';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgbTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

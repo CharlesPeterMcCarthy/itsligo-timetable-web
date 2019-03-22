@@ -7,7 +7,7 @@ import Day from '../../models/day.model';
 import { _ } from 'underscore';
 import TimetableModule from '../../models/timetable-module.model';
 import Break from '../../models/break.model';
-import Timetable from '../../models/timetable';
+import Timetable from '../../models/timetable.model';
 import { AuthService } from '../../services/auth/auth.service';
 import { ModuleHiderService } from '../../services/module-hider/module-hider.service';
 import { Subscription } from 'rxjs';

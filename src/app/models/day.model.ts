@@ -1,6 +1,6 @@
 import TimetableModule from './timetable-module.model';
 import Break from './break.model';
-import HiddenModule from './hidden-module';
+import HiddenModule from './hidden-module.model';
 
 export default class Day {
 
