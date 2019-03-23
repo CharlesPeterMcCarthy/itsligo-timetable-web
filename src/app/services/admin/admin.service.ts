@@ -20,6 +20,8 @@ export class AdminService {
     private _userService: UserService
   ) { }
 
+  public IsAdmin = (): boolean => {console.log(this._userService.AccountType()); return this._userService.AccountType() === "Admin"};
+
   public GetUsers = (): Observable<User[]> => this._http.post(`${this.baseURL}/admin/get-users`, this.AttachAuthToken({ studentID: this._userService.StudentID() }))
     .pipe(map(data => _.map(data['users'], (u) => new User(u))));
 

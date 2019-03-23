@@ -8,6 +8,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { TimetableGuard } from './guards/timetable.guard';
 import { ConfirmEmailComponent } from './pages/confirm-email/confirm-email.component';
 import { UsersComponent } from './pages/admin/users/users.component';
+import { AdminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,7 +16,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'confirm/:code', component: ConfirmEmailComponent },
-  { path: 'admin/users', component: UsersComponent },
+  { path: 'admin/users', component: UsersComponent, canActivate: [AdminGuard] },
   { path: '**', redirectTo: '' }
 ]
 
