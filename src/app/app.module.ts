@@ -39,6 +39,10 @@ import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ConfirmEmailComponent } from './pages/confirm-email/confirm-email.component';
 
+// Admin
+import { UsersComponent } from './pages/admin/users/users.component';
+import { UserListComponent } from './components/admin/user-list/user-list.component';
+
 // Pipes
 import { SortListPipe } from './pipes/sort-list.pipe';
 import { DatetimePipe } from './pipes/datetime.pipe';
@@ -72,7 +76,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CurrentBreakComponent,
     SortListPipe,
     DatetimePipe,
-    FooterComponent
+    FooterComponent,
+    UsersComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
