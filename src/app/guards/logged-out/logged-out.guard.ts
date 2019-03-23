@@ -1,24 +1,24 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AdminService } from '../services/admin/admin.service';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class AdminGuard implements CanActivate {
-
+export class LoggedOutGuard implements CanActivate {
+  
   constructor(
     private _router: Router,
-    private _adminService: AdminService
+    private _authService: AuthService
   ) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      if (!this._adminService.IsAdmin()) {
-        this._router.navigate(['/']);
+      if (this._authService.IsLoggedIn()) {
+        this._router.navigate(['timetable']);
         return false;
       }
       return true;
