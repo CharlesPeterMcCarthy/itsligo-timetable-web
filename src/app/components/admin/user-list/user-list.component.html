@@ -1,28 +1,15 @@
-<ul class="list-group">
-  <li class="list-group-item headings">
-    <div class="row">
-      <div class="col-sm-4">
-        Student ID
-      </div>
-      <div class="col-sm-4">
-        Name
-      </div>
-      <div class="col-sm-4 text-right">
-        Email Verified
-      </div>
+<div class="headings">
+  <div class="row">
+    <div class="col-sm-4">
+      Student ID
     </div>
-  </li>
-  <li class="list-group-item" *ngFor="let user of users">
-    <div class="row">
-      <div class="col-sm-4">
-        {{ user.studentID }}
-      </div>
-      <div class="col-sm-4">
-        {{ user.name }}
-      </div>
-      <div class="col-sm-4 text-right">
-        {{ user.verified }}
-      </div>
+    <div class="col-sm-4">
+      Name
     </div>
-  </li>
-</ul>
+    <div class="col-sm-4 text-center">
+      Email Verified
+    </div>
+  </div>
+</div>
+
+<admin-user-info *ngFor="let user of users" [user]="user"></admin-user-info>

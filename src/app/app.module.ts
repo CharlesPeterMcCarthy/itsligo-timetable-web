@@ -42,6 +42,7 @@ import { ConfirmEmailComponent } from './pages/confirm-email/confirm-email.compo
 // Admin
 import { UsersComponent } from './pages/admin/users/users.component';
 import { UserListComponent } from './components/admin/user-list/user-list.component';
+import { UserInfoComponent } from './components/admin/user-info/user-info.component';
 
 // Pipes
 import { SortListPipe } from './pipes/sort-list.pipe';
@@ -78,7 +79,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     DatetimePipe,
     FooterComponent,
     UsersComponent,
-    UserListComponent
+    UserListComponent,
+    UserInfoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,14 @@
+<div class="user-info">
+  <div class="row">
+    <div class="col-sm-4">
+      {{ user.studentID }}
+    </div>
+    <div class="col-sm-4">
+      {{ user.name }}
+    </div>
+    <div class="col-sm-4 text-center">
+      <fa-icon [icon]="checkIcon" *ngIf="user.verified" class="check"></fa-icon>
+      <fa-icon [icon]="uncheckIcon" *ngIf="!user.verified" class="uncheck"></fa-icon>
+    </div>
+  </div>
+</div>
