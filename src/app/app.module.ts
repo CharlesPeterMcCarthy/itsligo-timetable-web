@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { PageHeadingComponent } from './components/page-heading/page-heading.component';
 import { NavComponent } from './components/nav/nav.component';
 import { NavLinkComponent } from './components/nav/nav-link/nav-link.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 // Timetable Components
 import { TimetableDayComponent } from './components/timetable/timetable-day/timetable-day.component';
@@ -45,6 +46,7 @@ import { DatetimePipe } from './pipes/datetime.pipe';
 // Extras
 import { ToastrModule } from 'ngx-toastr';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -69,7 +71,8 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
     CurrentModuleComponent,
     CurrentBreakComponent,
     SortListPipe,
-    DatetimePipe
+    DatetimePipe,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +82,8 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    NgbTooltipModule
+    NgbTooltipModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
