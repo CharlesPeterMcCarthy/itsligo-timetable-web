@@ -1,9 +1,9 @@
 <page-heading [heading]="heading"></page-heading>
 
 <div *ngIf="timetable">
-  <div *ngIf="HaveModulesToday() && FinishedForTheDay()" class="no-module-today">You have no more modules today.</div>
-  <div *ngIf="!HaveModulesToday()" class="no-module-today">You have no modules today.</div>
-  <div *ngIf="HaveModulesToday()">
+  <div *ngIf="HaveModulesToday() && FinishedForTheDay()" class="no-module-today current-info">You have no more modules today.</div>
+  <div *ngIf="!HaveModulesToday()" class="no-module-today current-info">You have no modules today.</div>
+  <div *ngIf="HaveModulesToday()" class="current-info">
     <current-module *ngIf="HaveModuleNow()" [modules]="CurrentModule()"></current-module>
     <current-break *ngIf="HaveModuleNow()" [break]="CurrentBreak()"></current-break>
   </div>

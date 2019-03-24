@@ -13,20 +13,85 @@
       <ng-template #hideModule>Hide Module</ng-template>
       <fa-icon [icon]="icons.remove" (click)="HideModule()" class="hide-module" [ngbTooltip]="hideModule" placement="top"></fa-icon>
     </div>
+
     <div *ngIf="conflicting">
       <ng-template #clashingModule>Clashing Module</ng-template>
       <fa-icon [icon]="icons.warning" class="conflicting" [ngbTooltip]="clashingModule" placement="top"></fa-icon>
     </div>
-    <div class="module-title"><strong>{{ module.module.name }}</strong><small> ({{ module.type }})</small></div>
-    <div>{{ module.times.start | datetime: 'HH:mm' }} - {{ module.times.end | datetime: 'HH:mm' }} ({{ GetModuleDuration() }})</div>
-    <div *ngFor="let room of module.rooms">{{ room.code }}</div>
-    <div *ngIf="showMoreInfo" class="row">
-      <div class="col-sm-12">
-        Lecturer<span *ngIf="module.lecturers.length > 1">s</span>: <span>{{ GetLecturers() }}</span>
-      </div>
-      <div class="col-sm-12">
-        Course Code: <span>{{ module.module.code }}</span>
+
+    <div class="module-title">
+      <div [@textGrow]="showMoreInfo ? 'grow' : 'shrink'">
+        <strong>{{ module.module.name }}</strong> <small> ({{ module.type }})</small>
       </div>
     </div>
+
+    <div *ngIf="!showMoreInfo" class="row">
+      <div class="col-sm-6">
+        <div class="brief-info">
+          <small>Starts at</small> <div class="info-val">{{ module.times.start | datetime: 'HH:mm A' }}</div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="brief-info">
+          <small>Ends at</small> <div class="info-val">{{ module.times.end | datetime: 'HH:mm A' }}</div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="brief-info">
+          <small>Room<span *ngIf="module.rooms.length > 1">s</span></small>
+          <div class="info-val"><span [innerHTML]="roomsBrief"></span></div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+          <div class="brief-info">
+            <small>Duration</small> <div class="info-val">{{ duration }}</div>
+          </div>
+        </div>
+    </div>
+
+    <div *ngIf="showMoreInfo" class="row">
+      <!-- Row -->
+      <div class="col-sm-6">
+        <div class="extra-info">
+          <small>Starts at</small> <div class="info-val">{{ module.times.start | datetime: 'HH:mm A' }}</div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="extra-info">
+          <small>Duration</small> <div class="info-val">{{ duration }}</div>
+        </div>
+      </div>
+      <!-- Row -->
+      <div class="col-sm-6">
+        <div class="extra-info">
+          <small>Ends at</small> <div class="info-val">{{ module.times.end | datetime: 'HH:mm A' }}</div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="extra-info">
+          <small>Starts in</small> <div class="info-val">{{ timeUntil }}</div>
+        </div>
+      </div>
+      <!-- Row -->
+      <div class="col-sm-6">
+        <div class="extra-info">
+          <small>Lecturer<span *ngIf="module.lecturers.length > 1">s</span></small>
+          <div class="info-val"><span [innerHTML]="lecturers"></span></div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="extra-info">
+          <small>Room<span *ngIf="module.rooms.length > 1">s</span></small>
+          <div class="info-val"><span [innerHTML]="rooms"></span></div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>

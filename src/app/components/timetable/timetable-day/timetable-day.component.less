@@ -9,15 +9,39 @@ li {
             background-color: rgba(0, 0, 0, 0.1);
             border: 1px solid rgba(245, 245, 245, 0.1);    
         }
+
+        &.closed {
+            cursor: pointer;
+        }
+
+        fa-icon {
+            position: absolute;
+            right: 12px;
+            top: 16px;
+            color: white;
+            cursor: pointer;
+        }
+    }
+
+    .day-underline {
+        margin: 0 auto;
+        width: 50%;
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.8);
     }
 
     div {
         &.day-name {
             text-align: center;
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
             color: white;
             cursor: pointer;
+            
+            &.no-modules {
+                color: #999;
+                cursor: default;
+            }
         }
 
         &.modules {

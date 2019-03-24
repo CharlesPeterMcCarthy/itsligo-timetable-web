@@ -1,5 +1,25 @@
 <li class="list-group-item" [ngClass]="{ 'open': isOpen }">
-  <div class="day-name" (click)="isOpen = !isOpen">{{ day.day }} ({{ day.modules && day.modules.length || 0 }})</div>
+  <div class="day-name" [ngClass]="{ 'no-modules': !day.modules.length }" (click)="ToggleModules()">{{ day.day }}</div>
+
+  <div class="day-underline" [@underlineExpand]="isOpen ? 'out' : 'in'"></div>
+
+  <div *ngIf="day.modules.length">
+    <div *ngIf="!isOpen">
+      <ng-template #openModules>View Modules</ng-template>
+      <fa-icon [icon]="icons.down" [ngbTooltip]="openModules" placement="top" (click)="ToggleModules()"></fa-icon>
+    </div>
+
+    <div *ngIf="isOpen">
+      <ng-template #closeModules>Close Modules</ng-template>
+      <fa-icon [icon]="icons.up" [ngbTooltip]="closeModules" placement="top" (click)="ToggleModules()"></fa-icon>
+    </div>
+  </div>
+
+  <div *ngIf="!day.modules.length">
+    <ng-template #noModules>No Modules</ng-template>
+    <fa-icon [icon]="icons.none" [ngbTooltip]="noModules" placement="top"></fa-icon>
+  </div>
+
   <div class="modules" *ngIf="isOpen">
     <div *ngFor="let module of day.modules">
       <timetable-module *ngIf="ModelName(module) == 'TimetableModule'" [module]="module" [day]="day.day" [conflicting]="module.conflicting" (hideModule)="HideModule($event)" (unhideModule)="UnhideModule($event)"></timetable-module>

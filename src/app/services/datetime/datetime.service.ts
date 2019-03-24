@@ -24,18 +24,38 @@ export class DatetimeService {
   public IsNow = (start: moment.Moment, end: moment.Moment): boolean => this.Now().isBetween(start, end);
   
   public ReadableDuration = (duration: moment.Duration): string => {
+    const timeParts = this.DurationTimeParts(duration);
+
+    let length: string = '';
+    if (timeParts['days']) length += `${timeParts['days']} day${timeParts['days'] > 1 ? 's' : ''}`;
+    if (timeParts['days'] && timeParts['hours']) length += ', ';
+    if (timeParts['hours']) length += `${timeParts['hours']} hour${timeParts['hours'] > 1 ? 's' : ''}`;
+    if (timeParts['hours'] && timeParts['minutes']) length += ' and ';
+    if (timeParts['minutes']) length += `${timeParts['minutes']} minutes`;
+
+    return length;
+  }
+
+  public BriefReadableDuration = (duration: moment.Duration): string => {
+    const timeParts = this.DurationTimeParts(duration);
+
+    let length: string = '';
+    if (timeParts['days']) length += `${timeParts['days']} day${timeParts['days'] > 1 ? 's' : ''}`;
+    else {
+      if (timeParts['hours']) length+= `${timeParts['hours']} hour${timeParts['hours'] > 1 ? 's' : ''}`;
+      if (timeParts['hours'] && timeParts['minutes']) length += ' and ';
+      if (timeParts['minutes']) length += `${timeParts['minutes']} minutes`;  
+    }
+
+    return length;
+  }
+
+  private DurationTimeParts = (duration: moment.Duration): object => {
     const days: number = Math.floor(duration.asDays());
     const hours: number = Math.floor((duration.asMinutes() - (days * 24 * 60)) / 60);
     const minutes: number = Math.floor(duration.asMinutes()) - (days * 24 * 60) - (hours * 60);
 
-    let length: string = '';
-    if (days) length += `${days} day${days > 1 ? 's' : ''}`;
-    if (days && hours) length += ', ';
-    if (hours) length += `${hours} hour${hours > 1 ? 's' : ''}`;
-    if (hours && minutes) length += ' and ';
-    if (minutes) length += `${minutes} minutes`;
-
-    return length;
+    return { days, hours, minutes};
   }
 
 }
