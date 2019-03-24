@@ -12,10 +12,13 @@ export class UserListComponent implements OnInit {
 
   public users: User[];
 
-  constructor(private _adminService: AdminService) { }
-
-  ngOnInit() {
-    this._adminService.GetUsers().subscribe(users => this.users = users);
+  constructor(private _adminService: AdminService) {
+    this.GetUsers();
+    setInterval(this.GetUsers, 10000);
   }
+
+  ngOnInit() { }
+
+  private GetUsers = () => {console.log("get"); this._adminService.GetUsers().subscribe(users => this.users = users);}
 
 }
