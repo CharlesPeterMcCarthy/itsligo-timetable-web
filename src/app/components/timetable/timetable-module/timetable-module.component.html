@@ -1,20 +1,21 @@
 <div class="module-block" [ngClass]="IsCurrentModule() ? 'current': ''" (click)="ShowMoreInfo()">
   <div *ngIf="hidden" class="row">
-    <div class="col-sm-6">
-        Temporarily Hidden.
+    <div class="col-6">
+        <small>Temporarily Hidden.</small>
     </div>
-    <div class="col-sm-6 text-right">
-      <app-button [text]="'Undo'" [size]="'small'" [style]="'primary'" (click)="UnhideModule()"></app-button>
+    <div class="col-6 text-right">
+      <ng-template #undoHide>Undo - Keep This Module</ng-template>
+      <fa-icon [icon]="icons.undo" class="undo" (click)="UnhideModule()" [ngbTooltip]="undoHide" placement="top"></fa-icon>
     </div>
   </div>
   <div *ngIf="!hidden">
     <div *ngIf="IsLoggedIn()">
       <ng-template #hideModule>Hide Module</ng-template>
-      <div (click)="HideModule()" class="hide-module" [ngbTooltip]="hideModule" placement="top">X</div>
+      <fa-icon [icon]="icons.remove" (click)="HideModule()" class="hide-module" [ngbTooltip]="hideModule" placement="top"></fa-icon>
     </div>
     <div *ngIf="conflicting">
       <ng-template #clashingModule>Clashing Module</ng-template>
-      <div class="conflicting" [ngbTooltip]="clashingModule" placement="top">!</div>
+      <fa-icon [icon]="icons.warning" class="conflicting" [ngbTooltip]="clashingModule" placement="top"></fa-icon>
     </div>
     <div class="module-title"><strong>{{ module.module.name }}</strong><small> ({{ module.type }})</small></div>
     <div>{{ module.times.start | datetime: 'HH:mm' }} - {{ module.times.end | datetime: 'HH:mm' }} ({{ GetModuleDuration() }})</div>

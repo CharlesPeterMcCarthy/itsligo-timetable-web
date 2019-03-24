@@ -3,6 +3,7 @@ import TimetableModule from '../../../models/timetable-module.model';
 import { DatetimeService } from '../../../services/datetime/datetime.service';
 import * as moment from 'moment';
 import { AuthService } from '../../../services/auth/auth.service';
+import { faUndo, faTimes, faExclamation, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'timetable-module',
@@ -19,6 +20,11 @@ export class TimetableModuleComponent implements OnInit {
   @Output() unhideModule: EventEmitter<TimetableModule> = new EventEmitter();
   public showMoreInfo: boolean = false;
   public hidden: boolean = false;
+  public icons: object = {
+    remove: faTimes,
+    undo: faUndo,
+    warning: faExclamation
+  }
 
   constructor(
     private _datetimeService: DatetimeService,

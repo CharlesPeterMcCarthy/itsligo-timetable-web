@@ -1,6 +1,6 @@
-<li class="list-group-item">
-  <div class="day-name" (click)="isCollapsed = !isCollapsed" data-toggle="collapse">{{ day.day }} ({{ day.modules && day.modules.length || 0 }})</div>
-  <div class="collapse navbar-collapse" [ngClass]="{ 'show': isCollapsed }">
+<li class="list-group-item" [ngClass]="{ 'open': isOpen }">
+  <div class="day-name" (click)="isOpen = !isOpen">{{ day.day }} ({{ day.modules && day.modules.length || 0 }})</div>
+  <div class="modules" *ngIf="isOpen">
     <div *ngFor="let module of day.modules">
       <timetable-module *ngIf="ModelName(module) == 'TimetableModule'" [module]="module" [day]="day.day" [conflicting]="module.conflicting" (hideModule)="HideModule($event)" (unhideModule)="UnhideModule($event)"></timetable-module>
       <timetable-break *ngIf="FindBreak(module.times.end)" [break]="FindBreak(module.times.end)"></timetable-break>

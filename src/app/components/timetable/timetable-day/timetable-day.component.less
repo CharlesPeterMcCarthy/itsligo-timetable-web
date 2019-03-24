@@ -1,16 +1,33 @@
 li {
     &.list-group-item {
+        transition: 1s;
         margin-bottom: 10px;
-        background: transparent;
-        border: 1px solid rgba(245, 245, 245, 0.1);
+        background-color: rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+
+        &.open {
+            background-color: rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(245, 245, 245, 0.1);    
+        }
     }
 
     div {
         &.day-name {
-            margin-bottom: 10px;
+            text-align: center;
+            font-size: 18px;
             font-weight: bold;
             color: white;
             cursor: pointer;
         }
+
+        &.modules {
+            margin-top: 10px;
+        }
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    &.list-group-item {
+        padding: 10px 5px;
     }
 }
