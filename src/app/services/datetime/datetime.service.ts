@@ -7,11 +7,15 @@ import * as moment from 'moment';
 
 export class DatetimeService {
 
+  private weekDays: string[] = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
   constructor() { }
 
   public Now = (): moment.Moment => moment(new Date());
 
-  public GetDayOfWeek = (): string => ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][new Date().getDay()];
+  public GetDayOfWeek = (): string => this.weekDays[new Date().getDay()];
+
+  public GetDayNumber = (day: string): number => this.weekDays.indexOf(day);
 
   public TimeDifference = (start: moment.Moment, end: moment.Moment): number => end.diff(start);
 
@@ -20,10 +24,13 @@ export class DatetimeService {
   public IsNow = (start: moment.Moment, end: moment.Moment): boolean => this.Now().isBetween(start, end);
   
   public ReadableDuration = (duration: moment.Duration): string => {
-    const hours: number = Math.floor(duration.asMinutes() / 60);
-    const minutes: number = duration.asMinutes() - (hours * 60);
+    const days: number = Math.floor(duration.asDays());
+    const hours: number = Math.floor((duration.asMinutes() - (days * 24 * 60)) / 60);
+    const minutes: number = Math.floor(duration.asMinutes()) - (days * 24 * 60) - (hours * 60);
 
     let length: string = '';
+    if (days) length += `${days} day${days > 1 ? 's' : ''}`;
+    if (days && hours) length += ', ';
     if (hours) length += `${hours} hour${hours > 1 ? 's' : ''}`;
     if (hours && minutes) length += ' and ';
     if (minutes) length += `${minutes} minutes`;
