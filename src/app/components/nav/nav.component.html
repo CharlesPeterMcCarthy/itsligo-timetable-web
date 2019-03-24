@@ -8,6 +8,10 @@
       <nav-link *ngFor="let navLink of navLinksLeft" [navLink]="navLink"></nav-link>
     </ul>
 
+    <ul class="navbar-nav" (click)="CloseNavBar()" *ngIf="IsAdmin()">
+      <nav-link *ngFor="let navLink of adminLinksRight" [navLink]="navLink"></nav-link>
+    </ul>
+
     <ul class="navbar-nav" (click)="CloseNavBar()" *ngIf="!IsLoggedIn()">
       <nav-link *ngFor="let navLink of navLinksRight" [navLink]="navLink"></nav-link>
     </ul>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import User from '../../../models/user.model';
 import { AdminService } from '../../../services/admin/admin.service';
 
@@ -8,17 +8,20 @@ import { AdminService } from '../../../services/admin/admin.service';
   styleUrls: ['./user-list.component.less']
 })
 
-export class UserListComponent implements OnInit {
+export class UserListComponent implements OnDestroy {
 
   public users: User[];
+  private checker;
 
   constructor(private _adminService: AdminService) {
     this.GetUsers();
-    setInterval(this.GetUsers, 10000);
+    this.checker = setInterval(this.GetUsers, 10000);
   }
 
-  ngOnInit() { }
+  ngOnDestroy() { 
+    clearInterval(this.checker);
+  }
 
-  private GetUsers = () => {console.log("get"); this._adminService.GetUsers().subscribe(users => this.users = users);}
+  private GetUsers = () => this._adminService.GetUsers().subscribe(users => this.users = users);
 
 }

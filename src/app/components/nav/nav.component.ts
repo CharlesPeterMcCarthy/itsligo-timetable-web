@@ -3,6 +3,7 @@ import { DOCUMENT } from '@angular/platform-browser';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { NavLink } from '../../interfaces/nav-link';
+import { AdminService } from '../../services/admin/admin.service';
 
 @Component({
   selector: 'nav-bar',
@@ -15,13 +16,14 @@ export class NavComponent implements OnInit {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private _authService: AuthService,
-    private _router: Router
+    private _router: Router,
+    private _adminService: AdminService
   ) {}
 
-  isBelowNav: boolean = false;
-  expandNav: boolean = false;
+  private isBelowNav: boolean = false;
+  public expandNav: boolean = false;
 
-  navLinksLeft = Array<NavLink>(
+  public navLinksLeft = Array<NavLink>(
     {
       text: 'Home',
       url: '/'
@@ -32,7 +34,7 @@ export class NavComponent implements OnInit {
     }
   );
 
-  navLinksRight = Array<NavLink>(
+  public navLinksRight = Array<NavLink>(
     {
       text: 'Login',
       url: '/login'
@@ -43,29 +45,38 @@ export class NavComponent implements OnInit {
     }
   );
 
+  public adminLinksRight = Array<NavLink>(
+    {
+      text: 'Users',
+      url: '/admin/users'
+    }
+  );
+
   logoutLink: NavLink = ({ text: 'Logout' });
 
   ngOnInit() { }
 
   @HostListener("window:scroll", [])
-  OnScroll = (): void => {
+  public OnScroll = (): void => {
     const offset = this.document.documentElement.scrollTop || this.document.body.scrollTop;
     this.isBelowNav = offset >= 20;
   }
 
-  BackgroundColor = (): string => this.isBelowNav || this.expandNav ? 'rgba(0, 0, 0, 0.95)' : 'rgba(0, 0, 0, 0.4)';
+  public BackgroundColor = (): string => this.isBelowNav || this.expandNav ? 'rgba(0, 0, 0, 0.95)' : 'rgba(0, 0, 0, 0.4)';
   
-  ToggleNavbar = (): boolean => this.expandNav = !this.expandNav;
+  public ToggleNavbar = (): boolean => this.expandNav = !this.expandNav;
 
-  CloseNavBar = (): void => {
+  public CloseNavBar = (): void => {
     this.expandNav = false;
   }
 
-  Logout = (): void => {
+  public Logout = (): void => {
     this._authService.Logout();
     this._router.navigate(['/']);
   }
 
-  IsLoggedIn = (): boolean => this._authService.IsLoggedIn();
+  public IsLoggedIn = (): boolean => this._authService.IsLoggedIn();
+
+  public IsAdmin = (): boolean => this._adminService.IsAdmin();
 
 }
