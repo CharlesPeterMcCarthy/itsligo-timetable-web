@@ -1,16 +1,18 @@
 <form>
-    <div class="form-group">
+    <div class="form-group row justify-content-center">
         <dropdown [items]="departments" [key]="'name'" [emptyOption]="true" [emptyOptionText]="'Select department'" 
-            [name]="'department'" [disabled]="!HasDepartments()" (valueSelected)="SetDepartment($event)"></dropdown>
+            [name]="'department'" [disabled]="!HasDepartments()" (valueSelected)="SetDepartment($event)" class="col-sm-8"></dropdown>
     </div>
 
-    <div class="form-group">
+    <div class="form-group row justify-content-center">
         <dropdown [items]="courses" [key]="'name'" [emptyOption]="true" [emptyOptionText]="'Select course'" 
-            [name]="'course'" [disabled]="!HasCourses()" (valueSelected)="SetCourse($event)"></dropdown>
+            [name]="'course'" [disabled]="!HasCourses()" (valueSelected)="SetCourse($event)" class="col-sm-8"></dropdown>
     </div>
 
-    <div class="text-right">
-        <app-button [text]="'Semester 1'" [style]="selectedCourse ? 'success' : 'warning'" (click)="ViewTimetable(1)" [disabled]="!selectedCourse" class="btn-left"></app-button>
-        <app-button [text]="'Semester 2'" [style]="selectedCourse ? 'success' : 'warning'" (click)="ViewTimetable(2)" [disabled]="!selectedCourse"></app-button>
+    <div class="row justify-content-center">
+        <div class="col-sm-8 text-right">
+            <app-button [text]="'Semester 1'" [style]="selectedCourse ? 'success' : 'warning'" (click)="ViewTimetable(1)" [disabled]="!selectedCourse" class="btn-left"></app-button>
+            <app-button [text]="'Semester 2'" [style]="selectedCourse ? 'success' : 'warning'" (click)="ViewTimetable(2)" [disabled]="!selectedCourse"></app-button>
+        </div>
     </div>
 </form>
