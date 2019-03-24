@@ -66,6 +66,12 @@ export class MyTimetableComponent implements OnInit, OnDestroy {
     }
   }
 
+  public RestoreHiddenModules = (): void => {
+    this._timetableAPI.RestoreModules(this._userService.StudentID(), this._userService.TimetableURL()).subscribe(() => {
+      this.UpdateTimetable();
+    });
+  }
+
   private UpdateTimetable = (): void => this.GetTimetable() && this._moduleHiderService.ResetNotification();
 
   public FinishedForTheDay = (): boolean => !this._timetableService.HaveModulesLeft(this.timetable);

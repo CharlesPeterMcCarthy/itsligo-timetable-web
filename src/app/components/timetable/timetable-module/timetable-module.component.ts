@@ -67,11 +67,11 @@ export class TimetableModuleComponent implements OnInit, OnDestroy {
 
   public ShowMoreInfo = (): boolean => this.showMoreInfo = !this.showMoreInfo;
 
-  private GetRooms = (): void => this.rooms = _.map(this.module.rooms, r => `<strong>${r.code} <small>(${r.type})</small></strong>`).join(', ');
+  private GetRooms = (): void => this.rooms = _.map(this.module.rooms, r => `<strong>${r.code} <small>(${r.type})</small></strong>`).join(', ') || 'N/A';
 
-  private GetRoomsBrief = (): void => this.roomsBrief = _.map(this.module.rooms, r => `<strong>${r.code}</strong>`).join(', ');
+  private GetRoomsBrief = (): void => this.roomsBrief = _.map(this.module.rooms, r => `<strong>${r.code}</strong>`).join(', ') || 'N/A';
 
-  private GetLecturers = (): void => this.lecturers = _.map(this.module.lecturers, l => `<strong>${l}</strong>`).join(' & ');
+  private GetLecturers = (): void => this.lecturers = _.map(this.module.lecturers, l => `<strong>${l}</strong>`).join(' & ') || 'N/A';
 
   private GetModuleDuration = (): string => this.duration = this._datetimeService.ReadableDuration(this._datetimeService.TimeDuration(this.module.times.start, this.module.times.end));
 

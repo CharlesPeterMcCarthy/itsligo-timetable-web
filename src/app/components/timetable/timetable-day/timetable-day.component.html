@@ -17,7 +17,7 @@
 
   <div *ngIf="!day.modules.length">
     <ng-template #noModules>No Modules</ng-template>
-    <fa-icon [icon]="icons.none" [ngbTooltip]="noModules" placement="top"></fa-icon>
+    <fa-icon [icon]="icons.none" [ngbTooltip]="noModules" placement="top" class="no-modules"></fa-icon>
   </div>
 
   <div class="modules" *ngIf="isOpen">

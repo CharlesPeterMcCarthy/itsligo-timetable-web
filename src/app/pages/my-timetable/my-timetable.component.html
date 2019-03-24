@@ -11,4 +11,8 @@
   <ul class="list-group">
     <timetable-day *ngFor="let day of timetable.days" [day]="day" (hideModule)="HideModule($event)" (unhideModule)="UnhideModule($event)"></timetable-day>
   </ul>
+
+  <div class="text-right">
+    <small *ngIf="timetable.hiddenModules.length" class="restore" (click)="RestoreHiddenModules()">Restore hidden modules</small>
+  </div>
 </div>

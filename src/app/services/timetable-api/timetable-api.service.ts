@@ -39,6 +39,8 @@ export class TimetableApiService {
 
   public HideModules = (studentID: string, timetableURL: string, modules: Object[]): Observable<object> => this._http.post(`${this.baseURL}/hide-modules`, this.AttachAuthToken({ studentID, timetableURL, modules }));
 
+  public RestoreModules = (studentID: string, timetableURL: string): Observable<object> => this._http.post(`${this.baseURL}/restore-modules`, this.AttachAuthToken({ studentID, timetableURL }));
+
   public MyTimetable = (studentID: string, timetableURL: string): Observable<Timetable> => this._http.post(`${this.baseURL}/my-timetable`, this.AttachAuthToken({ studentID, timetableURL }))
     .pipe(map(data => _.extend(this.MapTimetable(timetableURL, data), { hiddenModules: this.CreateHiddenModules(data) } )));
  
