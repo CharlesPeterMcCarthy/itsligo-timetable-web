@@ -80,10 +80,12 @@ export class TimetableModuleComponent implements OnInit, OnDestroy {
 
     this.timeUntilInterval = setInterval(() => {
       this.SetTimeUntilModule();
-    }, 60000)
+    }, 60000);
   }
 
   private SetTimeUntilModule = () => {
+    if (this.IsCurrentModule()) return this.timeUntil = "On Now";
+    
     let dayToGet;
     const dayNum = this._datetimeService.GetDayNumber(this.day);
     const today = moment().isoWeekday();
@@ -92,6 +94,8 @@ export class TimetableModuleComponent implements OnInit, OnDestroy {
 
     if (today <= dayNum) dayToGet = moment().isoWeekday(dayNum).set(timeSet);
     else dayToGet = moment().add(1, 'weeks').isoWeekday(dayNum).set(timeSet);
+
+    if (dayToGet < moment(new Date())) dayToGet.add(1, 'weeks');
 
     this.timeUntil = this._datetimeService.BriefReadableDuration(this._datetimeService.TimeDuration(this._datetimeService.Now(), dayToGet));
   }

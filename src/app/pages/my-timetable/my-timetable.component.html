@@ -5,7 +5,7 @@
   <div *ngIf="!HaveModulesToday()" class="no-module-today current-info">You have no modules today.</div>
   <div *ngIf="HaveModulesToday()" class="current-info">
     <current-module *ngIf="HaveModuleNow()" [modules]="CurrentModule()"></current-module>
-    <current-break *ngIf="HaveModuleNow()" [break]="CurrentBreak()"></current-break>
+    <current-break *ngIf="HaveBreakNow()" [break]="CurrentBreak()"></current-break>
   </div>
   
   <ul class="list-group">

@@ -82,7 +82,7 @@ export class MyTimetableComponent implements OnInit, OnDestroy {
 
   public HaveModuleNow = (): boolean => !_.isEmpty(this.CurrentModule());
 
-  public HasBreakNow = (): boolean => !!this.CurrentBreak();
+  public HaveBreakNow = (): boolean => !!this.CurrentBreak();
 
   public CurrentModule = (): TimetableModule[] => this._timetableService.CurrentModule(this.timetable);
 
