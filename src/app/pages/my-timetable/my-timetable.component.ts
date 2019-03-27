@@ -22,7 +22,7 @@ import { UserService } from '../../services/user/user.service';
 export class MyTimetableComponent implements OnInit, OnDestroy {
 
   public heading: string = "My Timetable";
-  private timetable: Timetable;
+  public timetable: Timetable;
   private modHiddenSub: Subscription;
 
   constructor(

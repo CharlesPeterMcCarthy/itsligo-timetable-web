@@ -9,7 +9,7 @@ import Break from '../../../models/break.model';
 
 export class CurrentBreakComponent {
 
-  @Input() break: Break[];
+  @Input() break: Break;
 
   constructor() { }
 
