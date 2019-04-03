@@ -39,8 +39,6 @@ export class TimetableDayComponent implements OnInit {
     this.isOpen = this.day.modules.length && this.IsToday();
   }
 
-  public ModelName = (obj: Object): string => obj.constructor.name;
-
   public ToggleModules = (): boolean => this.isOpen = this.day.modules.length ? !this.isOpen : this.isOpen;
 
   public FindBreak = (endTime: moment.Moment): boolean => _.find(this.day.breaks, (b: Break) => b.times.start.isSame(endTime));
