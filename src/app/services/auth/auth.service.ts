@@ -16,11 +16,13 @@ export class AuthService {
     private _userService: UserService
   ) { }
 
-  public Register = (studentEmail: string, name: string, password: string) => this._http.post(`${this.baseURL}/register`, { studentEmail, name, password });
+  public Register = (studentEmail: string, name: string, password: string) => this._http.post(`${this.baseURL}/register`, { open: false, studentEmail, name, password });
+
+  public OpenRegister = (username: string, password: string) => this._http.post(`${this.baseURL}/register`, { open: true, username, password });
 
   public CheckConfirmationCode = (code: string) => this._http.post(`${this.baseURL}/confirm`, { code });
 
-  public Login = (studentID: string, password: string) => this._http.post(`${this.baseURL}/login`, { studentID, password });
+  public Login = (username: string, password: string) => this._http.post(`${this.baseURL}/login`, { username, password });
 
   public IsLoggedIn = (): boolean => !!(this._userService.AuthToken() && this._userService.StudentID());
 

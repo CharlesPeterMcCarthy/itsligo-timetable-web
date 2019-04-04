@@ -3,6 +3,7 @@ import { AuthService } from '../../../services/auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { UserService } from '../../../services/user/user.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'login-form',
@@ -11,6 +12,8 @@ import { UserService } from '../../../services/user/user.service';
 })
 
 export class LoginFormComponent implements OnInit {
+
+  public openRegistration: boolean = environment.openRegistration;
 
   constructor(
     private _authService: AuthService,
@@ -21,10 +24,10 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit() { }
 
-  Login = (StudentID: string, Password: string): void => {
+  public Login = (username: string, password: string): void => {
     this._userService.ClearUserData();
-    
-    this._authService.Login(StudentID, Password).subscribe((res) => {
+
+    this._authService.Login(username, password).subscribe((res) => {
       console.log(res);
 
       if (res['authToken']) {

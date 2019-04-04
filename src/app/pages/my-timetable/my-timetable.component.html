@@ -12,7 +12,7 @@
     <timetable-day *ngFor="let day of timetable.days" [day]="day" (hideModule)="HideModule($event)" (unhideModule)="UnhideModule($event)"></timetable-day>
   </ul>
 
-  <div class="text-right">
-    <small *ngIf="timetable.hiddenModules.length" class="restore" (click)="RestoreHiddenModules()">Restore hidden modules</small>
+  <div class="text-right" *ngIf="timetable.hiddenModules && timetable.hiddenModules.length">
+    <small class="restore" (click)="RestoreHiddenModules()">Restore hidden modules</small>
   </div>
 </div>
