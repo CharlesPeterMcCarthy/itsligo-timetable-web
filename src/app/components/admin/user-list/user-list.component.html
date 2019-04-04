@@ -1,15 +1,16 @@
-<div class="headings">
-  <div class="row">
-    <div class="col-sm-4">
-      Student ID
-    </div>
-    <div class="col-sm-4">
-      Name
-    </div>
-    <div class="col-sm-4 text-center">
-      Email Verified
+<ul class="list-group">
+  <div class="headings list-group-item">
+    <div class="row">
+      <div class="col-sm-4">
+        Username
+      </div>
+      <div class="col-sm-4">
+        Timetable
+      </div>
+      <div class="col-sm-4 text-center">
+        Email Verified
+      </div>
     </div>
   </div>
-</div>
-
-<admin-user-info *ngFor="let user of users" [user]="user"></admin-user-info>
+  <admin-user-info *ngFor="let user of users" [user]="user"></admin-user-info>
+</ul>
