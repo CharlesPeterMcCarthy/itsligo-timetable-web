@@ -62,7 +62,7 @@ export class SelectCourseFormComponent implements OnInit {
   public ViewTimetable = (semesterNum: number): boolean => {
     const url = this.selectedCourse['url'][`semester${semesterNum}`];
     if (this._authService.IsLoggedIn()) {
-      this._timetableAPI.ChangeTimetable(this._userService.StudentID(), url).subscribe(
+      this._timetableAPI.ChangeTimetable(this._userService.Username(), url).subscribe(
         () => {
           this._userService.SetTimetableURL(url);
           this._router.navigate(['timetable']);

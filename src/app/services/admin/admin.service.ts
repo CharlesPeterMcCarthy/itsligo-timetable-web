@@ -22,9 +22,9 @@ export class AdminService {
 
   public IsAdmin = (): boolean => this._userService.AccountType() === "Admin";
 
-  public ConfirmAdmin = (): Observable<object> => this._http.post(`${this.baseURL}/admin/confirm`, this.AttachAuthToken({ studentID: this._userService.StudentID() }));
+  public ConfirmAdmin = (): Observable<object> => this._http.post(`${this.baseURL}/admin/confirm`, this.AttachAuthToken({ username: this._userService.Username() }));
 
-  public GetUsers = (): Observable<User[]> => this._http.post(`${this.baseURL}/admin/get-users`, this.AttachAuthToken({ studentID: this._userService.StudentID() }))
+  public GetUsers = (): Observable<User[]> => this._http.post(`${this.baseURL}/admin/get-users`, this.AttachAuthToken({ username: this._userService.Username() }))
     .pipe(map(data => _.map(data['users'], (u) => new User(u))));
 
   private AttachAuthToken = (data: Object): object => { return { ...data, 'authToken': this._userService.AuthToken() } };

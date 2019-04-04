@@ -24,7 +24,7 @@ export class AuthService {
 
   public Login = (username: string, password: string) => this._http.post(`${this.baseURL}/login`, { username, password });
 
-  public IsLoggedIn = (): boolean => !!(this._userService.AuthToken() && this._userService.StudentID());
+  public IsLoggedIn = (): boolean => !!(this._userService.AuthToken() && this._userService.Username());
 
   public Logout = () => localStorage.clear();
 

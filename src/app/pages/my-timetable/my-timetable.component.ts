@@ -50,7 +50,7 @@ export class MyTimetableComponent implements OnInit, OnDestroy {
       this._router.navigate(['/']);
     } else {
       if (this._authService.IsLoggedIn())
-        this._timetableAPI.MyTimetable(this._userService.StudentID(), this._userService.TimetableURL()).subscribe((timetable: Timetable) => {     
+        this._timetableAPI.MyTimetable(this._userService.Username(), this._userService.TimetableURL()).subscribe((timetable: Timetable) => {     
           console.log(timetable)
           this.timetable = timetable; 
         }, (err) => {
@@ -67,7 +67,7 @@ export class MyTimetableComponent implements OnInit, OnDestroy {
   }
 
   public RestoreHiddenModules = (): void => {
-    this._timetableAPI.RestoreModules(this._userService.StudentID(), this._userService.TimetableURL()).subscribe(() => {
+    this._timetableAPI.RestoreModules(this._userService.Username(), this._userService.TimetableURL()).subscribe(() => {
       this.UpdateTimetable();
     });
   }

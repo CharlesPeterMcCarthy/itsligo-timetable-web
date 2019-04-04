@@ -1,7 +1,7 @@
 export default class User {
 
     public name: string;
-    public studentID: string;
+    public username: string;
     public verified: boolean;
     public timetableURL: string;
 

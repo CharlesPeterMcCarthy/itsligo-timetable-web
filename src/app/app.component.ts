@@ -54,7 +54,7 @@ export class AppComponent implements OnDestroy {
   public HideModules = (): void => {
     if (!this._authService.IsLoggedIn) return
 
-    this._timetableAPI.HideModules(this._userService.StudentID(), this._userService.TimetableURL(), this.StripModules()).subscribe(() => {     
+    this._timetableAPI.HideModules(this._userService.Username(), this._userService.TimetableURL(), this.StripModules()).subscribe(() => {     
       this.hiddenModules = [];
       this._moduleHiderService.NotifyListeners();
     }, (err) => {

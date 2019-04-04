@@ -8,7 +8,7 @@ export class UserService {
 
   constructor() { }
 
-  public StudentID = (): string => localStorage.getItem('studentID');
+  public Username = (): string => localStorage.getItem('username');
 
   public AuthToken = (): string => localStorage.getItem('authToken');
 
@@ -16,7 +16,7 @@ export class UserService {
 
   public TimetableURL = (): string => localStorage.getItem('timetableURL');
 
-  public SetStudentID = (studentID: string): void => localStorage.setItem('studentID', studentID);
+  public SetUsername = (username: string): void => localStorage.setItem('username', username);
 
   public SetAuthToken = (authToken: string): void => localStorage.setItem('authToken', authToken);
 
@@ -27,7 +27,7 @@ export class UserService {
   public ClearUserData = (): void => localStorage.clear();
 
   public SetUserData = (data: object): void => {
-    this.SetStudentID(data['user']['studentID']);
+    this.SetUsername(data['user']['username']);
     this.SetAuthToken(data['authToken']);
     if (data['user']['accountType']) this.SetAccountType(data['user']['accountType']);
     if (data['user']['timetableURL']) this.SetTimetableURL(data['user']['timetableURL']);

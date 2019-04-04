@@ -35,13 +35,13 @@ export class TimetableApiService {
   public GetDepartmentCourses = (department: string): Observable<Course[]> => this._http.get(this.CleanURL(`${this.baseURL}/courses?department=${department}`))
     .pipe(map(data => _.map(data['courses'], (c) => new Course(c)))); 
 
-  public ChangeTimetable = (studentID: string, timetableURL: string): Observable<object> => this._http.post(`${this.baseURL}/change-timetable`, this.AttachAuthToken({ studentID, timetableURL }));
+  public ChangeTimetable = (username: string, timetableURL: string): Observable<object> => this._http.post(`${this.baseURL}/change-timetable`, this.AttachAuthToken({ username, timetableURL }));
 
-  public HideModules = (studentID: string, timetableURL: string, modules: Object[]): Observable<object> => this._http.post(`${this.baseURL}/hide-modules`, this.AttachAuthToken({ studentID, timetableURL, modules }));
+  public HideModules = (username: string, timetableURL: string, modules: Object[]): Observable<object> => this._http.post(`${this.baseURL}/hide-modules`, this.AttachAuthToken({ username, timetableURL, modules }));
 
-  public RestoreModules = (studentID: string, timetableURL: string): Observable<object> => this._http.post(`${this.baseURL}/restore-modules`, this.AttachAuthToken({ studentID, timetableURL }));
+  public RestoreModules = (username: string, timetableURL: string): Observable<object> => this._http.post(`${this.baseURL}/restore-modules`, this.AttachAuthToken({ username, timetableURL }));
 
-  public MyTimetable = (studentID: string, timetableURL: string): Observable<Timetable> => this._http.post(`${this.baseURL}/my-timetable`, this.AttachAuthToken({ studentID, timetableURL }))
+  public MyTimetable = (username: string, timetableURL: string): Observable<Timetable> => this._http.post(`${this.baseURL}/my-timetable`, this.AttachAuthToken({ username, timetableURL }))
     .pipe(map(data => _.extend(this.MapTimetable(timetableURL, data), { hiddenModules: this.CreateHiddenModules(data) } )));
  
   private CleanURL = (url): string => url.replace('&', '%26');
