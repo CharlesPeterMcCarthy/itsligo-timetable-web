@@ -25,6 +25,7 @@ export class MyTimetableComponent implements OnInit, OnDestroy {
 
   public heading: string = "My Timetable";
   public timetable: Timetable;
+  public error: string;
   private modHiddenSub: Subscription;
 
   constructor(
@@ -43,13 +44,11 @@ export class MyTimetableComponent implements OnInit, OnDestroy {
    }
 
   ngOnInit() { 
-    this._spinner.show();
+    this.ShowSpinner();
     this.GetTimetable();
   }
 
   ngOnDestroy = () => this.modHiddenSub.unsubscribe();
-
-  public HideSpinner = () => this._spinner.hide();
 
   private GetTimetable = (): void | object => {
     if (!this._userService.TimetableURL()) {
@@ -58,21 +57,29 @@ export class MyTimetableComponent implements OnInit, OnDestroy {
       if (this._authService.IsLoggedIn())
         this._timetableAPI.MyTimetable(this._userService.Username(), this._userService.TimetableURL()).subscribe((timetable: Timetable) => {     
           console.log(timetable)
-          this._spinner.hide();
+          this.HideSpinner();
           this.timetable = timetable; 
         }, (err) => {
-          this._toastr.error(err.error.errorText);
+          this.HideSpinner();
+          this._toastr.error(err.error.errorText || "Unknown Error");
+          this.error = err.error.errorText;
         });
       else 
         this._timetableAPI.GetTimetable(this._userService.TimetableURL()).subscribe((timetable: Timetable) => {     
           console.log(timetable)
-          this._spinner.hide();
+          this.HideSpinner();
           this.timetable = timetable; 
         }, (err) => {
+          this.HideSpinner();
           this._toastr.error(err.error.errorText || "Unknown Error");
+          this.error = "Failed to retrieve your timetable. Try reloading the page.";
         });
     }
   }
+
+  private ShowSpinner = () => this._spinner.show();
+
+  private HideSpinner = () => this._spinner.hide();
 
   public RestoreHiddenModules = (): void => {
     this._timetableAPI.RestoreModules(this._userService.Username(), this._userService.TimetableURL()).subscribe(() => {
