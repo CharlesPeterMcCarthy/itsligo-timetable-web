@@ -7,15 +7,12 @@
         <input-field [type]="'email'" [placeholder]="'Student Email'" class="col-sm-8" #studentEmail></input-field>
       </div>
       <div class="form-group row justify-content-center">
-        <input-field [type]="'text'" [placeholder]="'Your Name'" class="col-sm-8" #name></input-field>
-      </div>
-      <div class="form-group row justify-content-center">
         <input-field [type]="'password'" [placeholder]="'Password'" class="col-sm-8" #password></input-field>
       </div>
 
       <div class="row justify-content-center">
         <div class="col-sm-8 text-right">
-          <app-button [text]="'Register'" [size]="'large'" [style]="'primary'" (click)="EmailRegister(studentEmail.value, name.value, password.value)"></app-button>
+          <app-button [text]="'Register'" [size]="'large'" [style]="'primary'" (click)="EmailRegister(studentEmail.value, password.value)"></app-button>
         </div>
       </div>
     </div>

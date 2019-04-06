@@ -27,10 +27,10 @@ export class RegisterFormComponent implements OnInit {
 
   public HideSpinner = () => this._spinner.hide();
 
-  public EmailRegister = (StudentEmail: string, Name: string, Password: string): void => {
+  public EmailRegister = (StudentEmail: string, Password: string): void => {
     this,this.ShowSpinner();
 
-    this._authService.Register(StudentEmail, Name, Password).subscribe((res) => {
+    this._authService.Register(StudentEmail, Password).subscribe((res) => {
       this.HideSpinner();
       this.registered.emit(true);
     }, (err) => {

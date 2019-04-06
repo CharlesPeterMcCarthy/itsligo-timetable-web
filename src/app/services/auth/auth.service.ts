@@ -16,7 +16,7 @@ export class AuthService {
     private _userService: UserService
   ) { }
 
-  public Register = (studentEmail: string, name: string, password: string) => this._http.post(`${this.baseURL}/register`, { open: false, studentEmail, name, password });
+  public Register = (studentEmail: string, password: string) => this._http.post(`${this.baseURL}/register`, { open: false, studentEmail, password });
 
   public OpenRegister = (username: string, password: string) => this._http.post(`${this.baseURL}/register`, { open: true, username, password });
 
