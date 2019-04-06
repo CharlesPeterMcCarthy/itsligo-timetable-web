@@ -41,7 +41,7 @@ export class RegisterFormComponent implements OnInit {
 
   public OpenRegister = (Username: string, Password: string): void => {
     this.ShowSpinner();
-    
+
     this._authService.OpenRegister(Username, Password).subscribe((res) => {
       this.HideSpinner();
       this.registered.emit(true);

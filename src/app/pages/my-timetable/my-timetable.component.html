@@ -1,15 +1,7 @@
 <div class="content">
   <page-heading [heading]="heading" *ngIf="timetable"></page-heading>
 
-  <ngx-spinner
-    bdColor = "rgba(0, 0, 0, 0.2)"
-    size = "medium"
-    color = "#fff"
-    type = "square-jelly-box"
-    fullScreen = "false"
-  >
-    <p style="color: white; margin-top: 70px;"> Fetching Your Timetable... </p>
-  </ngx-spinner>
+  <app-spinner [text]="'Fetching Your Timetable...'" [opacity]="'0.2'"></app-spinner>
 
   <div *ngIf="timetable" class="timetable">
     <div *ngIf="HaveModulesToday() && FinishedForTheDay()" class="no-module-today current-info">You have no more modules today.</div>
