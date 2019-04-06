@@ -41,7 +41,13 @@ export class TimetableDayComponent implements OnInit {
 
   public ToggleModules = (): boolean => this.isOpen = this.day.modules.length ? !this.isOpen : this.isOpen;
 
-  public FindBreak = (endTime: moment.Moment): boolean => _.find(this.day.breaks, (b: Break) => b.times.start.isSame(endTime));
+  public FindBreak = (endTime: moment.Moment, module: TimetableModule): boolean | Break => {
+    const b: Break = _.find(this.day.breaks, (b: Break) => b.times.start.isSame(endTime));
+    if (!b) return false;
+    const sameTimeClasses = _.filter(this.day.modules, (m: TimetableModule) => m.EndTime() == b.StartTime());
+    if (sameTimeClasses.length && module === sameTimeClasses[sameTimeClasses.length - 1]) return b;
+    return false;
+  }
 
   public HideModule = (mod: Object): void => this.hideModule.emit(mod);
 
