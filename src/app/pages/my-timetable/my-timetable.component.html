@@ -1,18 +1,32 @@
-<page-heading [heading]="heading"></page-heading>
+<div class="content">
+  <page-heading [heading]="heading" *ngIf="timetable"></page-heading>
 
-<div *ngIf="timetable" class="timetable">
-  <div *ngIf="HaveModulesToday() && FinishedForTheDay()" class="no-module-today current-info">You have no more modules today.</div>
-  <div *ngIf="!HaveModulesToday()" class="no-module-today current-info">You have no modules today.</div>
-  <div *ngIf="HaveModulesToday()" class="current-info">
-    <current-module *ngIf="HaveModuleNow()" [modules]="CurrentModule()"></current-module>
-    <current-break *ngIf="HaveBreakNow()" [break]="CurrentBreak()"></current-break>
+  <div>
+      <ngx-spinner
+        bdColor = "rgba(0, 0, 0, 0.2)"
+        size = "medium"
+        color = "#fff"
+        type = "square-jelly-box"
+        fullScreen = "false"
+      >
+      <p style="color: white; margin-top: 70px;"> Fetching Your Timetable... </p>
+      </ngx-spinner>
   </div>
-  
-  <ul class="list-group">
-    <timetable-day *ngFor="let day of timetable.days" [day]="day" (hideModule)="HideModule($event)" (unhideModule)="UnhideModule($event)"></timetable-day>
-  </ul>
 
-  <div class="text-right" *ngIf="timetable.hiddenModules && timetable.hiddenModules.length">
-    <small class="restore" (click)="RestoreHiddenModules()">Restore hidden modules</small>
+  <div *ngIf="timetable" class="timetable">
+    <div *ngIf="HaveModulesToday() && FinishedForTheDay()" class="no-module-today current-info">You have no more modules today.</div>
+    <div *ngIf="!HaveModulesToday()" class="no-module-today current-info">You have no modules today.</div>
+    <div *ngIf="HaveModulesToday()" class="current-info">
+      <current-module *ngIf="HaveModuleNow()" [modules]="CurrentModule()"></current-module>
+      <current-break *ngIf="HaveBreakNow()" [break]="CurrentBreak()"></current-break>
+    </div>
+    
+    <ul class="list-group">
+      <timetable-day *ngFor="let day of timetable.days" [day]="day" (hideModule)="HideModule($event)" (unhideModule)="UnhideModule($event)"></timetable-day>
+    </ul>
+
+    <div class="text-right" *ngIf="timetable.hiddenModules && timetable.hiddenModules.length">
+      <small class="restore" (click)="RestoreHiddenModules()">Restore hidden modules</small>
+    </div>
   </div>
 </div>

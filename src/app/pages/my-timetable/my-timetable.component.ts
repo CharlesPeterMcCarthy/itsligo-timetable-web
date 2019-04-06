@@ -12,11 +12,13 @@ import { AuthService } from '../../services/auth/auth.service';
 import { ModuleHiderService } from '../../services/module-hider/module-hider.service';
 import { Subscription } from 'rxjs';
 import { UserService } from '../../services/user/user.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-my-timetable',
   templateUrl: './my-timetable.component.html',
-  styleUrls: ['./my-timetable.component.less']
+  styleUrls: ['./my-timetable.component.less'],
+  host: { 'class': 'page-block' }
 })
 
 export class MyTimetableComponent implements OnInit, OnDestroy {
@@ -32,18 +34,22 @@ export class MyTimetableComponent implements OnInit, OnDestroy {
     private _authService: AuthService,
     private _router: Router,
     private _toastr: ToastrService,
-    private _userService: UserService
+    private _userService: UserService,
+    private _spinner: NgxSpinnerService
   ) { 
-    this.GetTimetable();
-
     this.modHiddenSub = this._moduleHiderService.ModulesHaveBeenHidden().subscribe(hidden => {
       if (hidden) this.UpdateTimetable();
     })
    }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this._spinner.show();
+    this.GetTimetable();
+  }
 
   ngOnDestroy = () => this.modHiddenSub.unsubscribe();
+
+  public HideSpinner = () => this._spinner.hide();
 
   private GetTimetable = (): void | object => {
     if (!this._userService.TimetableURL()) {
@@ -52,16 +58,18 @@ export class MyTimetableComponent implements OnInit, OnDestroy {
       if (this._authService.IsLoggedIn())
         this._timetableAPI.MyTimetable(this._userService.Username(), this._userService.TimetableURL()).subscribe((timetable: Timetable) => {     
           console.log(timetable)
+          this._spinner.hide();
           this.timetable = timetable; 
         }, (err) => {
           this._toastr.error(err.error.errorText);
         });
-      else
+      else 
         this._timetableAPI.GetTimetable(this._userService.TimetableURL()).subscribe((timetable: Timetable) => {     
           console.log(timetable)
+          this._spinner.hide();
           this.timetable = timetable; 
         }, (err) => {
-          this._toastr.error(err.error.errorText);
+          this._toastr.error(err.error.errorText || "Unknown Error");
         });
     }
   }

@@ -52,6 +52,7 @@ import { DatetimePipe } from './pipes/datetime.pipe';
 import { ToastrModule } from 'ngx-toastr';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     NgbTooltipModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
