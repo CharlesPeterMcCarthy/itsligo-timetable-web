@@ -13,8 +13,8 @@ import { _ } from 'underscore';
   styleUrls: ['./timetable-module.component.less'],
   animations: [
     trigger('textGrow', [
-      state('shrink', style({ 'font-size': '16px', 'text-align': 'left' })),
-      state('grow', style({ 'font-size': '22px', 'text-align': 'center' })),
+      state('shrink', style({ 'font-size': '18px' })),
+      state('grow', style({ 'font-size': '22px' })),
       transition('* => *', animate('0.2s')),
     ]),
     trigger('fadeInOut', [

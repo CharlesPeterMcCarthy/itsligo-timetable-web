@@ -20,9 +20,7 @@
     </div>
 
     <div class="module-title">
-      <div [@textGrow]="showMoreInfo ? 'grow' : 'shrink'">
-        <strong>{{ module.module.name }}</strong> <small> ({{ module.type }})</small>
-      </div>
+      <strong [@textGrow]="showMoreInfo ? 'grow' : 'shrink'">{{ module.module.name }}</strong> <small> ({{ module.type }})</small>
     </div>
 
     <div *ngIf="!showMoreInfo" class="row">
@@ -54,38 +52,38 @@
 
     <div *ngIf="showMoreInfo" class="row">
       <!-- Row -->
-      <div class="col-sm-6">
+      <div class="col-6">
         <div class="extra-info">
           <small>Starts at</small> <div class="info-val">{{ module.times.start | datetime: 'HH:mm A' }}</div>
         </div>
       </div>
 
-      <div class="col-sm-6">
+      <div class="col-6">
         <div class="extra-info">
           <small>Duration</small> <div class="info-val">{{ duration }}</div>
         </div>
       </div>
       <!-- Row -->
-      <div class="col-sm-6">
+      <div class="col-6">
         <div class="extra-info">
           <small>Ends at</small> <div class="info-val">{{ module.times.end | datetime: 'HH:mm A' }}</div>
         </div>
       </div>
 
-      <div class="col-sm-6">
+      <div class="col-6">
         <div class="extra-info">
           <small>Starts in</small> <div class="info-val">{{ timeUntil }}</div>
         </div>
       </div>
       <!-- Row -->
-      <div class="col-sm-6">
+      <div class="col-6">
         <div class="extra-info">
           <small>Lecturer<span *ngIf="module.lecturers.length > 1">s</span></small>
           <div class="info-val"><span [innerHTML]="lecturers"></span></div>
         </div>
       </div>
 
-      <div class="col-sm-6">
+      <div class="col-6">
         <div class="extra-info">
           <small>Room<span *ngIf="module.rooms.length > 1">s</span></small>
           <div class="info-val"><span [innerHTML]="rooms"></span></div>
