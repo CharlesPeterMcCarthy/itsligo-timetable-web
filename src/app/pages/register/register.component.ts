@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,9 @@ export class RegisterComponent implements OnInit {
 
   public isRegistered: boolean = false;
 
-  constructor() { }
+  constructor(private _title: Title) { 
+    this._title.setTitle('Register | ITSligo Timetable');
+  }
 
   ngOnInit() { }
 

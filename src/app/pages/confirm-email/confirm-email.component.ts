@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-confirm-email',
@@ -15,10 +16,13 @@ export class ConfirmEmailComponent implements OnInit {
   isConfirmed: boolean = false;
 
   constructor(
+    private _title: Title,
     private _route: ActivatedRoute,
     private _authService: AuthService,
     private _toastr: ToastrService
   ) {
+    this._title.setTitle('Confirm Email | ITSligo Timetable');
+
     this.confirmationCode = this._route.snapshot.paramMap.get('code');
 
     this.CheckConfirmationCode();

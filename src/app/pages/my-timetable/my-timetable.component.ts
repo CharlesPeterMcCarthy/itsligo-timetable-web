@@ -13,6 +13,7 @@ import { ModuleHiderService } from '../../services/module-hider/module-hider.ser
 import { Subscription } from 'rxjs';
 import { UserService } from '../../services/user/user.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-my-timetable',
@@ -29,6 +30,7 @@ export class MyTimetableComponent implements OnInit, OnDestroy {
   private modHiddenSub: Subscription;
 
   constructor(
+    private _title: Title,
     private _timetableAPI: TimetableApiService,
     private _timetableService: TimetableService,
     private _moduleHiderService: ModuleHiderService,
@@ -38,6 +40,8 @@ export class MyTimetableComponent implements OnInit, OnDestroy {
     private _userService: UserService,
     private _spinner: NgxSpinnerService
   ) { 
+    this._title.setTitle('My Timetable | ITSligo Timetable');
+
     this.modHiddenSub = this._moduleHiderService.ModulesHaveBeenHidden().subscribe(hidden => {
       if (hidden) this.UpdateTimetable();
     })
