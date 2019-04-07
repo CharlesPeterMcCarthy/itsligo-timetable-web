@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, HostListener } from '@angular/core';
+import { Component, Inject, HostListener } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./nav.component.less']
 })
 
-export class NavComponent implements OnInit {
+export class NavComponent {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -26,37 +26,20 @@ export class NavComponent implements OnInit {
   public expandNav: boolean = false;
 
   public navLinksLeft = Array<NavLink>(
-    {
-      text: 'Home',
-      url: '/'
-    },
-    {
-      text: 'My Timetable',
-      url: '/timetable'
-    }
+    { text: 'Home', url: '/' },
+    { text: 'My Timetable', url: '/timetable' }
   );
 
   public navLinksRight = Array<NavLink>(
-    {
-      text: 'Login',
-      url: '/login'
-    },
-    {
-      text: 'Register',
-      url: '/register'
-    }
+    { text: 'Login', url: '/login' },
+    { text: 'Register', url: '/register' }
   );
 
   public adminLinksRight = Array<NavLink>(
-    {
-      text: 'Users',
-      url: '/admin/users'
-    }
+    { text: 'Users', url: '/admin/users' }
   );
 
-  logoutLink: NavLink = ({ text: 'Logout' });
-
-  ngOnInit() { }
+  public logoutLink: NavLink = ({ text: 'Logout' });
 
   @HostListener("window:scroll", [])
   public OnScroll = (): void => {

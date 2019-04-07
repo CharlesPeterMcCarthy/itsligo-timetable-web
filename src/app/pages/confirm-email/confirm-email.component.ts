@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
@@ -9,11 +9,12 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './confirm-email.component.html',
   styleUrls: ['./confirm-email.component.less']
 })
-export class ConfirmEmailComponent implements OnInit {
+
+export class ConfirmEmailComponent {
 
   private confirmationCode: string;
-  heading: string = "";
-  isConfirmed: boolean = false;
+  public heading: string = "Confirming Email...";
+  public isConfirmed: boolean = false;
 
   constructor(
     private _title: Title,
@@ -27,8 +28,6 @@ export class ConfirmEmailComponent implements OnInit {
 
     this.CheckConfirmationCode();
   }
-
-  ngOnInit() {}
 
   private CheckConfirmationCode = (): void => {
     this._authService.CheckConfirmationCode(this.confirmationCode).subscribe(

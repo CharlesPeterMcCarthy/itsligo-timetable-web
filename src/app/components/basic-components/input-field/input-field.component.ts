@@ -8,8 +8,8 @@ import { Component, Input } from '@angular/core';
 
 export class InputFieldComponent {
 
-  @Input() type: string;
-  @Input() placeholder: string;
+  @Input() public type: string;
+  @Input() public placeholder: string;
   public value: string;
 
   constructor() { }

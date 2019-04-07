@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import Break from '../../../models/break.model';
 import { TimetableService } from '../../../services/timetable/timetable.service';
 
@@ -8,13 +8,11 @@ import { TimetableService } from '../../../services/timetable/timetable.service'
   styleUrls: ['./break.component.less']
 })
 
-export class BreakComponent implements OnInit {
+export class BreakComponent {
 
-  @Input() break: Break;
+  @Input() public break: Break;
 
   constructor(private _timetableService: TimetableService) { }
-
-  ngOnInit() { }
 
   public BreakLength = (): string => this._timetableService.BlockLengthReadable(this.break)
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -7,14 +7,12 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./login.component.less']
 })
 
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   
-  heading: string = "Login";
+  public heading: string = "Login";
 
   constructor(private _title: Title) { 
     this._title.setTitle('Login | ITSligo Timetable');
   }
-
-  ngOnInit() { }
 
 }

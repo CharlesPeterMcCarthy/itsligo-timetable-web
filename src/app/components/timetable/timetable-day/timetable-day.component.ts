@@ -23,9 +23,9 @@ import { faArrowDown, faArrowUp, faStop } from '@fortawesome/free-solid-svg-icon
 
 export class TimetableDayComponent implements OnInit {
 
-  @Input() day: Day;
-  @Output() hideModule: EventEmitter<Object> = new EventEmitter();
-  @Output() unhideModule: EventEmitter<TimetableModule> = new EventEmitter();
+  @Input() public day: Day;
+  @Output() public hideModule: EventEmitter<Object> = new EventEmitter();
+  @Output() public unhideModule: EventEmitter<TimetableModule> = new EventEmitter();
   public isOpen = false;
   public icons: object = {
     down: faArrowDown,

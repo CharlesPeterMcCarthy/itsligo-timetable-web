@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '../../../services/auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./login-form.component.less']
 })
 
-export class LoginFormComponent implements OnInit {
+export class LoginFormComponent {
 
   public openRegistration: boolean = environment.openRegistration;
 
@@ -24,8 +24,6 @@ export class LoginFormComponent implements OnInit {
     private _spinner: NgxSpinnerService
   ) { }
 
-  ngOnInit() { }
-
   public ShowSpinner = () => this._spinner.show();
 
   public HideSpinner = () => this._spinner.hide();
@@ -35,8 +33,6 @@ export class LoginFormComponent implements OnInit {
     this._userService.ClearUserData();
 
     this._authService.Login(username, password).subscribe((res) => {
-      console.log(res);
-
       if (res['authToken']) {
         this._userService.SetUserData(res);
         this._router.navigate(['timetable']);

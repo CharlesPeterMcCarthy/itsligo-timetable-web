@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NavLink } from '../../../interfaces/nav-link';
 import { Router } from '@angular/router';
 
@@ -8,13 +8,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./nav-link.component.less']
 })
 
-export class NavLinkComponent implements OnInit {
+export class NavLinkComponent {
 
   @Input() public navLink: NavLink;
 
   constructor(private _router: Router) { }
-
-  ngOnInit() { }
 
   public IsActive = (): boolean => this._router.url === this.navLink.url;
 

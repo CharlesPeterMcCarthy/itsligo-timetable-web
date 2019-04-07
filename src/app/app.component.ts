@@ -43,7 +43,7 @@ export class AppComponent implements OnDestroy {
 
     this._router.events.subscribe(evt => {
       if (evt instanceof NavigationEnd) {
-        if (evt.url != "/timetable") this.hiddenModules = []
+        if (evt.url != "/timetable") this.hiddenModules = [];
       }
     });
    }

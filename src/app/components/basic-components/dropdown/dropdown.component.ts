@@ -8,13 +8,13 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 export class DropdownComponent {
 
-  @Input() items: string[];
-  @Input() key: string;
-  @Input() emptyOption: boolean;
-  @Input() emptyOptionText: string;
-  @Input() name: string;
-  @Input() disabled: boolean;
-  @Output() valueSelected: EventEmitter<any> = new EventEmitter();
+  @Input() public items: string[];
+  @Input() public key: string;
+  @Input() public emptyOption: boolean;
+  @Input() public emptyOptionText: string;
+  @Input() public name: string;
+  @Input() public disabled: boolean;
+  @Output() public valueSelected: EventEmitter<any> = new EventEmitter();
 
   Change = (val): void => this.valueSelected.emit(val);
 

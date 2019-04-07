@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -7,12 +7,11 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./home.component.less']
 })
 
-export class HomeComponent implements OnInit {
-  heading: string = "Choose Your Timetable"
+export class HomeComponent {
+  public heading: string = "IT Sligo Timetables"
   
   constructor(private _title: Title) { 
     this._title.setTitle('Choose Your Timetable | ITSligo Timetable');
   }
 
-  ngOnInit() {}
 }

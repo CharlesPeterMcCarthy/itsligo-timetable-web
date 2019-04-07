@@ -12,7 +12,7 @@ import { DatetimeService } from '../../../services/datetime/datetime.service';
 
 export class UserInfoComponent implements OnInit {
 
-  @Input() user: User;
+  @Input() public user: User;
   public registeredReadable: string;
   
   public icons = {
@@ -24,8 +24,6 @@ export class UserInfoComponent implements OnInit {
   constructor(private _datetimeService: DatetimeService) { }
 
   ngOnInit() {
-    console.log(this.user)
-
     this.SetRegisterAtReadable();
   }
 

@@ -11,7 +11,7 @@ import { TimetableService } from '../../../services/timetable/timetable.service'
 
 export class CurrentModuleComponent {
 
-  @Input() modules: TimetableModule[];
+  @Input() public modules: TimetableModule[];
 
   constructor(private _timetableService: TimetableService) { }
 

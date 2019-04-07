@@ -90,12 +90,6 @@ export class MyTimetableComponent implements OnInit, OnDestroy {
     }
   }
 
-  private FlagTimetableCall = (flag: boolean) => this.gettingTimetable = flag;
-
-  private ShowSpinner = () => this._spinner.show();
-
-  private HideSpinner = () => this._spinner.hide();
-
   public RestoreHiddenModules = (): void => {
     if (this.restoringModules) return; // Prevent double clicking
     this.restoringModules = true;
@@ -108,6 +102,12 @@ export class MyTimetableComponent implements OnInit, OnDestroy {
       this._toastr.success("The hidden modules have been restored.");
     });
   }
+
+  private FlagTimetableCall = (flag: boolean) => this.gettingTimetable = flag;
+
+  private ShowSpinner = () => this._spinner.show();
+
+  private HideSpinner = () => this._spinner.hide();
 
   private UpdateTimetable = (): void => this.GetTimetable() && this._moduleHiderService.ResetNotification();
 

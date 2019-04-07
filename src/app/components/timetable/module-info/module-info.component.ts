@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, HostBinding } from '@angular/core';
+import { Component, Input, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'module-info',
   templateUrl: './module-info.component.html',
   styleUrls: ['./module-info.component.less']
 })
-export class ModuleInfoComponent implements OnInit {
+export class ModuleInfoComponent {
 
   @Input() public colWidth: string;
   @Input() public infoClass: string;
@@ -16,7 +16,5 @@ export class ModuleInfoComponent implements OnInit {
   @HostBinding('class') get hostClass() { return `col-${this.colWidth}` };
 
   constructor() { }
-
-  ngOnInit() { }
 
 }

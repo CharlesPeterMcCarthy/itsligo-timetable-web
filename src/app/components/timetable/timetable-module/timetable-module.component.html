@@ -25,10 +25,10 @@
 
     <div *ngIf="!showMoreInfo" class="row">
       <module-info [colWidth]="'6'" [infoClass]="'brief'" [title]="'Starts at'" [info]="module.times.start" [isTime]="true"></module-info>
-      <module-info [colWidth]="'6'" [infoClass]="'brief'" [title]="'Ends at'" [info]="module.times.end" [isTime]="true"></module-info>
+      <module-info [colWidth]="'6'" [infoClass]="'brief'" [title]="'Duration'" [info]="duration"></module-info>
 
+      <module-info [colWidth]="'6'" [infoClass]="'brief'" [title]="'Ends at'" [info]="module.times.end" [isTime]="true"></module-info>
       <module-info [colWidth]="'6'" [infoClass]="'brief'" [title]="'Room' + (module.rooms.length > 1 ? 's' : '')" [info]="roomsBrief" [isInnerHTML]="true"></module-info>
-      <module-info [colWidth]="'6'" [infoClass]="'brief'" [title]="'Starts at'" [info]="duration"></module-info>
     </div>
 
     <div *ngIf="showMoreInfo" class="row">

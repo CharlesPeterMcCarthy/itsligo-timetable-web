@@ -27,11 +27,11 @@ import { _ } from 'underscore';
 
 export class TimetableModuleComponent implements OnInit, OnDestroy {
 
-  @Input() module: TimetableModule;
-  @Input() day: string;
-  @Input() conflicting: boolean;
-  @Output() hideModule: EventEmitter<Object> = new EventEmitter();
-  @Output() unhideModule: EventEmitter<TimetableModule> = new EventEmitter();
+  @Input() public module: TimetableModule;
+  @Input() public day: string;
+  @Input() public conflicting: boolean;
+  @Output() public hideModule: EventEmitter<Object> = new EventEmitter();
+  @Output() public unhideModule: EventEmitter<TimetableModule> = new EventEmitter();
   public showMoreInfo: boolean = false;
   public hidden: boolean = false;
   public icons: object = {
