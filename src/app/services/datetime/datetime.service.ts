@@ -30,8 +30,8 @@ export class DatetimeService {
     if (timeParts['days']) length += `${timeParts['days']} day${timeParts['days'] > 1 ? 's' : ''}`;
     if (timeParts['days'] && timeParts['hours']) length += ', ';
     if (timeParts['hours']) length += `${timeParts['hours']} hour${timeParts['hours'] > 1 ? 's' : ''}`;
-    if (timeParts['hours'] && timeParts['minutes']) length += ' and ';
-    if (timeParts['minutes']) length += `${timeParts['minutes']} minutes`;
+    if (timeParts['days'] || timeParts['hours'] && timeParts['minutes']) length += ' and ';
+    if (timeParts['minutes'] || !timeParts['days'] && !timeParts['hours']) length += `${timeParts['minutes']} minutes`;
 
     return length;
   }

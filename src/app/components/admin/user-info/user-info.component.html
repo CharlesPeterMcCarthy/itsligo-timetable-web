@@ -1,13 +1,16 @@
 <div class="">
   <div class="row">
     <div class="col-sm-4">
-      {{ user.username }}
+      {{ user.displayUsername }}
     </div>
     <div class="col-sm-4">
+      {{ registeredReadable }}
+    </div>
+    <div class="col-sm-2">
       <a href="{{ user.timetableURL }}" target="_blank" *ngIf="user.timetableURL"><fa-icon [icon]="icons.linkIcon" class="link-icon"></fa-icon> View</a>
       <span *ngIf="!user.timetableURL">N/A</span>
     </div>
-    <div class="col-sm-4 text-center">
+    <div class="col-sm-2 text-center">
       <fa-icon [icon]="icons.checkIcon" *ngIf="user.verified" class="check"></fa-icon>
       <fa-icon [icon]="icons.uncheckIcon" *ngIf="!user.verified" class="uncheck"></fa-icon>
     </div>

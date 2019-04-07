@@ -1,3 +1,5 @@
+<loading-spinner [text]="'Retrieving users...'" [opacity]="'0.7'"></loading-spinner>
+
 <ul class="list-group">
   <div class="headings list-group-item">
     <div class="row">
@@ -5,12 +7,15 @@
         Username
       </div>
       <div class="col-sm-4">
+        Registered At
+      </div>
+      <div class="col-sm-2">
         Timetable
       </div>
-      <div class="col-sm-4 text-center">
-        Email Verified
+      <div class="col-sm-2 text-center">
+        Verified
       </div>
     </div>
   </div>
-  <admin-user-info *ngFor="let user of users" [user]="user"></admin-user-info>
+  <admin-user-info *ngFor="let user of users | sortList: 'registerAtForSorting' : 'desc'" [user]="user"></admin-user-info>
 </ul>
