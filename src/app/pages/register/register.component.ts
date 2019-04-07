@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-register',
@@ -7,19 +8,18 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./register.component.less']
 })
 
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
 
   public isRegistered: boolean = false;
+  public openRegistration: boolean = environment.openRegistration;
 
   constructor(private _title: Title) { 
     this._title.setTitle('Register | ITSligo Timetable');
   }
 
-  ngOnInit() { }
+  public PageHeading = (): string => this.isRegistered ? "Registered" : "Register";
 
-  PageHeading = (): string => this.isRegistered ? "Registered" : "Register";
-
-  Registered = (evt: boolean): void => {
+  public Registered = (evt: boolean): void => {
     this.isRegistered = evt;
   }
 

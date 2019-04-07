@@ -2,6 +2,10 @@
 
 <register-form (registered)="Registered($event)" *ngIf="!isRegistered"></register-form>
 
-<div *ngIf="isRegistered">
+<div *ngIf="isRegistered && !openRegistration">
   <p>You have successfully registered. Please check your email to confirm your email address.</p>
+</div>
+
+<div *ngIf="isRegistered && openRegistration">
+  <p>You have successfully registered. Click <a routerLink="/login">here</a> to go to the login page.</p>
 </div>
