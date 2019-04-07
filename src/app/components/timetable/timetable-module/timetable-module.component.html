@@ -24,72 +24,22 @@
     </div>
 
     <div *ngIf="!showMoreInfo" class="row">
-      <div class="col-6">
-        <div class="brief-info">
-          <small>Starts at</small> <div class="info-val">{{ module.times.start | datetime: 'HH:mm A' }}</div>
-        </div>
-      </div>
+      <module-info [colWidth]="'6'" [infoClass]="'brief'" [title]="'Starts at'" [info]="module.times.start" [isTime]="true"></module-info>
+      <module-info [colWidth]="'6'" [infoClass]="'brief'" [title]="'Ends at'" [info]="module.times.end" [isTime]="true"></module-info>
 
-      <div class="col-6">
-        <div class="brief-info">
-          <small>Ends at</small> <div class="info-val">{{ module.times.end | datetime: 'HH:mm A' }}</div>
-        </div>
-      </div>
-
-      <div class="col-6">
-        <div class="brief-info">
-          <small>Room<span *ngIf="module.rooms.length > 1">s</span></small>
-          <div class="info-val"><span [innerHTML]="roomsBrief"></span></div>
-        </div>
-      </div>
-
-      <div class="col-6">
-          <div class="brief-info">
-            <small>Duration</small> <div class="info-val">{{ duration }}</div>
-          </div>
-        </div>
+      <module-info [colWidth]="'6'" [infoClass]="'brief'" [title]="'Room' + (module.rooms.length > 1 ? 's' : '')" [info]="roomsBrief" [isInnerHTML]="true"></module-info>
+      <module-info [colWidth]="'6'" [infoClass]="'brief'" [title]="'Starts at'" [info]="duration"></module-info>
     </div>
 
     <div *ngIf="showMoreInfo" class="row">
-      <!-- Row -->
-      <div class="col-6">
-        <div class="extra-info">
-          <small>Starts at</small> <div class="info-val">{{ module.times.start | datetime: 'HH:mm A' }}</div>
-        </div>
-      </div>
+      <module-info [colWidth]="'6'" [infoClass]="'extra'" [title]="'Starts at'" [info]="module.times.start" [isTime]="true"></module-info>
+      <module-info [colWidth]="'6'" [infoClass]="'extra'" [title]="'Duration'" [info]="duration"></module-info>
 
-      <div class="col-6">
-        <div class="extra-info">
-          <small>Duration</small> <div class="info-val">{{ duration }}</div>
-        </div>
-      </div>
-      <!-- Row -->
-      <div class="col-6">
-        <div class="extra-info">
-          <small>Ends at</small> <div class="info-val">{{ module.times.end | datetime: 'HH:mm A' }}</div>
-        </div>
-      </div>
+      <module-info [colWidth]="'6'" [infoClass]="'extra'" [title]="'Ends at'" [info]="module.times.end" [isTime]="true"></module-info>
+      <module-info [colWidth]="'6'" [infoClass]="'extra'" [title]="'Starts in'" [info]="timeUntil"></module-info>
 
-      <div class="col-6">
-        <div class="extra-info">
-          <small>Starts in</small> <div class="info-val">{{ timeUntil }}</div>
-        </div>
-      </div>
-      <!-- Row -->
-      <div class="col-6">
-        <div class="extra-info">
-          <small>Lecturer<span *ngIf="module.lecturers.length > 1">s</span></small>
-          <div class="info-val"><span [innerHTML]="lecturers"></span></div>
-        </div>
-      </div>
-
-      <div class="col-6">
-        <div class="extra-info">
-          <small>Room<span *ngIf="module.rooms.length > 1">s</span></small>
-          <div class="info-val"><span [innerHTML]="rooms"></span></div>
-        </div>
-      </div>
+      <module-info [colWidth]="'6'" [infoClass]="'extra'" [title]="'Lecturer' + (module.lecturers.length > 1 ? 's' : '')" [info]="lecturers" [isInnerHTML]="true"></module-info>
+      <module-info [colWidth]="'6'" [infoClass]="'extra'" [title]="'Room' + (module.rooms.length > 1 ? 's' : '')" [info]="rooms" [isInnerHTML]="true"></module-info>
     </div>
-
   </div>
 </div>

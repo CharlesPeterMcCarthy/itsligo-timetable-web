@@ -1,0 +1,14 @@
+<div class="">
+  <div class="{{ infoClass }}-info">
+    <small>{{ title }}</small>
+    <div class="info-val">
+      <span *ngIf="isTime">
+        <span>{{ info | datetime: 'HH:mm A' }}</span>
+      </span>
+      <span *ngIf="!isTime">
+        <span *ngIf="!isInnerHTML">{{ info }}</span>
+        <span *ngIf="isInnerHTML" [innerHTML]="info"></span>
+      </span>
+    </div>
+  </div>
+</div>

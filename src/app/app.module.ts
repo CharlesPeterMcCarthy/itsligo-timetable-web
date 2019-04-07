@@ -54,6 +54,7 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { ModuleInfoComponent } from './components/timetable/module-info/module-info.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     UsersComponent,
     UserListComponent,
     UserInfoComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    ModuleInfoComponent
   ],
   imports: [
     BrowserModule,
