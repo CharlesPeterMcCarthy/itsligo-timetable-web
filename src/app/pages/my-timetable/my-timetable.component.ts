@@ -26,8 +26,8 @@ export class MyTimetableComponent implements OnInit, OnDestroy {
 
   public heading: string = "My Timetable";
   public timetable: Timetable;
-  public error: string;
   private modHiddenSub: Subscription;
+  private gettingTimetable: boolean = false;
 
   constructor(
     private _title: Title,
@@ -52,34 +52,44 @@ export class MyTimetableComponent implements OnInit, OnDestroy {
     this.GetTimetable();
   }
 
-  ngOnDestroy = () => this.modHiddenSub.unsubscribe();
+  ngOnDestroy() {
+    this.modHiddenSub.unsubscribe();
+  }
 
   private GetTimetable = (): void | object => {
+    if (this.gettingTimetable) return // Prevent double calling
+
     if (!this._userService.TimetableURL()) {
       this._router.navigate(['/']);
     } else {
+      this.FlagTimetableCall(true);
+
       if (this._authService.IsLoggedIn())
         this._timetableAPI.MyTimetable(this._userService.Username(), this._userService.TimetableURL()).subscribe((timetable: Timetable) => {     
           console.log(timetable)
           this.HideSpinner();
           this.timetable = timetable; 
-        }, (err) => {
+          this.FlagTimetableCall(false);
+        }, () => {
           this.HideSpinner();
-          this._toastr.error(err.error.errorText || "Unknown Error");
-          this.error = err.error.errorText;
-        });
+          this.FlagTimetableCall(false);
+        }
+      );
       else 
         this._timetableAPI.GetTimetable(this._userService.TimetableURL()).subscribe((timetable: Timetable) => {     
           console.log(timetable)
           this.HideSpinner();
           this.timetable = timetable; 
-        }, (err) => {
+          this.FlagTimetableCall(false);
+        }, () => {
           this.HideSpinner();
-          this._toastr.error(err.error.errorText || "Unknown Error");
-          this.error = "Failed to retrieve your timetable. Try reloading the page.";
-        });
+          this.FlagTimetableCall(false);
+        }
+      );
     }
   }
+
+  private FlagTimetableCall = (flag: boolean) => this.gettingTimetable = flag;
 
   private ShowSpinner = () => this._spinner.show();
 
