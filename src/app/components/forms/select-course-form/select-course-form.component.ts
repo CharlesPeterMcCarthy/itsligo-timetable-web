@@ -66,8 +66,7 @@ export class SelectCourseFormComponent implements OnInit {
         () => {
           this._userService.SetTimetableURL(url);
           this._router.navigate(['timetable']);
-        }, 
-        (err) => this._toastr.error(err.error.errorText)
+        }
       );
     } else {
       this._userService.SetTimetableURL(url);

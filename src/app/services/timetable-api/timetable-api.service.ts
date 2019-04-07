@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { map, tap, catchError } from 'rxjs/operators';
 import { _ } from 'underscore';
 import { environment } from '../../../environments/environment';
 import Timetable from '../../models/timetable.model';
@@ -12,6 +12,7 @@ import { UserService } from '../user/user.service';
 import Department from '../../models/department.model';
 import Course from '../../models/course.model';
 import HiddenModule from '../../models/hidden-module.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,8 @@ export class TimetableApiService {
 
   constructor(
     private _http: HttpClient,
-    private _userService: UserService
+    private _userService: UserService,
+    private _toastr: ToastrService
   ) {}
 
   public GetTimetable = (timetableURL: string): Observable<Timetable> => this._http.post(`${this.baseURL}/timetable`, { timetableURL, includeModules: true, includeBreaks: true, checkConflicts: true })
@@ -37,19 +39,27 @@ export class TimetableApiService {
 
   public ChangeTimetable = (username: string, timetableURL: string): Observable<object> => this._http.post(`${this.baseURL}/change-timetable`, this.AttachAuthToken({ username, timetableURL }))
     .pipe(
-      tap(res => this.UpdateAuthToken(res['authToken']))
+      tap(res => this.UpdateAuthToken(res['authToken'])),
+      catchError(this.handleError)
     );
 
   public HideModules = (username: string, timetableURL: string, modules: Object[]): Observable<object> => this._http.post(`${this.baseURL}/hide-modules`, this.AttachAuthToken({ username, timetableURL, modules }))
-    .pipe(tap(res => this.UpdateAuthToken(res['authToken'])));
+    .pipe(
+      tap(res => this.UpdateAuthToken(res['authToken'])),
+      catchError(this.handleError)
+    );
 
   public RestoreModules = (username: string, timetableURL: string): Observable<object> => this._http.post(`${this.baseURL}/restore-modules`, this.AttachAuthToken({ username, timetableURL }))
-    .pipe(tap(res => this.UpdateAuthToken(res['authToken'])));
+    .pipe(
+      tap(res => this.UpdateAuthToken(res['authToken'])),
+      catchError(this.handleError)
+    );
 
   public MyTimetable = (username: string, timetableURL: string): Observable<Timetable> => this._http.post(`${this.baseURL}/my-timetable`, this.AttachAuthToken({ username, timetableURL }))
     .pipe(
       tap(res => this.UpdateAuthToken(res['authToken'])),
-      map(data => _.extend(this.MapTimetable(timetableURL, data), { hiddenModules: this.CreateHiddenModules(data) } ))
+      map(data => _.extend(this.MapTimetable(timetableURL, data), { hiddenModules: this.CreateHiddenModules(data) } )),
+      catchError(this.handleError)
     );
  
   private CleanURL = (url): string => url.replace('&', '%26');
@@ -66,5 +76,17 @@ export class TimetableApiService {
   private CreateHiddenModules = (data: object) => _.map(data['hiddenModules'], mod => new HiddenModule(mod));
     
   private UpdateAuthToken = (authToken: string) => this._userService.SetAuthToken(authToken);
+
+  private handleError = (err: HttpErrorResponse) => {
+    const errorText = err.error && err.error.errorText || 'Unknown Error';
+    this._toastr.error(errorText);
+
+    if (err.error && err.error.forceLogout) {
+      this._userService.ClearUserData();
+      this._toastr.error('You have been logged out.');
+    }
+
+    return throwError(errorText);
+  }
 
 }

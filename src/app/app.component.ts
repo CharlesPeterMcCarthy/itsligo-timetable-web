@@ -57,8 +57,6 @@ export class AppComponent implements OnDestroy {
     this._timetableAPI.HideModules(this._userService.Username(), this._userService.TimetableURL(), this.StripModules()).subscribe(() => {     
       this.hiddenModules = [];
       this._moduleHiderService.NotifyListeners();
-    }, (err) => {
-      this._toastr.error(err.error.errorText);
     });
   }
 
