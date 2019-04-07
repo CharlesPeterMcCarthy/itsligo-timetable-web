@@ -28,6 +28,7 @@ export class MyTimetableComponent implements OnInit, OnDestroy {
   public timetable: Timetable;
   private modHiddenSub: Subscription;
   private gettingTimetable: boolean = false;
+  private restoringModules: boolean = false;
 
   constructor(
     private _title: Title,
@@ -96,8 +97,13 @@ export class MyTimetableComponent implements OnInit, OnDestroy {
   private HideSpinner = () => this._spinner.hide();
 
   public RestoreHiddenModules = (): void => {
+    if (this.restoringModules) return; // Prevent double clicking
+    this.restoringModules = true;
+
     this._timetableAPI.RestoreModules(this._userService.Username(), this._userService.TimetableURL()).subscribe(() => {
       this.UpdateTimetable();
+
+      this.restoringModules = false;
     });
   }
 

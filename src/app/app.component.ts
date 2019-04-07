@@ -26,6 +26,7 @@ export class AppComponent implements OnDestroy {
 
   private moduleSub: Subscription;
   private hiddenModules: Object[] = [];
+  private hidingModule: boolean = false;
   
   constructor(
     private _router: Router,
@@ -47,16 +48,21 @@ export class AppComponent implements OnDestroy {
     });
    }
 
-  ngOnDestroy = () => this.moduleSub.unsubscribe();
+  ngOnDestroy() {
+    this.moduleSub.unsubscribe();
+  }
 
   public ShowHideButton = (): boolean => this._router.url == "/timetable" && !_.isEmpty(this.hiddenModules);
 
   public HideModules = (): void => {
-    if (!this._authService.IsLoggedIn) return
+    if (!this._authService.IsLoggedIn || this.hidingModule) return;  // Prevent double clicking
+    this.hidingModule = true;
 
     this._timetableAPI.HideModules(this._userService.Username(), this._userService.TimetableURL(), this.StripModules()).subscribe(() => {     
       this.hiddenModules = [];
       this._moduleHiderService.NotifyListeners();
+
+      this.hidingModule = false;
     });
   }
 

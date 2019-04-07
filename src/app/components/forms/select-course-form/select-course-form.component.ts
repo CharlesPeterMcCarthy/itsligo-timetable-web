@@ -20,6 +20,7 @@ export class SelectCourseFormComponent implements OnInit {
   public courses: Course[];
   public selectedCourse: Course;
   private selectedDept: Department;
+  private changingTimetable: boolean = false;
 
   constructor(
     private _timetableAPI: TimetableApiService,
@@ -60,11 +61,17 @@ export class SelectCourseFormComponent implements OnInit {
   public SetCourse = (course: Course) => this.selectedCourse = course;
 
   public ViewTimetable = (semesterNum: number): boolean => {
+    if (this.changingTimetable) return; // Prevent double clicking
+
     const url = this.selectedCourse['url'][`semester${semesterNum}`];
+    
     if (this._authService.IsLoggedIn()) {
+      this.changingTimetable = true;
+
       this._timetableAPI.ChangeTimetable(this._userService.Username(), url).subscribe(
         () => {
           this._userService.SetTimetableURL(url);
+          this.changingTimetable = false;
           this._router.navigate(['timetable']);
         }
       );
