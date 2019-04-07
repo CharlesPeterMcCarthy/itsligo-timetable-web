@@ -104,6 +104,8 @@ export class MyTimetableComponent implements OnInit, OnDestroy {
       this.UpdateTimetable();
 
       this.restoringModules = false;
+
+      this._toastr.success("The hidden modules have been restored.");
     });
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../../../services/auth/auth.service';
-import { ToastrService } from 'ngx-toastr';
+import { ToastrService, ActiveToast } from 'ngx-toastr';
 import { environment } from '../../../../environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
 
@@ -27,8 +27,10 @@ export class RegisterFormComponent implements OnInit {
 
   public HideSpinner = () => this._spinner.hide();
 
-  public EmailRegister = (StudentEmail: string, Password: string): void => {
-    this,this.ShowSpinner();
+  public EmailRegister = (StudentEmail: string, Password: string, ConfirmPassword: string): void | ActiveToast<any> => {
+    if (Password !== ConfirmPassword) return this._toastr.warning('Passwords do not match');
+
+    this.ShowSpinner();
 
     this._authService.Register(StudentEmail, Password).subscribe((res) => {
       this.HideSpinner();
@@ -39,7 +41,9 @@ export class RegisterFormComponent implements OnInit {
     })
   }
 
-  public OpenRegister = (Username: string, Password: string): void => {
+  public OpenRegister = (Username: string, Password: string, ConfirmPassword: string): void | ActiveToast<any> => {
+    if (Password !== ConfirmPassword) return this._toastr.warning('Passwords do not match');
+    
     this.ShowSpinner();
 
     this._authService.OpenRegister(Username, Password).subscribe((res) => {

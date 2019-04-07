@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { NavLink } from '../../interfaces/nav-link';
 import { AdminService } from '../../services/admin/admin.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'nav-bar',
@@ -17,7 +18,8 @@ export class NavComponent implements OnInit {
     @Inject(DOCUMENT) private document: Document,
     private _authService: AuthService,
     private _router: Router,
-    private _adminService: AdminService
+    private _adminService: AdminService,
+    private _toastr: ToastrService
   ) {}
 
   private isBelowNav: boolean = false;
@@ -72,6 +74,7 @@ export class NavComponent implements OnInit {
 
   public Logout = (): void => {
     this._authService.Logout();
+    this._toastr.success("You've been successfully logged out.");
     this._router.navigate(['/']);
   }
 

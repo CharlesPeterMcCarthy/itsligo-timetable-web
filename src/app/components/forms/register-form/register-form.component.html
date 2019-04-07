@@ -1,4 +1,4 @@
-<app-spinner [text]="'Signing Up...'" [opacity]="'0.7'"></app-spinner>
+<loading-spinner [text]="'Signing Up...'" [opacity]="'0.7'"></loading-spinner>
 
 <form>
   <div class="text-center">
@@ -6,13 +6,18 @@
       <div class="form-group row justify-content-center">
         <input-field [type]="'email'" [placeholder]="'Student Email'" class="col-sm-8" #studentEmail></input-field>
       </div>
+
       <div class="form-group row justify-content-center">
         <input-field [type]="'password'" [placeholder]="'Password'" class="col-sm-8" #password></input-field>
       </div>
 
+      <div class="form-group row justify-content-center">
+        <input-field [type]="'password'" [placeholder]="'Confirm Password'" class="col-sm-8" #confirmPassword></input-field>
+      </div>
+
       <div class="row justify-content-center">
         <div class="col-sm-8 text-right">
-          <app-button [text]="'Register'" [size]="'large'" [style]="'primary'" (click)="EmailRegister(studentEmail.value, password.value)"></app-button>
+          <app-button [text]="'Register'" [size]="'large'" [style]="'primary'" (click)="EmailRegister(studentEmail.value, password.value, confirmPassword.value)"></app-button>
         </div>
       </div>
     </div>
@@ -26,9 +31,13 @@
         <input-field [type]="'password'" [placeholder]="'Password'" class="col-sm-8" #password></input-field>
       </div>
 
+      <div class="form-group row justify-content-center">
+        <input-field [type]="'password'" [placeholder]="'Confirm Password'" class="col-sm-8" #confirmPassword></input-field>
+      </div>
+
       <div class="row justify-content-center">
         <div class="col-sm-8 text-right">
-          <app-button [text]="'Register'" [size]="'large'" [style]="'primary'" (click)="OpenRegister(username.value, password.value)"></app-button>
+          <app-button [text]="'Register'" [size]="'large'" [style]="'primary'" (click)="OpenRegister(username.value, password.value, confirmPassword.value)"></app-button>
         </div>
       </div>
     </div>

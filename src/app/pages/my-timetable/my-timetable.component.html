@@ -1,7 +1,7 @@
 <div class="content">
   <page-heading [heading]="heading" *ngIf="timetable"></page-heading>
 
-  <app-spinner [text]="'Fetching Your Timetable...'" [opacity]="'0.2'"></app-spinner>
+  <loading-spinner [text]="'Fetching Your Timetable...'" [opacity]="'0.2'"></loading-spinner>
 
   <div *ngIf="timetable" class="timetable">
     <div *ngIf="HaveModulesToday() && FinishedForTheDay()" class="no-module-today current-info">You have no more modules today.</div>

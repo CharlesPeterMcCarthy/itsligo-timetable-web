@@ -63,6 +63,8 @@ export class AppComponent implements OnDestroy {
       this._moduleHiderService.NotifyListeners();
 
       this.hidingModule = false;
+
+      this._toastr.success("The modules have been hidden.\nClick 'Restore hidden modules' at the bottom of the page to undo.");
     });
   }
 
