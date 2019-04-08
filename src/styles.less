@@ -20,38 +20,44 @@ body {
         font-weight: bold;
     }
 
-    input[type="text"], input[type="password"], select {
+    p {
+        color: white;
+    }
+
+    input, select {
         margin-bottom: 10px;
     }
 
-    .black-overlay {
-        position:absolute !important;
+    .black-overlay {    /* For Loading spinners - Only cover component */
+        position: absolute !important;
         border-radius: 4px;
     }
 
     /* Bug fix for Bootstrap / NGX-Toastr naming clash */
+
     #toast-container > div {
         opacity: 1;
     }
+
     .toast {
         font-size: initial !important;
         border: initial !important;
         backdrop-filter: blur(0) !important;
     }
+
     .toast-success {
         background-color: #51A351 !important;
     }
+
     .toast-error {
         background-color: #BD362F !important;
     }
+
     .toast-info {
         background-color: #2F96B4 !important;
     }
+
     .toast-warning {
         background-color: #F89406 !important;
-    }
-
-    p {
-        color: white;
     }
 }

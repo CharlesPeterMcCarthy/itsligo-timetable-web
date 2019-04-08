@@ -16,7 +16,7 @@
     </ul>
 
     <div class="text-right" *ngIf="timetable.hiddenModules && timetable.hiddenModules.length">
-      <small class="restore" (click)="RestoreHiddenModules()">Restore hidden modules</small>
+      <small class="restore" (click)="RestoreHiddenModules()">Restore hidden modules ({{ timetable.hiddenModules.length }})</small>
     </div>
   </div>
 </div>

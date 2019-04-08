@@ -32,7 +32,7 @@ export class LoginFormComponent {
     this.ShowSpinner();
     this._userService.ClearUserData();
 
-    this._authService.Login(username, password).subscribe((res) => {
+    this._authService.Login(username.trim(), password).subscribe((res) => {
       if (res['authToken']) {
         this._userService.SetUserData(res);
         this._router.navigate(['timetable']);
