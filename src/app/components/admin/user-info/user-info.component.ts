@@ -27,6 +27,6 @@ export class UserInfoComponent implements OnInit {
     this.SetRegisterAtReadable();
   }
 
-  private SetRegisterAtReadable = () => this.registeredReadable = this._datetimeService.ReadableDuration(this._datetimeService.TimeDuration(this.user.registerAt, this._datetimeService.Now()));
+  private SetRegisterAtReadable = () => this.registeredReadable = this._datetimeService.ReadableDuration(this._datetimeService.TimeDuration(this.user.times.registerAt, this._datetimeService.Now()));
 
 }

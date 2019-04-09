@@ -3,11 +3,15 @@
 <ul class="list-group">
   <div class="headings list-group-item">
     <div class="row">
-      <div class="col-sm-4">
+      <div class="col-sm-4 sortable" (click)="SortBy('displayUsername')">
         Username
+        <fa-icon [icon]="icons.sortAsc" *ngIf="(sortBy == 'displayUsername' && sortOrder == 'desc') || sortBy !== 'displayUsername'"></fa-icon>
+        <fa-icon [icon]="icons.sortDesc" *ngIf="sortBy == 'displayUsername' && sortOrder == 'asc'"></fa-icon>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-4 sortable" (click)="SortBy('registerAtForSorting')">
         Registered At
+        <fa-icon [icon]="icons.sortAsc" *ngIf="(sortBy == 'registerAtForSorting' && sortOrder == 'desc') || sortBy !== 'registerAtForSorting'"></fa-icon>
+        <fa-icon [icon]="icons.sortDesc" *ngIf="sortBy == 'registerAtForSorting' && sortOrder == 'asc'"></fa-icon>
       </div>
       <div class="col-sm-2">
         Timetable
@@ -17,5 +21,5 @@
       </div>
     </div>
   </div>
-  <admin-user-info *ngFor="let user of users | sortList: 'registerAtForSorting' : 'desc'" [user]="user"></admin-user-info>
+  <admin-user-info *ngFor="let user of users | sortList: sortBy : sortOrder" [user]="user"></admin-user-info>
 </ul>

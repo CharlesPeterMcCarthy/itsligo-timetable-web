@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import User from '../../../models/user.model';
 import { AdminService } from '../../../services/admin/admin.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'admin-user-list',
@@ -12,7 +13,13 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class UserListComponent implements OnInit, OnDestroy {
 
   public users: User[];
+  public sortBy: string = "registerAtForSorting";
+  public sortOrder: string = "desc";
   private checker;
+  public icons: object = {
+    sortAsc: faAngleDown,
+    sortDesc: faAngleUp
+  }
 
   constructor(
     private _adminService: AdminService,
@@ -38,6 +45,11 @@ export class UserListComponent implements OnInit, OnDestroy {
       this.users = users;
       this.HideSpinner();
     });
+  }
+
+  public SortBy = (key: string) => {
+    this.sortBy === key ? (this.sortOrder = this.sortOrder === "asc" ? "desc" : "asc") : this.sortOrder = "asc";
+    this.sortBy = key;
   }
 
 }
