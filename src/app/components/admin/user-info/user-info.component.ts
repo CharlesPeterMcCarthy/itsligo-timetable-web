@@ -14,6 +14,7 @@ export class UserInfoComponent implements OnInit {
 
   @Input() public user: User;
   public registeredReadable: string;
+  public lastActionReadable: string;
   
   public icons = {
     checkIcon: faCheckCircle,
@@ -25,8 +26,11 @@ export class UserInfoComponent implements OnInit {
 
   ngOnInit() {
     this.SetRegisterAtReadable();
+    this.SetLastActionReadable();
   }
 
   private SetRegisterAtReadable = () => this.registeredReadable = this._datetimeService.ReadableDuration(this._datetimeService.TimeDuration(this.user.times.registerAt, this._datetimeService.Now()));
+
+  private SetLastActionReadable = () => this.lastActionReadable = this._datetimeService.ReadableDuration(this._datetimeService.TimeDuration(this.user.times.lastAction, this._datetimeService.Now()));
 
 }

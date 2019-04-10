@@ -1,10 +1,13 @@
 <div class="">
   <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-2">
       {{ user.displayUsername }}
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-3">
       {{ registeredReadable }}
+    </div>
+    <div class="col-sm-3">
+      {{ lastActionReadable }}
     </div>
     <div class="col-sm-2">
       <a href="{{ user.timetableURL }}" target="_blank" *ngIf="user.timetableURL"><fa-icon [icon]="icons.linkIcon" class="link-icon"></fa-icon> View</a>

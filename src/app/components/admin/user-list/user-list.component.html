@@ -3,15 +3,20 @@
 <ul class="list-group">
   <div class="headings list-group-item">
     <div class="row">
-      <div class="col-sm-4 sortable" (click)="SortBy('displayUsername')">
+      <div class="col-sm-2 sortable" (click)="SortBy('displayUsername')">
         Username
         <fa-icon [icon]="icons.sortAsc" *ngIf="(sortBy == 'displayUsername' && sortOrder == 'desc') || sortBy !== 'displayUsername'"></fa-icon>
         <fa-icon [icon]="icons.sortDesc" *ngIf="sortBy == 'displayUsername' && sortOrder == 'asc'"></fa-icon>
       </div>
-      <div class="col-sm-4 sortable" (click)="SortBy('registerAtForSorting')">
+      <div class="col-sm-3 sortable" (click)="SortBy('registerAtForSorting')">
         Registered At
         <fa-icon [icon]="icons.sortAsc" *ngIf="(sortBy == 'registerAtForSorting' && sortOrder == 'desc') || sortBy !== 'registerAtForSorting'"></fa-icon>
         <fa-icon [icon]="icons.sortDesc" *ngIf="sortBy == 'registerAtForSorting' && sortOrder == 'asc'"></fa-icon>
+      </div>
+      <div class="col-sm-3 sortable" (click)="SortBy('lastActionForSorting')">
+        Last Action
+        <fa-icon [icon]="icons.sortAsc" *ngIf="(sortBy == 'lastActionForSorting' && sortOrder == 'desc') || sortBy !== 'lastActionForSorting'"></fa-icon>
+        <fa-icon [icon]="icons.sortDesc" *ngIf="sortBy == 'lastActionForSorting' && sortOrder == 'asc'"></fa-icon>
       </div>
       <div class="col-sm-2">
         Timetable
