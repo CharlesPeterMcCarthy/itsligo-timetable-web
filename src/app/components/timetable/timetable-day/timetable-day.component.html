@@ -21,6 +21,7 @@
   </div>
 
   <div class="modules" *ngIf="isOpen">
+    <day-info [day]="day"></day-info>
     <div *ngFor="let module of day.modules">
       <timetable-module [module]="module" [day]="day.day" [conflicting]="module.conflicting" (hideModule)="HideModule($event)" (unhideModule)="UnhideModule($event)"></timetable-module>
       <timetable-break *ngIf="FindBreak(module.times.end, module)" [break]="FindBreak(module.times.end, module)"></timetable-break>

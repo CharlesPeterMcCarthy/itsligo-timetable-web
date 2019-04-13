@@ -21,6 +21,8 @@ import { TimetableModuleComponent } from './components/timetable/timetable-modul
 import { BreakComponent } from './components/timetable/break/break.component';
 import { CurrentModuleComponent } from './components/timetable/current-module/current-module.component';
 import { CurrentBreakComponent } from './components/timetable/current-break/current-break.component';
+import { ModuleInfoComponent } from './components/timetable/module-info/module-info.component';
+import { DayInfoComponent } from './components/timetable/day-info/day-info.component';
 
 // Input / Field Components
 import { ButtonComponent } from './components/basic-components/button/button.component';
@@ -54,7 +56,6 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { SpinnerComponent } from './components/spinner/spinner.component';
-import { ModuleInfoComponent } from './components/timetable/module-info/module-info.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { ModuleInfoComponent } from './components/timetable/module-info/module-i
     UserListComponent,
     UserInfoComponent,
     SpinnerComponent,
-    ModuleInfoComponent
+    ModuleInfoComponent,
+    DayInfoComponent
   ],
   imports: [
     BrowserModule,
