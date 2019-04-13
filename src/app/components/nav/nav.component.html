@@ -16,7 +16,7 @@
       <nav-link *ngFor="let navLink of navLinksRight" [navLink]="navLink"></nav-link>
     </ul>
 
-    <ul class="navbar-nav" (click)="CloseNavBar()" *ngIf="IsLoggedIn()">
+    <ul class="navbar-nav" *ngIf="IsLoggedIn()">
       <nav-link [navLink]="logoutLink" (click)="Logout()"></nav-link>
     </ul>
   </div>

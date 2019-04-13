@@ -58,6 +58,7 @@ export class NavComponent {
   public Logout = (): void => {
     this._authService.Logout();
     this._toastr.success("You've been successfully logged out.");
+    this.CloseNavBar();
     this._router.navigate(['/']);
   }
 
