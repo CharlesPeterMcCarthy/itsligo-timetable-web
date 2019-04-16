@@ -13,6 +13,6 @@ export class FooterComponent {
 
   constructor() { }
 
-  public GitHub = () => window.open("https://github.com/CharlesPeterMcCarthy", "_blank");
+  public GitHub = () => window.open("https://github.com/CharlesPeterMcCarthy/itsligo-timetable-web", "_blank");
 
 }

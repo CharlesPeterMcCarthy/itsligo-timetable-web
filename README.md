@@ -1,4 +1,7 @@
 # Timetables
+## https://itsligo-timetable.com
+
+Angular web application used to view your ITSligo college timetable. The backend is written in Python (contained in a private repo).
 
 ## How It Looks Now
 This is how the Angular web application looks when viewing your timetable
@@ -17,8 +20,3 @@ This is the current timetable used by ITSligo - Fairly outdated looking and not 
 ## Hiding Modules
 
 ![Hiding Modules](_images/its_timetable3.png?raw=true "Hiding Modules")
-
-## Architecture
-The layout for the whole service
-
-![Architecture Diagram](_images/architecture.png?raw=true "Architecture Diagram")
